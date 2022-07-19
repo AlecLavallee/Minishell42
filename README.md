@@ -26,5 +26,19 @@ While executing commands is essential, most of the power (and complexity) of she
 
 Shells offer features geared specifically for interactive use rather than to augment the programming language. These interactive features include job control, command line editing, command history and aliases. Each of these features is described in this manual.
 
+Questions related to the subject:
+
+[Afficher un prompt en l’attente d’une nouvelle commande](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#Controlling-the-Prompt)
+[Chercher et lancer le bon exécutable (en se basant sur la variable d’environnement
+PATH, ou sur un chemin relatif ou absolu).](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#Command-Search-and-Execution)
+[Posséder un historique fonctionnel.](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#Using-History-Interactively)
+[Ne pas interpréter de quotes (guillemets) non fermés ou de caractères spéciaux non
+demandés dans le sujet, tels que \ (le backslash) ou ; (le point-virgule).
+Gérer ’ (single quote) qui doit empêcher le shell d’interpréter les méta-caractères
+présents dans la séquence entre guillemets.
+Gérer " (double quote) qui doit empêcher le shell d’interpréter les méta-caractères
+présents dans la séquence entre guillemets sauf le $ (signe dollar).](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#Quoting)
+[ Implémenter les redirections](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#Redirections)
+
 Useful links :
 https://tldp.org/LDP/Bash-Beginners-Guide/html/index.html
