@@ -6,21 +6,18 @@
 #    By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/29 11:56:39 by alelaval          #+#    #+#              #
-#    Updated: 2022/07/24 15:09:51 by alelaval         ###   ########.fr        #
+#    Updated: 2022/07/25 18:12:44 by alelaval         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = pipex
 
-SRCS = ./srcs/parser/parser.c \
-		./srcs/parser/paths.c \
+SRCS = ./srcs/parser/paths.c \
 		./srcs/process/process.c \
 		./srcs/utils/utils.c \
 		./srcs/utils/utils2.c \
 		./srcs/utils/utils3.c \
-		./srcs/error/error.c \
-		./srcs/error/free.c \
-		./srcs/pipex.c \
+		./srcs/pipex.c
 
 OBJS =	${SRCS:.c=.o}
 

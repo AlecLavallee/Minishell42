@@ -6,11 +6,11 @@
 /*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/09 13:36:00 by alelaval          #+#    #+#             */
-/*   Updated: 2021/12/18 17:42:24 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/07/25 18:13:13 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "execution.h"
 
 int	size_array(char **array)
 {

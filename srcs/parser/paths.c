@@ -6,11 +6,11 @@
 /*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 15:01:55 by alelaval          #+#    #+#             */
-/*   Updated: 2021/12/18 16:23:22 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/07/25 18:06:03 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "execution.h"
 
 char	*get_path_line(char **paths)
 {
