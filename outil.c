@@ -12,32 +12,17 @@
 
 #include "./minishell.h"
 
-void    signal_quit_input(int signal)
-{
-    int sig_exit;
-
-    sig_exit = 0;
-    sig_exit += signal;
-    if (sig_exit == 2)
-    {
-        printf("\n");
-    }
-    if (sig_exit == SIGQUIT)
-    {
-        printf("error----\n");
-        exit(1);
-    }
-}
+//int valeur_exit;
 
 void    signal_input(int signal)
 {
-    int sig_exit;
+    int valeur_exit;
 
-    sig_exit = 0;
-    sig_exit += signal;
-    if (sig_exit == 2)
+    valeur_exit = 0;
+    valeur_exit += signal;
+    if (valeur_exit == 2)
     {
-        sig_exit = 130; //valeur de retour avec Ctrl + C
+        valeur_exit = 130; //valeur de retour avec Ctrl + C
         printf("\n");
         printf(">team_90's ");
     }

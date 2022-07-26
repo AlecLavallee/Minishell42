@@ -30,7 +30,7 @@
 # include <sys/stat.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-//# include "../lib/libft/libft.h"
+# include "./libft/libft.h"
 
 typedef struct s_token
 {
@@ -39,8 +39,12 @@ typedef struct s_token
 	struct s_token	*next;
 }		t_token;
 
+extern int valeur_exit; 
+
 //libft(on va integrer vrai ficher libft apres)
-int ft_strlen(char *str);
+//int ft_strlen(char *str);
 void    signal_input(int signal);
-void    signal_quit_input(int signal);
+int quote_check(char *str);
+int simple_quote(char *str);
+int double_quote(char *str);
 # endif
