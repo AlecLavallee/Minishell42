@@ -42,8 +42,6 @@ typedef struct s_token
 
 extern int valeur_exit; 
 
-//libft(on va integrer vrai ficher libft apres)
-//int ft_strlen(char *str);
 void    signal_input(int signal);
 int quote_check(char *str);
 int simple_quote(char *str);

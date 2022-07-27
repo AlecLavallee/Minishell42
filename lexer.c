@@ -22,11 +22,24 @@ int valeur_exit;
     valeur_exit : variable global pour la valeur de retour, mais on pourrait enlever
 */
 
+//int main(int argc, char **argv, char **envp)
 int main(int argc, char **argv)
 {
     char *line;
     t_token *token;
+    //int i;
+    //char **env_cpy;
 
+    //i = 0;
+    /*env_cpy = malloc(sizeof(char) * **envp + 1);
+    while (*envp[i])
+    {
+        *env_cpy[i] = *envp[i];
+        i++; 
+    }*/
+    /*
+    ** il faut elaborer get_env
+    */
     token = NULL;
     line = NULL;
     if (argc && argv)
@@ -49,9 +62,13 @@ int main(int argc, char **argv)
     }
     printf("exit\n");
     free(token);
-    return (0);
+    //free(*env_cpy);
+    return (valeur_exit);
 }
-
+/*
+**
+** quote_check : checker des quotes impares dans le string
+*/
 int quote_check(char *str)
 {
     int cur;
@@ -63,9 +80,9 @@ int quote_check(char *str)
             cur++;
         if (ft_strchr(str, '\''))
         {
+            // fonction pour checker single quote
             if (simple_quote(&str[cur]) == 0)
                 return (STDERR);
-            // fonction pour checker single quote
             cur += simple_quote(&str[cur]);
         }
         else if (ft_strchr(str, '\"'))
@@ -75,12 +92,20 @@ int quote_check(char *str)
                 return (STDERR);
             cur += double_quote(&str[cur]);
         }
+        /*else if
+        {
+            ** ft_strchr pour les operands :
+            ** pour checker 
+        }*/
         else
             cur++;
     }
     return (0);
 }
-
+/*
+** simple_quote : checker des quotes simples
+**
+*/
 int simple_quote(char *str)
 {
     int cur;
@@ -103,7 +128,10 @@ int simple_quote(char *str)
     return (cur);
 }
 
-
+/*
+** double_quote : checker des quotes simples
+**
+*/
 int double_quote(char *str)
 {
     int cur;
@@ -126,5 +154,11 @@ int double_quote(char *str)
     return (cur);
 }
 
+/*
+**fonctiion pour checker des operands dans un string
+**
+*/
+int operands(char operand)
+{
 
-
+}

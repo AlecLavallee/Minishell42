@@ -14,6 +14,10 @@
 
 //int valeur_exit;
 
+/*
+** signal_input : gerer l'interruprion par clavier (Ctrl + c)
+**
+*/
 void    signal_input(int signal)
 {
     int valeur_exit;
