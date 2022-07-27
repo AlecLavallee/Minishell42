@@ -35,6 +35,7 @@
 typedef struct s_token
 {
 	int				cur;
+	int 			len;
     char            *string;
 	struct s_token	*next;
 }		t_token;

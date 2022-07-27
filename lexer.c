@@ -25,7 +25,9 @@ int valeur_exit;
 int main(int argc, char **argv)
 {
     char *line;
+    t_token *token;
 
+    token = NULL;
     line = NULL;
     if (argc && argv)
     {
@@ -39,15 +41,14 @@ int main(int argc, char **argv)
                 free(line);
                 break;
             }
-            if (quote_check(line))
-                printf("miss quote\n");
-            else
+            if (!quote_check(line))
                 printf("%s\n", line);
             add_history(line);
             free(line);
         }
     }
     printf("exit\n");
+    free(token);
     return (0);
 }
 
@@ -62,21 +63,19 @@ int quote_check(char *str)
             cur++;
         if (ft_strchr(str, '\''))
         {
-            if (simple_quote(&str[cur]))
+            if (simple_quote(&str[cur]) == 0)
                 return (STDERR);
             // fonction pour checker single quote
-            else
-                cur += simple_quote(&str[cur]);
+            cur += simple_quote(&str[cur]);
         }
         else if (ft_strchr(str, '\"'))
         {
             // fonction pour checker double quote
-            if (double_quote(&str[cur]))
+            if (double_quote(&str[cur]) == 0)
                 return (STDERR);
-            else
-                cur += double_quote(&str[cur]);
+            cur += double_quote(&str[cur]);
         }
-        else 
+        else
             cur++;
     }
     return (0);
@@ -96,9 +95,14 @@ int simple_quote(char *str)
         cur++;
     }
     if (s_quote % 2 != 0)
-        return (STDERR);
-    return (0);
+    {   
+        printf("miss quote:\n");
+        //free(word);
+        return (0);
+    }
+    return (cur);
 }
+
 
 int double_quote(char *str)
 {
@@ -114,8 +118,12 @@ int double_quote(char *str)
         cur++;
     }
     if (d_quote % 2 != 0)
-        return (STDERR);
-    return (0);
+    {   
+        printf("miss quote:\n");
+        //free(word);
+        return (0);
+    }
+    return (cur);
 }
 
 
