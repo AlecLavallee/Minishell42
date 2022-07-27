@@ -6,7 +6,7 @@
 /*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:53:20 by alelaval          #+#    #+#             */
-/*   Updated: 2022/07/25 18:11:10 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/07/27 14:50:40 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 
 typedef struct s_comm
 {
+	pid_t	pid;
 	int		nb_args;
 	char	**args;
 }			t_comm;
@@ -30,10 +31,14 @@ typedef struct s_comm
 typedef struct s_pipex
 {
 	int			ret;
+	int			fdin;
+	int			fdout;
+	char		*input;
+	char		*output;
 	const int	*end;
-	char		*file1_name;
 	int			nb_cmds;
 	t_comm		**cmds;
+
 	char		**envp;
 	char		**paths;
 }				t_pipex;
