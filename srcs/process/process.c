@@ -6,7 +6,7 @@
 /*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 19:20:37 by alelaval          #+#    #+#             */
-/*   Updated: 2022/07/27 18:13:30 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/07/30 13:54:36 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 */
 void	handle_pipes(t_pipex *pipex, int i)
 {
+	int	fdpipe[2];
+
 	if (i == pipex->nb_cmds - 1)
 	{
 		// default output used (unmodified stdout)
@@ -26,7 +28,6 @@ void	handle_pipes(t_pipex *pipex, int i)
 	}
 	else
 	{
-		int fdpipe[2];
 		pipe(fdpipe);
 		pipex->fdout = fdpipe[1];
 		pipex->fdin = fdpipe[2];
@@ -39,6 +40,7 @@ void	handle_pipes(t_pipex *pipex, int i)
 */
 void	handle_input(t_pipex *pipex)
 {
+	pipex->fdin = dup(0);
 	dup2(pipex->fdin, 0);
 	close(pipex->fdin);
 }
@@ -48,6 +50,7 @@ void	handle_input(t_pipex *pipex)
 */
 void	handle_output(t_pipex *pipex)
 {
+	pipex->fdout = dup(1);
 	dup2(pipex->fdout, 1);
 	close(pipex->fdout);
 }
@@ -74,11 +77,10 @@ void	handle_io(t_pipex *pipex)
 void	executor(t_pipex *pipex)
 {
 	int		i;
+	int		status;
 	pid_t	ret;
 
 	i = 0;
-	pipex->fdin = dup(0);
-	pipex->fdout = dup(1);
 	while (i < pipex->nb_cmds)
 	{
 		handle_input(pipex);
@@ -102,6 +104,5 @@ void	executor(t_pipex *pipex)
 		i++;
 	}
 	handle_io(pipex);
-	int status = 0;
 	waitpid(ret, &status, WEXITED);
 }
