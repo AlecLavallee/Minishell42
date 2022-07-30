@@ -58,7 +58,19 @@ int split_command_to_token(char *str, t_command **command_line)
     return (0);
 }
 
-int split_command_line(t_command **token)
+
+static int split_command_line(t_command **token)
 {
+    t_command *new;
+    int cur;
+    int len;
+
+    cur = 0;
+    len = ft_strlen(new->str + 1);
+    while (cur < len)
+    {
+        if (token[cur] == ' ')
+            cur++;
+    }
     return (0);
 }

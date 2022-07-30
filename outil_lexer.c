@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   outil.c                                            :+:      :+:    :+:   */
+/*   outil_lexer.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: msuji <mtsuji@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/25 14:45:47 by msuji             #+#    #+#             */
-/*   Updated: 2022/07/25 14:45:49 by msuji            ###   ########.fr       */
+/*   Created: 2022/07/30 13:56:53 by msuji             #+#    #+#             */
+/*   Updated: 2022/07/30 13:56:55 by msuji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./minishell.h"
-
-//int valeur_exit;
-
 /*
-** signal_input : gerer l'interruprion par clavier (Ctrl + c)
+**is_redirection : on check s'il y a des orepand sur le string
 **
 */
-void    signal_input(int signal)
+/*int is_redirection(t_command **command_line)
 {
-    int valeur_exit;
+    
+}*/
 
-    valeur_exit = 0;
-    valeur_exit += signal;
-    if (valeur_exit == 2)
-    {
-        valeur_exit = 130; //valeur de retour avec Ctrl + C
-        printf("\n");
-        printf(">team_90's ");
-    }
-}
+int is_pipe()
