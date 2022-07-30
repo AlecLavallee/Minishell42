@@ -28,19 +28,8 @@ int main(int argc, char **argv)
 {
     char *line;
     t_command *command_line;
-    //int i;
-    //char **env_cpy;
+    
 
-    //i = 0;
-    /*env_cpy = malloc(sizeof(char) * **envp + 1);
-    while (*envp[i])
-    {
-        *env_cpy[i] = *envp[i];
-        i++; 
-    }*/
-    /*
-    ** il faut elaborer get_env
-    */
     command_line = NULL;
     if (argc && argv)
     {
@@ -55,7 +44,6 @@ int main(int argc, char **argv)
                 free(line);
                 break;
             }
-            //if (!quote_check(line))
             if (!lexer(line, &command_line))
                 printf("%s\n", line);
             add_history(line);
@@ -64,6 +52,5 @@ int main(int argc, char **argv)
     }
     printf("exit\n");
     free(line);
-    //free(*env_cpy);
     return (valeur_exit);
 }
