@@ -41,7 +41,7 @@ int main(int argc, char **argv)
     /*
     ** il faut elaborer get_env
     */
-   command_line = NULL;
+    command_line = NULL;
     if (argc && argv)
     {
         while (1)
