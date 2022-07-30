@@ -40,10 +40,24 @@ typedef struct s_token
 	struct s_token	*next;
 }		t_token;
 
-extern int valeur_exit; 
+typedef struct s_command
+{
+	char    **copy_env;
+	int		cur;
+	char	*str;
+	char *argv;
+	struct s_command	*next;
+}		t_command;
 
+extern int valeur_exit; 
 void    signal_input(int signal);
 int quote_check(char *str);
 int simple_quote(char *str);
 int double_quote(char *str);
+int quoting(char *str);
+int lexer(char *str, t_command **command_line);
+int get_command_line(char *str, t_command **command_line);
+int split_command_to_token(char *str, t_command **command_line);
+int split_command_line(t_command **token);
+void init_command_line(t_command *command_line);
 # endif
