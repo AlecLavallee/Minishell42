@@ -6,7 +6,7 @@
 /*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:53:20 by alelaval          #+#    #+#             */
-/*   Updated: 2022/07/27 14:50:40 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/07/30 14:26:29 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_comm
 	char	**args;
 }			t_comm;
 
-typedef struct s_pipex
+typedef struct s_shell
 {
 	int			ret;
 	int			fdin;
@@ -41,15 +41,19 @@ typedef struct s_pipex
 
 	char		**envp;
 	char		**paths;
-}				t_pipex;
+}				t_shell;
 
 // modified func
-void	executor(t_pipex *pipex);
+t_shell	*init_all(void);
+void	executor(t_shell *shell);
+void	debug_data(t_shell *shell);
+void	fill_data(t_shell *shell);
+void	ft_shell(t_shell *shell);
 // standard func
-t_pipex	*init_all(void);
-t_pipex	*parser(t_pipex *pipex, int count, char **args, char **paths);
-void	first_command(t_pipex *pipex);
-void	second_command(t_pipex *pipex);
+t_shell	*init_all(void);
+t_shell	*parser(t_shell *shell, int count, char **args, char **paths);
+void	first_command(t_shell *shell);
+void	second_command(t_shell *shell);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putchar(char c);
 void	ft_putstr(char *str);
@@ -60,12 +64,12 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strdup(const char *s);
 char	**ft_split(char const *s, char c);
 size_t	ft_strlen(const char *s);
-int		get_fd(t_pipex *pipex, char *arg, int com, char *path);
-void	test_files(t_pipex *pipex, char **args);
+int		get_fd(t_shell *shell, char *arg, int com, char *path);
+void	test_files(t_shell *shell, char **args);
 int		size_array(char **array);
 char	*get_path_line(char **paths);
-char	**get_paths(t_pipex *pipex, char **envp);
-void	free_all(t_pipex *pipex);
-void	error(t_pipex *pipex);
+char	**get_paths(t_shell *shell, char **envp);
+void	free_all(t_shell *shell);
+void	error(t_shell *shell);
 
 #endif

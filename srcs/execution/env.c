@@ -6,7 +6,7 @@
 /*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 15:01:55 by alelaval          #+#    #+#             */
-/*   Updated: 2022/07/25 18:06:03 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/07/30 14:18:04 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,16 @@ char	*get_path_line(char **paths)
 	return (NULL);
 }
 
-char	**get_paths(t_pipex *pipex, char **envp)
+char	**get_paths(t_shell *shell, char **envp)
 {
 	char	**paths;
 	char	*path;
 
 	path = get_path_line(envp);
 	if (path == NULL)
-		error(pipex);
+		error(shell);
 	paths = ft_split(path, ':');
-	pipex->paths = paths;
+	shell->paths = paths;
 	if (paths)
 		return (paths);
 	return (NULL);

@@ -6,18 +6,19 @@
 #    By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/29 11:56:39 by alelaval          #+#    #+#              #
-#    Updated: 2022/07/25 18:12:44 by alelaval         ###   ########.fr        #
+#    Updated: 2022/07/30 14:33:00 by alelaval         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = pipex
+NAME = shell
 
-SRCS = ./srcs/parser/paths.c \
-		./srcs/process/process.c \
+SRCS = ./srcs/execution/exec.c \
+		./srcs/execution/env.c \
 		./srcs/utils/utils.c \
 		./srcs/utils/utils2.c \
 		./srcs/utils/utils3.c \
-		./srcs/pipex.c
+		./srcs/shell.c \
+		./srcs/tests.c
 
 OBJS =	${SRCS:.c=.o}
 
@@ -29,7 +30,7 @@ RM = 		rm -rf
 
 all: 		${NAME}
 
-bonus:		pipex_bonus
+bonus:		shell_bonus
 
 .c.o:
 			${CC} ${CFLAGS} -I${INCLUDE} -c $< -o ${<:.c=.o}
