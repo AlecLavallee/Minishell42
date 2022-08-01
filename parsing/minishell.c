@@ -28,8 +28,9 @@ int main(int argc, char **argv)
 {
     char *line;
     t_command *command_line;
-    
+    //int i;
 
+    //i = 0;
     command_line = NULL;
     if (argc && argv)
     {
@@ -49,7 +50,6 @@ int main(int argc, char **argv)
                 ft_error();
             if (!lexer(line, &command_line))
                 printf("%s\n", line);
-
             free(line);
             free(command_line);
         }

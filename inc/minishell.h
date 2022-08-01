@@ -37,15 +37,15 @@ typedef struct s_token
 	int				cur;
 	int 			len;
     char            *string;
+	char			*token;
 	struct s_token	*next;
 }		t_token;
 
 typedef struct s_command
 {
-	char    **copy_env;
 	int		cur;
 	char	*whole_str;
-	char *argv;
+	char	*command;
 	struct s_command	*next;
 }		t_command;
 
@@ -70,9 +70,9 @@ int double_quote(char *str);
 int quoting(char *str);
 int lexer(char *str, t_command **command_line);
 int get_command_line(char *str, t_command **command_line);
-int split_command_to_token(char *str, t_command **command_line);
-static int split_command_line(t_command **token);
+int split_command_to_token(char *str, t_command **command_line);static int split_command_line(t_command **token);
 void init_command_line(t_command *command_line);
 int first_word_is_pipe(char *str);
+void init_command_line(t_command *command_line);
 void	ft_error(void);
 # endif
