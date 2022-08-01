@@ -10,19 +10,19 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./minishell.h"
+#include "../inc/minishell.h"
 
 int lexer(char *str, t_command **command_line)
 {
     int res;
 
-    res = quote_check(str);
+    res = quote_check(str);    
     if (res > 0)
         return (1);
-    if (get_command_line(str, command_line) > 0)
+    /*if (get_command_line(str, command_line) > 0)
         return (1);
     if (split_command_to_token(str, command_line) > 0)
-        return (1);
+        return (1);*/
     return (0);
 }
 
@@ -76,7 +76,7 @@ static int split_command_line(t_command **token)
     {
         if ((*token)->whole_str[cur] == ' ')
             cur++;
-        if 
+        //if 
     }
     return (0);
 }

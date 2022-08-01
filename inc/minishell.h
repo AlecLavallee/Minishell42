@@ -30,7 +30,7 @@
 # include <sys/stat.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-# include "./libft/libft.h"
+# include "../libft/libft.h"
 
 typedef struct s_token
 {
@@ -49,6 +49,19 @@ typedef struct s_command
 	struct s_command	*next;
 }		t_command;
 
+typedef enum{
+    DEFAULT, //default 0
+    ARGUMENT, // word 1
+    FILE_IN, // < 2 
+	FILE_OUT, // > 3
+	OPEN_FILE, // < 4
+	EXIT_FILE, // > 5
+	FILE_OUT_SUR, // >> 6
+ 	DOC, // << 7
+	LIMITOR, //<< 8
+	EXIT_FILE_RET, // >> 9
+} state;
+
 extern int valeur_exit; 
 void    signal_input(int signal);
 int quote_check(char *str);
@@ -60,4 +73,6 @@ int get_command_line(char *str, t_command **command_line);
 int split_command_to_token(char *str, t_command **command_line);
 static int split_command_line(t_command **token);
 void init_command_line(t_command *command_line);
+int first_word_is_pipe(char *str);
+void	ft_error(void);
 # endif

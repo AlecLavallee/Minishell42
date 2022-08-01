@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./minishell.h"
+#include "../inc/minishell.h"
 /*
 **
 ** quote_check : checker des quotes impares dans le string

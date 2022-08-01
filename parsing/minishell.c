@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./minishell.h"
+#include "../inc/minishell.h"
 
 int valeur_exit;
 /*
@@ -19,7 +19,7 @@ int valeur_exit;
 /* memo;
 
 pour complier :
-gcc -Wall -Wextra -Werror  minishell.h lexer.c outil.c minishell.c -lreadline libft/libft.a quoting.c 
+gcc minishell.h parsing/lexer.c parsing/outil_lexer.c parsing/minishell.c parsing/outil_signal.c parsing/quoting.c parsing/error.c libft/libft.a -lreadline
 */
 
 
@@ -35,19 +35,23 @@ int main(int argc, char **argv)
     {
         while (1)
         {
+            line = readline(">team_90's ");
+            add_history(line);
             signal(SIGQUIT, SIG_IGN);
             if (signal(SIGINT, signal_input) == SIG_ERR)
                 exit(1);
-            line = readline(">team_90's ");
             if (line == NULL) 
             {
                 free(line);
                 break;
             }
+            if (first_word_is_pipe(line) != 0)
+                ft_error();
             if (!lexer(line, &command_line))
                 printf("%s\n", line);
-            add_history(line);
+
             free(line);
+            free(command_line);
         }
     }
     printf("exit\n");
