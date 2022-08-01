@@ -29,19 +29,22 @@ int lexer(char *str, t_command **command_line)
 int get_command_line(char *str, t_command **command_line)
 {
     t_command *data;    
+    int cur;
 
+    cur = 0;
     data = malloc(sizeof(t_command));
     if (data == NULL)
         return (1);
     init_command_line(data);
-    data->str = malloc (sizeof(char) * ft_strlen(str) + 1);
+    data->whole_str = strdup(str);
     return (0);
 }
 
 void init_command_line(t_command *command_line)
 {  
-    command_line->str = NULL;
+    command_line->whole_str = NULL;
     command_line->argv = NULL;
+    command_line->cur = 0;
 }
 
 int split_command_to_token(char *str, t_command **command_line)
@@ -56,8 +59,8 @@ int split_command_to_token(char *str, t_command **command_line)
         token = token->next;
     } 
     return (0);
-}
 
+}
 
 static int split_command_line(t_command **token)
 {
@@ -66,11 +69,14 @@ static int split_command_line(t_command **token)
     int len;
 
     cur = 0;
-    len = ft_strlen(new->str + 1);
+    len = 0;
+    if ((*token)->whole_str != NULL)
+        len = ft_strlen(new->whole_str + 1);
     while (cur < len)
     {
-        if (token[cur] == ' ')
+        if ((*token)->whole_str[cur] == ' ')
             cur++;
+        if 
     }
     return (0);
 }

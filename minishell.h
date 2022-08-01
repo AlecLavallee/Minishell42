@@ -44,7 +44,7 @@ typedef struct s_command
 {
 	char    **copy_env;
 	int		cur;
-	char	*str;
+	char	*whole_str;
 	char *argv;
 	struct s_command	*next;
 }		t_command;
@@ -58,6 +58,6 @@ int quoting(char *str);
 int lexer(char *str, t_command **command_line);
 int get_command_line(char *str, t_command **command_line);
 int split_command_to_token(char *str, t_command **command_line);
-int split_command_line(t_command **token);
+static int split_command_line(t_command **token);
 void init_command_line(t_command *command_line);
 # endif
