@@ -6,7 +6,7 @@
 #    By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/29 11:56:39 by alelaval          #+#    #+#              #
-#    Updated: 2022/08/02 18:39:53 by alelaval         ###   ########.fr        #
+#    Updated: 2022/08/02 18:47:15 by alelaval         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,9 @@ NAME = shell
 
 SRCS = ./srcs/execution/exec.c \
 		./srcs/execution/env.c \
+		./srcs/heredoc/heredoc.c \
+		./srcs/redirections/append.c \
+		./srcs/redirections/infile.c \
 		./srcs/utils/utils.c \
 		./srcs/utils/utils2.c \
 		./srcs/utils/utils3.c \
@@ -28,7 +31,7 @@ INCLUDE =	./headers/
 CFLAGS =	-Wall -Wextra -Werror -g3 -fsanitize=address
 RM = 		rm -rf
 
-all: 		${NAME}s
+all: 		${NAME}
 
 bonus:		shell_bonus
 
