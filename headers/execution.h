@@ -6,7 +6,7 @@
 /*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:53:20 by alelaval          #+#    #+#             */
-/*   Updated: 2022/07/30 14:26:29 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/08/02 15:36:49 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,19 @@ typedef struct s_comm
 {
 	pid_t	pid;
 	int		nb_args;
+	char	**cmd;
 	char	**args;
 }			t_comm;
 
 typedef struct s_shell
 {
 	int			ret;
+	int			definput;
+	int			defoutput;
 	int			fdin;
 	int			fdout;
-	char		*input;
-	char		*output;
+	char		*infile;
+	char		*outfile;
 	const int	*end;
 	int			nb_cmds;
 	t_comm		**cmds;
@@ -47,7 +50,7 @@ typedef struct s_shell
 t_shell	*init_all(void);
 void	executor(t_shell *shell);
 void	debug_data(t_shell *shell);
-void	fill_data(t_shell *shell);
+void	fill_data(t_shell *shell, int nb_args, char **args);
 void	ft_shell(t_shell *shell);
 // standard func
 t_shell	*init_all(void);
