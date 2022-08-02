@@ -1,56 +1,82 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   process.c                                          :+:      :+:    :+:   */
+/*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 19:20:37 by alelaval          #+#    #+#             */
-/*   Updated: 2022/07/30 14:18:04 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/08/02 18:32:48 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "execution.h"
 
+/* test for function and paths application */
+char	*get_fun(char *arg, char **paths)
+{
+	int		i;
+	char	*tmp;
+	char	*join;
+
+	if (ft_strchr(arg, '/') != NULL)
+		return (ft_strdup(arg));
+	else
+	{
+		i = 0;
+		join = ft_strjoin("/", arg);
+		while (paths[i])
+		{
+			tmp = ft_strjoin(paths[i], join);
+			if (access(tmp, X_OK) == 0)
+			{
+				free(join);
+				return (tmp);
+			}
+			free(tmp);
+			i++;
+		}
+		free(join);
+	}
+	return (ft_strdup(arg));
+}
+
+/* handle_input
+* redirects standard input if needed
+*/
+void	handle_input(t_shell *shell)
+{
+	shell->definput = dup(0);
+	shell->defoutput = dup(1);
+	if (shell->infile)
+		shell->fdin = open(shell->infile, O_RDONLY);
+	else
+		shell->fdin = dup(shell->definput);
+}
+
 /* handle_pipes
 * setup pipes before forking and executing
 * and redirects output to outfile if needed
-// setting up output to do when outfile done
 */
 void	handle_pipes(t_shell *shell, int i)
 {
 	int	fdpipe[2];
 
+	dup2(shell->fdin, 0);
+	close(shell->fdin);
 	if (i == shell->nb_cmds - 1)
 	{
-		// default output used (unmodified stdout)
-		// fdout = dup(tmpout);
+		if (shell->outfile)
+			shell->fdout = open(shell->outfile, O_RDWR);
+		else
+			shell->fdout = dup(shell->defoutput);
 	}
 	else
 	{
 		pipe(fdpipe);
 		shell->fdout = fdpipe[1];
-		shell->fdin = fdpipe[2];
+		shell->fdin = fdpipe[0];
 	}
-}
-
-/* handle_input
-* redirects standard input if needed
-// setup redirection when infile done
-*/
-void	handle_input(t_shell *shell)
-{
-	shell->fdin = dup(0);
-	dup2(shell->fdin, 0);
-	close(shell->fdin);
-}
-
-/*	handle_output
-* redirects standard output if needed
-*/
-void	handle_output(t_shell *shell)
-{
-	shell->fdout = dup(1);
 	dup2(shell->fdout, 1);
 	close(shell->fdout);
 }
@@ -62,10 +88,10 @@ void	handle_output(t_shell *shell)
 */
 void	handle_io(t_shell *shell)
 {
-	dup2(shell->fdin, 0);
-	dup2(shell->fdout, 1);
-	close(shell->fdin);
-	close(shell->fdout);
+	dup2(shell->definput, 0);
+	dup2(shell->defoutput, 1);
+	close(shell->definput);
+	close(shell->defoutput);
 }
 
 /*
@@ -81,28 +107,26 @@ void	executor(t_shell *shell)
 	pid_t	ret;
 
 	i = 0;
+	handle_input(shell);
 	while (i < shell->nb_cmds)
 	{
-		handle_input(shell);
 		handle_pipes(shell, i);
-		handle_output(shell);
 		ret = fork();
 		shell->cmds[i]->pid = ret;
-		if (ret == -1)
+		if (ret < 0)
 		{
 			perror("fork");
 			exit(EXIT_FAILURE);
 		}
 		else if (ret == 0)
 		{
-			if (!(access(shell->cmds[i]->args[0], X_OK)))
-				ft_putstr_fd("error command\n", 0);
+			shell->cmds[i]->args[0] = get_fun(shell->cmds[i]->args[0], shell->paths);
 			execve(shell->cmds[i]->args[0], shell->cmds[i]->args, shell->envp);
 			perror("execve");
-			exit(EXIT_SUCCESS);
 		}
 		i++;
 	}
 	handle_io(shell);
-	waitpid(ret, &status, WEXITED);
+	if (i == shell->nb_cmds)
+		waitpid(ret, &status, WEXITED);
 }

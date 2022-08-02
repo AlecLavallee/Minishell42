@@ -6,7 +6,7 @@
 #    By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/29 11:56:39 by alelaval          #+#    #+#              #
-#    Updated: 2022/07/30 14:33:00 by alelaval         ###   ########.fr        #
+#    Updated: 2022/08/02 18:39:53 by alelaval         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,10 +25,10 @@ OBJS =	${SRCS:.c=.o}
 CC 	= gcc
 
 INCLUDE =	./headers/
-CFLAGS =	-Wall -Wextra -Werror
+CFLAGS =	-Wall -Wextra -Werror -g3 -fsanitize=address
 RM = 		rm -rf
 
-all: 		${NAME}
+all: 		${NAME}s
 
 bonus:		shell_bonus
 
