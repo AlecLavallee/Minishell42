@@ -49,6 +49,12 @@ typedef struct s_command
 	struct s_command	*next;
 }		t_command;
 
+typedef struct s_tc
+{
+	t_token **tkn;
+	t_command *cmd;
+}	t_tc;
+
 typedef enum{
     DEFAULT, //default 0
     ARGUMENT, // word 1
@@ -68,11 +74,20 @@ int quote_check(char *str);
 int simple_quote(char *str);
 int double_quote(char *str);
 int quoting(char *str);
-int lexer(char *str, t_command **command_line);
-int get_command_line(char *str, t_command **command_line);
-int split_command_to_token(char *str, t_command **command_line);static int split_command_line(t_command **token);
-void init_command_line(t_command *command_line);
+//int lexer(char *str, t_command **command_line);
+//int get_command_line(char *str, t_command **command_line);
+//int split_command_to_token(t_command **command_line);
+//int split_command_line(t_token **token, t_command **command);
+//
 int first_word_is_pipe(char *str);
-void init_command_line(t_command *command_line);
+//void init_command_line(t_command *command_line);
 void	ft_error(void);
+
+
+//lexer avec struct t_tc
+int lexer(char *str);
+int get_command_line(char *str, t_tc **command_line);
+int split_command_to_token(t_tc **command_line);
+int split_command_line(t_tc **command_line);
+void init_command_line(t_tc **command_line);
 # endif
