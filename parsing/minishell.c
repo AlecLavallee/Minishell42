@@ -27,11 +27,11 @@ gcc minishell.h parsing/lexer.c parsing/outil_lexer.c parsing/minishell.c parsin
 int main(int argc, char **argv)
 {
     char *line;
-    //t_command *command_line;
+    t_tc *command_line;
     //int i;
 
     //i = 0;
-    //command_line = NULL;
+    command_line = NULL;
     if (argc && argv)
     {
         while (1)
@@ -50,11 +50,13 @@ int main(int argc, char **argv)
                 ft_error();
             if (!lexer(line))
                 printf("%s\n", line);
+            //else
+            //    printf("%s\n", command_line->tkn[0].string);
             free(line);
-            //free(command_line);
         }
     }
     printf("exit\n");
     free(line);
+    free(command_line);
     return (valeur_exit);
 }

@@ -52,7 +52,7 @@ typedef struct s_command
 typedef struct s_tc
 {
 	t_token **tkn;
-	t_command *cmd;
+	t_command cmd;
 }	t_tc;
 
 typedef enum{
@@ -88,6 +88,6 @@ void	ft_error(void);
 int lexer(char *str);
 int get_command_line(char *str, t_tc **command_line);
 int split_command_to_token(t_tc **command_line);
-int split_command_line(t_tc **command_line);
+static int split_command_line(t_tc **command_line, int cur, int start);
 void init_command_line(t_tc **command_line);
 # endif

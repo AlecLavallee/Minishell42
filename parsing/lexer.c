@@ -124,25 +124,27 @@ int lexer(char *str)
 {
     int res;
     t_tc **command_line;
-    int i;
+    //int i;
+    t_tc *cmd_line;
 
-    i = 0;
+    //i = 0;
     res = quote_check(str);    
     if (res > 0)
         return (1);
-    t_tc *cmd_line = (t_tc*)malloc(sizeof(t_tc));
+    cmd_line = (t_tc*)malloc(sizeof(t_tc));
     command_line = &cmd_line;
+
     if (command_line == NULL)
         return (1);
     if (get_command_line(str, command_line) > 0)
         return (1);
     if (split_command_to_token(command_line) > 0)
         return (1);
-    while ((*command_line)->tkn[i]->string)
+    /*while (command_line->tkn[i].string)
     {
-        printf("%s\n", (*command_line)->tkn[i]->string);
+        printf("%s\n", command_line->tkn[i].string);
         i++;
-    }
+    }*/
     return (0);
 }
 
@@ -154,13 +156,13 @@ int get_command_line(char *str, t_tc **command_line)
     //if (data == NULL)
     //    return (1);
 
-    (*command_line)->cmd = (t_command*)malloc(sizeof(t_command));
-    (*command_line)->cmd->whole_str = (char *)malloc(sizeof(char) * (ft_strlen(str)) + 1);
-     init_command_line(command_line);
-    if ((*command_line)->cmd->whole_str == NULL)
+    //command_line->cmd = (t_command*)malloc(sizeof(t_command));
+    (*command_line)->cmd.whole_str = (char *)malloc(sizeof(char) * (ft_strlen(str)) + 1);
+    init_command_line(command_line);
+    if ((*command_line)->cmd.whole_str == NULL)
         return (1);
-    (*command_line)->cmd->whole_str = ft_strdup(str);
-    if ((*command_line) == NULL)
+    (*command_line)->cmd.whole_str = ft_strdup(str);
+    if (command_line == NULL)
         return (1);
     //else
     //    (*command_line)->next = data;
@@ -169,9 +171,9 @@ int get_command_line(char *str, t_tc **command_line)
 
 void init_command_line(t_tc **command_line)
 {  
-        (*command_line)->cmd->whole_str = NULL;
-        (*command_line)->cmd->command = NULL;
-        (*command_line)->cmd->cur = 0;
+        //command_line->cmd.whole_str = NULL;
+        (*command_line)->cmd.command = NULL;
+        (*command_line)->cmd.cur = 0;
         //(*command_line)->tkn[0]->string = NULL;
 }
 
@@ -183,34 +185,64 @@ int split_command_to_token(t_tc **command_line)
     //if (token == NULL)
     //    return (1);
     //token = *command_line;
-    if (split_command_line(command_line) > 0)
-        return (1);
-    return (0);
-}
-
-int split_command_line(t_tc **command_line)
-{
-    //t_command *new;
     int cur;
-    int len;
     int start;
-
+    int len;
     cur = 0;
-    len = 0;
     start = 0;
-    int i = 0;
+    t_token *token;
+
+    //cur = 0;
+    //len = 0;
+    //start = 0;
+
+    token = (t_token*)malloc(sizeof(t_token));
+    (*command_line)->tkn = &token;
+    (*command_line)->tkn[i]->cur = 0;
     (*command_line)->tkn[i]->string = NULL;
-    if ((*command_line)->cmd->whole_str != NULL)
-        len = ft_strlen((*command_line)->cmd->whole_str + 1);
+    len = ft_strlen((*command_line)->cmd.whole_str + 1);
     while (cur < len)
     {
-        while ((*command_line)->cmd->whole_str[cur] == ' ')
-            cur++;
-        start = cur;
-        while ((*command_line)->cmd->whole_str[cur] != ' ')
-            cur++;
-        (*command_line)->tkn[i]->string = ft_substr((*command_line)->cmd->whole_str, start, cur - start);
-        i++;
+        if ()
+    if (split_command_line(command_line, cur, start) > 0)
+        return (1);
+        token = token->next;
     }
     return (0);
 }
+
+static int split_command_line(t_tc **command_line, int cur, int start)
+{
+    //t_command *new;
+    //int cur;
+    //int len;
+    int start;
+    t_token *token;
+
+    //cur = 0;
+    //len = 0;
+    //start = 0;
+    int i = 0;
+    /*token = (t_token*)malloc(sizeof(t_token));
+    (*command_line)->tkn = &token;
+    (*command_line)->tkn[i]->cur = 0;
+    (*command_line)->tkn[i]->string = NULL;*/
+    //if (command_line->cmd.whole_str != NULL)
+    len = ft_strlen((*command_line)->cmd.whole_str + 1);
+    while (cur < len)
+    {
+        while ((*command_line)->cmd.whole_str[cur] == ' ')
+            cur++;
+        start = cur;
+        while ((*command_line)->cmd.whole_str[cur] != ' ' && (*command_line)->cmd.whole_str[cur])
+            cur++;
+        (*command_line)->tkn[i]->string = ft_substr((*command_line)->cmd.whole_str, start, cur - start);
+        //(*command_line)->tkn[i] = (*command_line)->tkn[i]->next;
+        i++;
+    }
+    (*command_line)->tkn[i]->next = NULL;
+    return (0);
+}
+/*
+** if faut compter combien de token on va creer
+*/
