@@ -185,48 +185,34 @@ int split_command_to_token(t_tc **command_line)
     //if (token == NULL)
     //    return (1);
     //token = *command_line;
-    int cur;
-    int start;
-    int len;
-    cur = 0;
-    start = 0;
-    t_token *token;
+    t_tc *cur;
 
-    //cur = 0;
-    //len = 0;
-    //start = 0;
-
-    token = (t_token*)malloc(sizeof(t_token));
-    (*command_line)->tkn = &token;
-    (*command_line)->tkn[i]->cur = 0;
-    (*command_line)->tkn[i]->string = NULL;
-    len = ft_strlen((*command_line)->cmd.whole_str + 1);
-    while (cur < len)
+    cur = *command_line;
+    while (cur)
     {
-        if ()
-    if (split_command_line(command_line, cur, start) > 0)
+        if (split_command_line(&cur) > 0)
         return (1);
-        token = token->next;
+        cur = cur->next;
     }
     return (0);
 }
 
-static int split_command_line(t_tc **command_line, int cur, int start)
+int split_command_line(t_tc **command_line)
 {
     //t_command *new;
-    //int cur;
-    //int len;
+    int cur;
+    int len;
     int start;
     t_token *token;
 
-    //cur = 0;
-    //len = 0;
-    //start = 0;
+    cur = 0;
+    len = 0;
+    start = 0;
     int i = 0;
-    /*token = (t_token*)malloc(sizeof(t_token));
+    token = (t_token*)malloc(sizeof(t_token));
     (*command_line)->tkn = &token;
     (*command_line)->tkn[i]->cur = 0;
-    (*command_line)->tkn[i]->string = NULL;*/
+    (*command_line)->tkn[i]->string = NULL;
     //if (command_line->cmd.whole_str != NULL)
     len = ft_strlen((*command_line)->cmd.whole_str + 1);
     while (cur < len)
@@ -240,7 +226,7 @@ static int split_command_line(t_tc **command_line, int cur, int start)
         //(*command_line)->tkn[i] = (*command_line)->tkn[i]->next;
         i++;
     }
-    (*command_line)->tkn[i]->next = NULL;
+    //(*command_line)->tkn[i]->next = NULL;
     return (0);
 }
 /*
