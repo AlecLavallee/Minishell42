@@ -46,6 +46,7 @@ typedef struct s_command
 	int		cur;
 	char	*whole_str;
 	char	*command;
+	t_token *first_token;
 	struct s_command	*next;
 }		t_command;
 
@@ -93,4 +94,6 @@ int split_command_line(t_tc *command_line);
 void init_command_line(t_tc *command_line);
 void list_addback(t_token **tkn, t_token *new);
 t_token	*lstlast(t_token *lst);
+int tokenization(int cur, int start, char *str, t_tc *command_line);
+void    init_token(t_token *new);
 # endif
