@@ -6,7 +6,7 @@
 /*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 14:20:40 by alelaval          #+#    #+#             */
-/*   Updated: 2022/08/02 15:36:00 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/08/04 18:06:03 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ int	main(int num_args, char **args, char **envp)
 		fill_data(shell, num_args, args);
 		debug_data(shell);
 		printf("Running %d commands...\n", shell->nb_cmds);
-		ft_shell(shell);
+		executor(shell);
 		// no concerns for leaks right now
 		// write garbage collector (later?)
-		//free_all(shell);
+		free(shell);
 	}
 	return (0);
 }

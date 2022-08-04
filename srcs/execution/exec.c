@@ -6,7 +6,7 @@
 /*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 19:20:37 by alelaval          #+#    #+#             */
-/*   Updated: 2022/08/02 18:32:48 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/08/04 18:07:30 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ char	*get_fun(char *arg, char **paths)
 }
 
 /* handle_input
+* handle default streams and
 * redirects standard input if needed
 */
 void	handle_input(t_shell *shell)
@@ -66,16 +67,16 @@ void	handle_pipes(t_shell *shell, int i)
 	close(shell->fdin);
 	if (i == shell->nb_cmds - 1)
 	{
-		if (shell->outfile)
-			shell->fdout = open(shell->outfile, O_RDWR);
+		if (shell->cmds[i]->outfile)
+			shell->fdout = open(shell->outfile, O_RDWR | O_APPEND);
 		else
 			shell->fdout = dup(shell->defoutput);
 	}
 	else
 	{
 		pipe(fdpipe);
-		shell->fdout = fdpipe[1];
 		shell->fdin = fdpipe[0];
+		shell->fdout = fdpipe[1];
 	}
 	dup2(shell->fdout, 1);
 	close(shell->fdout);
@@ -112,21 +113,20 @@ void	executor(t_shell *shell)
 	{
 		handle_pipes(shell, i);
 		ret = fork();
-		shell->cmds[i]->pid = ret;
 		if (ret < 0)
 		{
 			perror("fork");
 			exit(EXIT_FAILURE);
 		}
-		else if (ret == 0)
+		if (ret == 0)
 		{
 			shell->cmds[i]->args[0] = get_fun(shell->cmds[i]->args[0], shell->paths);
 			execve(shell->cmds[i]->args[0], shell->cmds[i]->args, shell->envp);
 			perror("execve");
+			exit(EXIT_FAILURE);
 		}
 		i++;
 	}
 	handle_io(shell);
-	if (i == shell->nb_cmds)
-		waitpid(ret, &status, WEXITED);
+	waitpid(ret, &status, WEXITED);
 }
