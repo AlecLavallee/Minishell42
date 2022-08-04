@@ -123,16 +123,16 @@ int split_command_line(t_token **token, t_command **command)
 int lexer(char *str)
 {
     int res;
-    t_tc **command_line;
+    t_tc *command_line;
     //int i;
-    t_tc *cmd_line;
+    //t_tc *cmd_line;
 
     //i = 0;
     res = quote_check(str);    
     if (res > 0)
         return (1);
-    cmd_line = (t_tc*)malloc(sizeof(t_tc));
-    command_line = &cmd_line;
+    command_line = (t_tc*)malloc(sizeof(t_tc));
+    //command_line = &cmd_line;
 
     if (command_line == NULL)
         return (1);
@@ -148,7 +148,7 @@ int lexer(char *str)
     return (0);
 }
 
-int get_command_line(char *str, t_tc **command_line)
+int get_command_line(char *str, t_tc *command_line)
 {
     //t_command *data;    
 
@@ -157,11 +157,11 @@ int get_command_line(char *str, t_tc **command_line)
     //    return (1);
 
     //command_line->cmd = (t_command*)malloc(sizeof(t_command));
-    (*command_line)->cmd.whole_str = (char *)malloc(sizeof(char) * (ft_strlen(str)) + 1);
+    command_line->cmd.whole_str = (char *)malloc(sizeof(char) * (ft_strlen(str)) + 1);
     init_command_line(command_line);
-    if ((*command_line)->cmd.whole_str == NULL)
+    if (command_line->cmd.whole_str == NULL)
         return (1);
-    (*command_line)->cmd.whole_str = ft_strdup(str);
+    command_line->cmd.whole_str = ft_strdup(str);
     if (command_line == NULL)
         return (1);
     //else
@@ -169,15 +169,15 @@ int get_command_line(char *str, t_tc **command_line)
     return (0);
 }
 
-void init_command_line(t_tc **command_line)
+void init_command_line(t_tc *command_line)
 {  
         //command_line->cmd.whole_str = NULL;
-        (*command_line)->cmd.command = NULL;
-        (*command_line)->cmd.cur = 0;
+        command_line->cmd.command = NULL;
+        command_line->cmd.cur = 0;
         //(*command_line)->tkn[0]->string = NULL;
 }
 
-int split_command_to_token(t_tc **command_line)
+int split_command_to_token(t_tc *command_line)
 {
     //t_token *token;
 
@@ -187,17 +187,17 @@ int split_command_to_token(t_tc **command_line)
     //token = *command_line;
     t_tc *cur;
 
-    cur = *command_line;
+    cur = command_line;
     while (cur)
     {
-        if (split_command_line(&cur) > 0)
+        if (split_command_line(cur) > 0)
         return (1);
-        cur = cur->next;
+        //cur = cur->next;
     }
     return (0);
 }
 
-int split_command_line(t_tc **command_line)
+int split_command_line(t_tc *command_line)
 {
     //t_command *new;
     int cur;
@@ -208,23 +208,24 @@ int split_command_line(t_tc **command_line)
     cur = 0;
     len = 0;
     start = 0;
-    int i = 0;
+    //int i = 0;
     token = (t_token*)malloc(sizeof(t_token));
-    (*command_line)->tkn = &token;
-    (*command_line)->tkn[i]->cur = 0;
-    (*command_line)->tkn[i]->string = NULL;
+    command_line->tkn = &token;
+    token->cur = 0;
+    token->string = NULL;
     //if (command_line->cmd.whole_str != NULL)
-    len = ft_strlen((*command_line)->cmd.whole_str + 1);
+    len = ft_strlen(command_line->cmd.whole_str) + 1;
     while (cur < len)
     {
-        while ((*command_line)->cmd.whole_str[cur] == ' ')
+        while (command_line->cmd.whole_str[cur] == ' ')
             cur++;
         start = cur;
-        while ((*command_line)->cmd.whole_str[cur] != ' ' && (*command_line)->cmd.whole_str[cur])
+        while (command_line->cmd.whole_str[cur] != ' ' && command_line->cmd.whole_str[cur])
             cur++;
-        (*command_line)->tkn[i]->string = ft_substr((*command_line)->cmd.whole_str, start, cur - start);
-        //(*command_line)->tkn[i] = (*command_line)->tkn[i]->next;
-        i++;
+        token->string = ft_substr(command_line->cmd.whole_str, start, cur - start);
+        //(*command_line)->tkn[0] = (*command_line)->tkn[0]->next;
+        //list_addback((*command_line)->tkn, (*command_line)->tkn[i]);
+        //token = token->next;
     }
     //(*command_line)->tkn[i]->next = NULL;
     return (0);
@@ -232,3 +233,38 @@ int split_command_line(t_tc **command_line)
 /*
 ** if faut compter combien de token on va creer
 */
+
+t_token *new_list(void *content)
+{
+	t_token	*i;
+
+	i = malloc(sizeof(t_token));
+	if (i == NULL)
+		return (NULL);
+	i->string = content;
+	i->next = NULL;
+	return (i);
+}
+
+void list_addback(t_token **tkn, t_token *new)
+{
+    t_token *a;
+
+	if (*tkn == NULL)
+		*tkn = new;
+	else
+	{
+		a = lstlast(*tkn);
+		a->next = new;
+	}
+}
+
+t_token	*lstlast(t_token *lst)
+{
+	if (lst == NULL)
+		return (NULL);
+	while (lst->next != NULL)
+		lst = lst->next;
+	return (lst);
+}
+

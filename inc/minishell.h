@@ -87,8 +87,10 @@ void	ft_error(void);
 
 //lexer avec struct t_tc
 int lexer(char *str);
-int get_command_line(char *str, t_tc **command_line);
-int split_command_to_token(t_tc **command_line);
-int split_command_line(t_tc **command_line);
-void init_command_line(t_tc **command_line);
+int get_command_line(char *str, t_tc *command_line);
+int split_command_to_token(t_tc *command_line);
+int split_command_line(t_tc *command_line);
+void init_command_line(t_tc *command_line);
+void list_addback(t_token **tkn, t_token *new);
+t_token	*lstlast(t_token *lst);
 # endif
