@@ -222,7 +222,8 @@ int split_command_line(t_tc *command_line)
         start = cur;
         while (command_line->cmd.whole_str[cur] != ' ' && command_line->cmd.whole_str[cur])
             cur++;
-        token->string = ft_substr(command_line->cmd.whole_str, start, cur - start);
+        //token->string = ft_substr(command_line->cmd.whole_str, start, cur - start);
+        command_line->(*tkn)->string = ft_substr(command_line->cmd.whole_str, start, cur - start);
         //(*command_line)->tkn[0] = (*command_line)->tkn[0]->next;
         //list_addback((*command_line)->tkn, (*command_line)->tkn[i]);
         //token = token->next;
