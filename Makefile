@@ -6,7 +6,7 @@
 #    By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/29 11:56:39 by alelaval          #+#    #+#              #
-#    Updated: 2022/08/02 18:47:15 by alelaval         ###   ########.fr        #
+#    Updated: 2022/08/05 16:44:33 by alelaval         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,7 @@ SRCS = ./srcs/execution/exec.c \
 		./srcs/heredoc/heredoc.c \
 		./srcs/redirections/append.c \
 		./srcs/redirections/infile.c \
+		./srcs/error/exit.c \
 		./srcs/utils/utils.c \
 		./srcs/utils/utils2.c \
 		./srcs/utils/utils3.c \
