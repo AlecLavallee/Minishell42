@@ -6,7 +6,7 @@
 /*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:53:24 by alelaval          #+#    #+#             */
-/*   Updated: 2022/08/04 18:06:10 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/08/05 16:57:30 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ t_shell	*init_all(void)
 {
 	t_shell	*shell;
 
-	shell = (t_shell *)malloc((sizeof(t_shell)));
+	shell = (t_shell *)malloc((sizeof(t_shell)) * 1);
 	if (!shell)
-		error(shell);
+		exit_shell(shell, EXIT_FAILURE);
 	shell->infile = NULL;
 	shell->outfile = NULL;
 	shell->envp = NULL;
@@ -45,6 +45,8 @@ void	fill_data(t_shell *shell, int nb_args, char **args)
 	int	i;
 
 	i = 0;
+	shell->infile = "tests/infile";
+	shell->outfile = "tests/outfile";
 	shell->cmds = (t_comm **)malloc(sizeof(t_comm *) * nb_args + 1);
 	while (args[i + 1])
 	{
@@ -55,6 +57,10 @@ void	fill_data(t_shell *shell, int nb_args, char **args)
 		i++;
 	}
 	shell->cmds[i] = NULL;
+	i = 0;
+	while (shell->cmds[i])
+		i++;
+	shell->nb_cmds = i;
 }
 
 void	debug_data(t_shell *shell)
@@ -63,11 +69,7 @@ void	debug_data(t_shell *shell)
 	int	j;
 
 	i = 0;
-	while (shell->cmds[i])
-		i++;
-	shell->nb_cmds = i;
 	printf("Environment Paths:\n");
-	i = 0;
 	while (shell->paths[i++])
 		printf("[%d]:[%s]\n", i, shell->paths[i]);
 	printf("\n[Redirections by default]\n");
@@ -88,4 +90,5 @@ void	debug_data(t_shell *shell)
 		printf("[infile]:%s\n[oufile]:%s\n\n", shell->cmds[i]->infile, shell->cmds[i]->outfile);
 		i++;
 	}
+	printf("Running %d commands...\n", shell->nb_cmds);
 }

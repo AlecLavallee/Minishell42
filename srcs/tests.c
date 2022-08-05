@@ -6,7 +6,7 @@
 /*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 14:20:40 by alelaval          #+#    #+#             */
-/*   Updated: 2022/08/04 18:06:03 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/08/05 16:57:50 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,11 @@
 
 int	main(int num_args, char **args, char **envp)
 {
+	int 	debug;
 	t_shell	*shell;
 
 	shell = NULL;
+	debug = 0;
 	if (num_args > 1)
 	{
 		shell = init_all();
@@ -25,16 +27,11 @@ int	main(int num_args, char **args, char **envp)
 			printf("NULL ENVP!\n");
 		// will be populated by Mariko's data later on
 		//parser(shell, num_args, args, paths);
-		// write battery of tests
-		shell->infile = "tests/infile";
-		shell->outfile = "tests/outfile";
 		fill_data(shell, num_args, args);
-		debug_data(shell);
-		printf("Running %d commands...\n", shell->nb_cmds);
+		if (debug)
+			debug_data(shell);
 		executor(shell);
-		// no concerns for leaks right now
-		// write garbage collector (later?)
-		free(shell);
+		exit_shell(shell, EXIT_SUCCESS);
 	}
 	return (0);
 }
