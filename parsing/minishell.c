@@ -27,7 +27,7 @@ gcc minishell.h parsing/lexer.c parsing/outil_lexer.c parsing/minishell.c parsin
 int main(int argc, char **argv)
 {
     char *line;
-    t_tc *command_line;
+    t_command *command_line;
     //int i;
 
     //i = 0;
@@ -48,7 +48,7 @@ int main(int argc, char **argv)
             }
             if (first_word_is_pipe(line) != 0)
                 ft_error();
-            if (!lexer(line))
+            if (!lexer(line, &command_line))
                 printf("%s\n", line);
             //else
             //    printf("%s\n", command_line->tkn[0].string);
@@ -58,5 +58,6 @@ int main(int argc, char **argv)
     printf("exit\n");
     free(line);
     free(command_line);
+    free_command_line(&command_line);
     return (valeur_exit);
 }

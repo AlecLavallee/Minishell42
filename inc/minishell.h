@@ -50,12 +50,14 @@ typedef struct s_command
 	struct s_command	*next;
 }		t_command;
 
+/*
 typedef struct s_tc
 {
 	t_token **tkn;
-	t_command cmd;
+	t_command *cmd;
 	struct s_tc *next;
 }	t_tc;
+*/
 
 typedef enum{
     DEFAULT, //default 0
@@ -87,13 +89,16 @@ void	ft_error(void);
 
 
 //lexer avec struct t_tc
-int lexer(char *str);
-int get_command_line(char *str, t_tc *command_line);
-int split_command_to_token(t_tc *command_line);
-int split_command_line(t_tc *command_line);
-void init_command_line(t_tc *command_line);
-void list_addback(t_token **tkn, t_token *new);
+int lexer(char *str, t_command **command_line);
+int get_command_line(char *str, t_command **command_line);
+int split_command_to_token(t_command **command_line);
+int split_command_line(t_command **command_line);
+void init_command_line(t_command *command_line);
+void token_addback(t_token **tkn, t_token *new);
 t_token	*lstlast(t_token *lst);
-int tokenization(int cur, int start, char *str, t_tc *command_line);
+int tokenization(int cur, int start, char *str, t_command **command_line);
 void    init_token(t_token *new);
+void commandline_addback(t_command **line, t_command *new);
+int is_redirection(char c);
+void    free_command_line(t_command **command_line);
 # endif

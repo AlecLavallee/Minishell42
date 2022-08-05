@@ -19,6 +19,10 @@ SRCS	=	./parsing/minishell.c	\
 			./parsing/outil_lexer.c			\
 			./parsing/quoting.c 			\
 			./parsing/lexer.c 				\
+			./parsing/get_command_line.c \
+			./parsing/split_token.c 	\
+			./parsing/outil.c			\
+	
 
 
 OBJS	=	$(SRCS:.c=.o)
