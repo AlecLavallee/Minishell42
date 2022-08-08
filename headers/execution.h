@@ -6,12 +6,13 @@
 /*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:53:20 by alelaval          #+#    #+#             */
-/*   Updated: 2022/08/05 14:51:40 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/08/08 11:50:24 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXECUTION_H
 # define EXECUTION_H
+# include "get_next_line.h"
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <fcntl.h>

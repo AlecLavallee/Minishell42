@@ -6,7 +6,7 @@
 /*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 14:20:40 by alelaval          #+#    #+#             */
-/*   Updated: 2022/08/05 16:57:50 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/08/08 10:20:57 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(int num_args, char **args, char **envp)
 {
-	int 	debug;
+	int		debug;
 	t_shell	*shell;
 
 	shell = NULL;

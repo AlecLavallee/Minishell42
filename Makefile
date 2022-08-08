@@ -6,7 +6,7 @@
 #    By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/29 11:56:39 by alelaval          #+#    #+#              #
-#    Updated: 2022/08/05 16:44:33 by alelaval         ###   ########.fr        #
+#    Updated: 2022/08/08 11:49:44 by alelaval         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,8 @@ SRCS = ./srcs/execution/exec.c \
 		./srcs/utils/utils.c \
 		./srcs/utils/utils2.c \
 		./srcs/utils/utils3.c \
+		./srcs/gnl/get_next_line.c \
+		./srcs/gnl/get_next_line_utils.c \
 		./srcs/shell.c \
 		./srcs/tests.c
 
