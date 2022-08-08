@@ -42,9 +42,9 @@ int split_command_line(t_command **command_line)
         while ((*command_line)->whole_str[cur] == ' ')
             cur++;
         start = cur;
-        // un cas qu'on a touve des redirection
+        // en train de changer 08/08/2022
         if (is_redirection((*command_line)->whole_str[cur] && (*command_line)->whole_str[cur]))
-            cur++;
+            cur++;//cette ligne ne fonctionne pas tres bien je reflechis 
         else 
             word_end((*command_line)->whole_str, &cur);
         tokenization(cur, start, (*command_line)->whole_str, command_line);
