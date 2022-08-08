@@ -19,26 +19,50 @@ int is_redirection(char c)
     return (0);
 }
 
-int is_quote(char *str)
+int is_quote(char c, int quote)
 {
-    int cur;
-    int s_quote;
-    int d_quote;
+    if (c == '\'' || c == '\"')
+    {
+        if (quote == 0)
+            quote = 1;
+        else if (quote == 1)
+            quote = 0;
+    }
+    return (quote);
+    /*if (quote == 0 && (c == '\'' || c == '\"'))
+        return (1);
+    if (quote == 1 && (c == '\'' || c == '\"'))
+        return (0);
+    else
+        return (quote);*/
+}
 
-    cur  = 0;
-    s_quote = 0;
-    d_quote = 0;
-    while (str[cur])
-    {
-        if (str[cur] == '\'')
-            s_quote++;
-        else if (str[cur] == '\"')
-            d_quote++;
-        cur++;
-    }
-    if (s_quote % 2 != 0 || d_quote % 2 != 0)
-    {
-        //condition~~~
-    }
+int is_separator(char c)
+{
+    if (c == ' ' || c == '<' || c == '>')
+        return (1);
     return (0);
 }
+
+void    init_token(t_token *new)
+{
+    new->cur = 0;
+    new->string = NULL;
+    new->next = NULL;
+}
+
+void token_addback(t_token **tkn, t_token *new)
+{
+    t_token *a;
+
+    a = *tkn;
+	if (a == NULL)
+		*tkn = new;
+	else
+	{
+        while (a->next)
+		    a = a->next;
+		a->next = new;
+	}
+}
+

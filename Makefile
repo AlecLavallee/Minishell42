@@ -37,7 +37,7 @@ CC	=	gcc
 
 RM	=	rm -f
 
-CFLAGS	=	-Wall -Wextra -Werror -g3 -fsanitize=leak
+CFLAGS	=	-Wall -Wextra -Werror -g3 #-fsanitize=leak
 
 .c.o:
 	$(CC) $(CFLAGS) -I$(HEADER) -I$(LIBFT) -c $< -o $(<:.c=.o)

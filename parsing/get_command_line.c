@@ -26,8 +26,6 @@ int get_command_line(char *str, t_command **command_line)
         return (1);
     new->whole_str = ft_strcpy(new->whole_str, str);
     commandline_addback(command_line, new);
-    //if (new == NULL)
-    //    return (1);
     return (0);
 }
 

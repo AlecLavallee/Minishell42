@@ -35,16 +35,18 @@ int split_command_line(t_command **command_line)
     cur = 0;
     len = 0;
     start = 0;
-    len = ft_strlen((*command_line)->whole_str);
+    if ((*command_line)->whole_str != NULL)
+        len = ft_strlen((*command_line)->whole_str);
     while (cur < len)
     {
         while ((*command_line)->whole_str[cur] == ' ')
             cur++;
         start = cur;
-        while (!is_redirection((*command_line)->whole_str[cur])
-            && (*command_line)->whole_str[cur] != ' '
-            && (*command_line)->whole_str[cur])
+        // un cas qu'on a touve des redirection
+        if (is_redirection((*command_line)->whole_str[cur] && (*command_line)->whole_str[cur]))
             cur++;
+        else 
+            word_end((*command_line)->whole_str, &cur);
         tokenization(cur, start, (*command_line)->whole_str, command_line);
     }
     return (0);
@@ -61,7 +63,6 @@ int tokenization(int cur, int start, char *str, t_command **command_line)
     token->string = malloc(sizeof(char *) * (cur - start + 1));
         if (token->string == NULL)
             return (1);
-    //token->string = ft_substr(str, start, cur - start);
     token->string = ft_strncpy(token->string, str + start, cur - start);
     if (token->string == NULL)
         return (1);
@@ -69,24 +70,16 @@ int tokenization(int cur, int start, char *str, t_command **command_line)
     return (0);
 }
 
-void    init_token(t_token *new)
-{
-    new->cur = 0;
-    new->string = NULL;
-    new->next = NULL;
-}
+ int word_end(char *str, int *cur)
+ {
+    static int quote;
 
-void token_addback(t_token **tkn, t_token *new)
-{
-    t_token *a;
-
-    a = *tkn;
-	if (a == NULL)
-		*tkn = new;
-	else
-	{
-        while (a->next)
-		    a = a->next;
-		a->next = new;
-	}
-}
+    while (str[(*cur)])
+    {
+        quote = is_quote(str[(*cur)], quote);
+        if (is_separator(str[(*cur)]) == 1 && quote == 0)
+            break;
+        (*cur)++;
+    }
+    return (0);
+ }

@@ -101,4 +101,8 @@ void    init_token(t_token *new);
 void commandline_addback(t_command **line, t_command *new);
 int is_redirection(char c);
 void    free_command_line(t_command **command_line);
+void    free_token(t_command **command_line);
+int is_separator(char c);
+int word_end(char *str, int *cur);
+int is_quote(char c, int quote);
 # endif
