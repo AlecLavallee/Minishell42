@@ -42,7 +42,7 @@ int main(int argc, char **argv)
             if (signal(SIGINT, signal_input) == SIG_ERR)
                 exit(1);
             if (line == NULL) 
-            {
+            { 
                 free(line);
                 break;
             }
@@ -57,7 +57,7 @@ int main(int argc, char **argv)
     }
     printf("exit\n");
     free(line);
-    free(command_line);
+    //free(command_line);
     free_command_line(&command_line);
     return (valeur_exit);
 }
