@@ -25,6 +25,7 @@ int lexer(char *str, t_command **command_line)
             return (1);
         if (split_command_to_token(command_line) > 0)
             return (1);
+        
     }
     return (0);
 }
