@@ -1,6 +1,10 @@
-make --dry-run --always-make --keep-going --print-directory
-make: Entering directory '/home/tj/Documents/42/minishell/groupe_work'
-make: Leaving directory '/home/tj/Documents/42/minishell/groupe_work'
+make --dry-run --keep-going --print-directory
+make: Entering directory '/home/tj/Documents/Minishell42'
+gcc -Wall -Wextra -Werror -g3  -I./inc/ -I./libft/ -c parsing/split_token.c -o parsing/split_token.o
+gcc -Wall -Wextra -Werror -g3  -I./inc/ -I./libft/ -c parsing/outil.c -o parsing/outil.o
+make -C ./libft/
+ar rcs ./libft/libft.a ./parsing/minishell.o ./parsing/outil_signal.o ./parsing/error.o ./parsing/outil_lexer.o ./parsing/quoting.o ./parsing/lexer.o ./parsing/get_command_line.o ./parsing/split_token.o ./parsing/outil.o
+ranlib ./libft/libft.a
+gcc -Wall -Wextra -Werror -g3  ./parsing/minishell.o ./parsing/outil_signal.o ./parsing/error.o ./parsing/outil_lexer.o ./parsing/quoting.o ./parsing/lexer.o ./parsing/get_command_line.o ./parsing/split_token.o ./parsing/outil.o ./libft/libft.a -lreadline -o minishell
+make: Leaving directory '/home/tj/Documents/Minishell42'
  
-make: *** No targets specified and no makefile found.  Stop.
-

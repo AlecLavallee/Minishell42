@@ -1,6 +1,4 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
-make: *** No rule to make target 'all'.  Stop.
-
 # GNU Make 4.2.1
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2016 Free Software Foundation, Inc.
@@ -8,7 +6,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sun Jul 31 12:15:10 2022
+# Make data base, printed on Tue Aug  9 13:42:47 2022
 
 # Variables
 
@@ -41,19 +39,23 @@ GDMSESSION = ubuntu
 # environment
 XMODIFIERS = @im=ibus
 # makefile
-CURDIR := /home/tj/Documents/42/minishell/groupe_work
+CURDIR := /home/tj/Documents/Minishell42
 # makefile
 SHELL = /bin/sh
+# makefile (from 'Makefile', line 38)
+RM = rm -f
 # environment
-VSCODE_NLS_CONFIG = {"locale":"ja","availableLanguages":{"*":"ja"},"_languagePackId":"29207410cd77a70b4b25e4878dda93be.ja","_translationsConfigFile":"/home/tj/.config/Code/clp/29207410cd77a70b4b25e4878dda93be.ja/tcf.json","_cacheRoot":"/home/tj/.config/Code/clp/29207410cd77a70b4b25e4878dda93be.ja","_resolvedLanguagePackCoreLocation":"/home/tj/.config/Code/clp/29207410cd77a70b4b25e4878dda93be.ja/92d25e35d9bf1a6b16f7d0758f25d48ace11e5b9","_corruptedFile":"/home/tj/.config/Code/clp/29207410cd77a70b4b25e4878dda93be.ja/corrupted.info","_languagePackSupport":true}
+VSCODE_NLS_CONFIG = {"locale":"ja","availableLanguages":{"*":"ja"},"_languagePackId":"29207410cd77a70b4b25e4878dda93be.ja","_translationsConfigFile":"/home/tj/.config/Code/clp/29207410cd77a70b4b25e4878dda93be.ja/tcf.json","_cacheRoot":"/home/tj/.config/Code/clp/29207410cd77a70b4b25e4878dda93be.ja","_resolvedLanguagePackCoreLocation":"/home/tj/.config/Code/clp/29207410cd77a70b4b25e4878dda93be.ja/da76f93349a72022ca4670c1b84860304616aaa2","_corruptedFile":"/home/tj/.config/Code/clp/29207410cd77a70b4b25e4878dda93be.ja/corrupted.info","_languagePackSupport":true}
 # environment
 _ = /usr/share/code/code
+# makefile (from 'Makefile', line 40)
+CFLAGS = -Wall -Wextra -Werror -g3 
 # environment
-JOURNAL_STREAM = 8:47585
+JOURNAL_STREAM = 8:54800
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
-# makefile
-MAKEFILE_LIST := 
+# makefile (from 'Makefile', line 1)
+MAKEFILE_LIST :=  Makefile
 # automatic
 @F = $(notdir $@)
 # environment
@@ -66,8 +68,10 @@ MAKELEVEL := 0
 XDG_DATA_DIRS = /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
 # environment
 DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
+# makefile (from 'Makefile', line 28)
+OBJS = $(SRCS:.c=.o)
 # environment
-MANAGERPID = 2052
+MANAGERPID = 2360
 # environment
 LC_NAME = fr_FR.UTF-8
 # environment
@@ -83,7 +87,7 @@ GJS_DEBUG_OUTPUT = stderr
 # environment
 LSCOLORS = Gxfxcxdxbxegedabagacad
 # environment
-SESSION_MANAGER = local/tj-MacBookPro:@/tmp/.ICE-unix/2270,unix/tj-MacBookPro:/tmp/.ICE-unix/2270
+SESSION_MANAGER = local/tj-MacBookPro:@/tmp/.ICE-unix/2634,unix/tj-MacBookPro:/tmp/.ICE-unix/2634
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -91,7 +95,7 @@ XDG_MENU_PREFIX = gnome-
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = 7daaadc9bd884d9b9f0c2a369acbbdcb
+INVOCATION_ID = 4c43b73f58fc486e9d996955f7d770e0
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
@@ -101,17 +105,17 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 10648
+GIO_LAUNCHED_DESKTOP_FILE_PID = 3343
 # automatic
 %F = $(notdir $%)
 # environment
 DISPLAY = :0
 # environment
-PWD = /home/tj/Documents/42/minishell/groupe_work
+PWD = /home/tj/Documents/Minishell42
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 2233
+SSH_AGENT_PID = 2570
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -121,7 +125,7 @@ VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
 HOME = /home/tj
 # environment
-VSCODE_CODE_CACHE_PATH = /home/tj/.config/Code/CachedData/92d25e35d9bf1a6b16f7d0758f25d48ace11e5b9
+VSCODE_CODE_CACHE_PATH = /home/tj/.config/Code/CachedData/da76f93349a72022ca4670c1b84860304616aaa2
 # environment
 LOGNAME = tj
 # environment
@@ -144,8 +148,14 @@ MAKE = $(MAKE_COMMAND)
 MAKECMDGOALS := all
 # environment
 QT_IM_MODULE = ibus
+# makefile (from 'Makefile', line 16)
+SRCS = ./parsing/minishell.c ./parsing/outil_signal.c ./parsing/error.c ./parsing/outil_lexer.c ./parsing/quoting.c ./parsing/lexer.c ./parsing/get_command_line.c ./parsing/split_token.c ./parsing/outil.c 
 # environment
 SHLVL = 0
+# makefile (from 'Makefile', line 32)
+LIBFT = ./libft/
+# makefile (from 'Makefile', line 36)
+CC = gcc
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
 # default
@@ -155,9 +165,11 @@ USER = tj
 # environment
 LC_MONETARY = fr_FR.UTF-8
 # makefile
-.DEFAULT_GOAL := 
+.DEFAULT_GOAL := minishell
 # environment
 XDG_CURRENT_DESKTOP = Unity
+# makefile (from 'Makefile', line 14)
+NAME = minishell
 # environment
 LESS = -R
 # automatic
@@ -175,7 +187,7 @@ OLDPWD = /home/tj
 # environment
 LANGUAGE = en_US:en
 # environment
-VSCODE_IPC_HOOK = /run/user/1000/vscode-ad2a177a-1.69.0-main.sock
+VSCODE_IPC_HOOK = /run/user/1000/vscode-ad2a177a-1.70.0-main.sock
 # makefile
 MAKEFLAGS = pqrR
 # environment
@@ -188,6 +200,8 @@ MAIL = tj@student.42.fr
 +D = $(patsubst %/,%,$(dir $+))
 # environment
 GDK_BACKEND = x11
+# makefile (from 'Makefile', line 34)
+LIBFT_A = ./libft/libft.a
 # environment
 LC_PAPER = fr_FR.UTF-8
 # environment
@@ -204,6 +218,8 @@ LC_MEASUREMENT = fr_FR.UTF-8
 PAGER = less
 # environment
 LC_ALL = C
+# makefile (from 'Makefile', line 30)
+HEADER = ./inc/
 # environment
 GJS_DEBUG_TOPICS = JS ERROR;JS LOG
 # automatic
@@ -225,9 +241,9 @@ LC_ADDRESS = fr_FR.UTF-8
 # environment
 LANG = C
 # environment
-VSCODE_PID = 10648
+VSCODE_PID = 3343
 # variable set hash-table stats:
-# Load=107/1024=10%, Rehash=0, Collisions=17/129=13%
+# Load=116/1024=11%, Rehash=0, Collisions=21/160=13%
 
 # Pattern-specific Variable Values
 
@@ -235,9 +251,9 @@ VSCODE_PID = 10648
 
 # Directories
 
-# . (device 2050, inode 16516174): 13 files, no impossibilities.
+# . (device 2050, inode 14423165): 11 files, no impossibilities.
 
-# 13 files, no impossibilities in 1 directories.
+# 11 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -245,26 +261,108 @@ VSCODE_PID = 10648
 
 # Files
 
-# Not a target:
-all:
+all: minishell
+#  Phony target (prerequisite of .PHONY).
 #  Command line target.
-#  Implicit rule search has been done.
+#  Implicit rule search has not been done.
 #  File does not exist.
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/14=0%
+
+.PHONY: all clean fclean re
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+ 
+parsing/outil.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-09 12:29:40.732264087
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+parsing/minishell.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-09 12:29:38.37226405
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+libft/:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-09 13:42:28.512332075
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+.SUFFIXES:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
 #  File has not been updated.
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  File does not exist.
+#  Last modified 2022-08-08 19:22:07
 #  File has been updated.
-#  Failed to be updated.
+#  Successfully updated.
+
+minishell: parsing/minishell.o parsing/outil_signal.o parsing/error.o parsing/outil_lexer.o parsing/quoting.o parsing/lexer.o parsing/get_command_line.o parsing/split_token.o parsing/outil.o libft/
+#  Implicit rule search has not been done.
+#  Implicit/static pattern stem: ''
+#  Last modified 2022-08-09 12:29:47.652264195
+#  File has been updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := minishell
+# automatic
+# % := 
+# automatic
+# * := 
+# automatic
+# + := parsing/minishell.o parsing/outil_signal.o parsing/error.o parsing/outil_lexer.o parsing/quoting.o parsing/lexer.o parsing/get_command_line.o parsing/split_token.o parsing/outil.o libft/
+# automatic
+# | := 
+# automatic
+# < := parsing/minishell.o
+# automatic
+# ^ := parsing/minishell.o parsing/outil_signal.o parsing/error.o parsing/outil_lexer.o parsing/quoting.o parsing/lexer.o parsing/get_command_line.o parsing/split_token.o parsing/outil.o libft/
+# automatic
+# ? := libft/
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=3/22=14%
+#  recipe to execute (from 'Makefile', line 46):
+			@make -C $(LIBFT)
+			ar rcs $(LIBFT_A) $(OBJS)
+			ranlib $(LIBFT_A)
+			$(CC) $(CFLAGS) $(OBJS) $(LIBFT_A) -lreadline -o $(NAME)
+
+.c.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 43):
+	$(CC) $(CFLAGS) -I$(HEADER) -I$(LIBFT) -c $< -o $(<:.c=.o)
+
+fclean: clean
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 58):
+		$(MAKE) fclean -C $(LIBFT)
+		$(RM) $(NAME)
 
 # Not a target:
-makefile:
+parsing/error.o:
 #  Implicit rule search has been done.
-#  File does not exist.
+#  Last modified 2022-08-09 12:29:39.01226406
 #  File has been updated.
-#  Failed to be updated.
+#  Successfully updated.
 
 # Not a target:
 .DEFAULT:
@@ -273,27 +371,76 @@ makefile:
 #  File has not been updated.
 
 # Not a target:
-GNUmakefile:
+parsing/lexer.o:
 #  Implicit rule search has been done.
-#  File does not exist.
+#  Last modified 2022-08-09 12:29:40.032264076
 #  File has been updated.
-#  Failed to be updated.
+#  Successfully updated.
+
+# Not a target:
+parsing/get_command_line.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-09 12:29:40.244264079
+#  File has been updated.
+#  Successfully updated.
+
+re: fclean all
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+
+clean:
+#  Phony target (prerequisite of .PHONY).
+#  Implicit rule search has not been done.
+#  File does not exist.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 54):
+		$(MAKE) clean -C $(LIBFT)
+		$(RM) $(OBJS)
+
+# Not a target:
+parsing/outil_signal.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-09 12:29:38.688264055
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+parsing/split_token.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-09 12:29:40.540264084
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+parsing/outil_lexer.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-09 12:29:39.252264064
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+parsing/quoting.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-09 12:29:39.720264071
+#  File has been updated.
+#  Successfully updated.
 
 # files hash-table stats:
-# Load=6/1024=1%, Rehash=0, Collisions=0/15=0%
+# Load=20/1024=2%, Rehash=0, Collisions=0/50=0%
 # VPATH Search Paths
- 
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 21 / storage = 201 B / avg = 9 B
-# current buf: size = 8162 B / used = 201 B / count = 21 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 31 / storage = 346 B / avg = 11 B
+# current buf: size = 8162 B / used = 346 B / count = 31 / avg = 11 B
 
-# strcache performance: lookups = 24 / hit rate = 12%
+# strcache performance: lookups = 53 / hit rate = 41%
 # hash-table stats:
-# Load=21/8192=0%, Rehash=0, Collisions=1/24=4%
-# Finished Make data base on Sun Jul 31 12:15:10 2022
+# Load=31/8192=0%, Rehash=0, Collisions=1/53=2%
+# Finished Make data base on Tue Aug  9 13:42:47 2022
 
  

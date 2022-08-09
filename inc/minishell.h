@@ -32,12 +32,27 @@
 # include <readline/history.h>
 # include "../libft/libft.h"
 
+typedef enum{
+    DEFAULT, //default 0
+    ARGUMENT, // word 1
+    FILE_IN, // < 2 
+	FILE_OUT, // > 3
+	OPEN_FILE, // < 4
+	EXIT_FILE, // > 5
+	FILE_OUT_SUR, // >> 6
+ 	DOC, // << 7
+	LIMITOR, //<< 8
+	EXIT_FILE_RET, // >> 9
+	BUILTIN, //builtin command = 10
+} t_token_state;
+
 typedef struct s_token
 {
 	int				cur;
 	int 			len;
     char            *string;
 	char			*token;
+	t_token_state	state;
 	struct s_token	*next;
 }		t_token;
 
@@ -59,19 +74,6 @@ typedef struct s_tc
 }	t_tc;
 */
 
-typedef enum{
-    DEFAULT, //default 0
-    ARGUMENT, // word 1
-    FILE_IN, // < 2 
-	FILE_OUT, // > 3
-	OPEN_FILE, // < 4
-	EXIT_FILE, // > 5
-	FILE_OUT_SUR, // >> 6
- 	DOC, // << 7
-	LIMITOR, //<< 8
-	EXIT_FILE_RET, // >> 9
-} state;
-
 extern int valeur_exit; 
 void    signal_input(int signal);
 int quote_check(char *str);
@@ -91,12 +93,14 @@ void	ft_error(void);
 //lexer avec struct t_tc
 int lexer(char *str, t_command **command_line);
 int get_command_line(char *str, t_command **command_line);
+//int filling_command_line(char *str, int cur, int start, t_command **command_line);
+void check_pipe(int cur, char *str);
 int split_command_to_token(t_command **command_line);
-int split_command_line(t_command **command_line);
-void init_command_line(t_command *command_line);
+//int split_command_line(t_command **command_line);
+//void init_command_line(t_command *command_line);
 void token_addback(t_token **tkn, t_token *new);
 t_token	*lstlast(t_token *lst);
-int tokenization(int cur, int start, char *str, t_command **command_line);
+//int tokenization(int cur, int start, char *str, t_command **command_line);
 void    init_token(t_token *new);
 void commandline_addback(t_command **line, t_command *new);
 int is_redirection(char c);
@@ -105,4 +109,7 @@ void    free_token(t_command **command_line);
 int is_separator(char c);
 int word_end(char *str, int *cur);
 int is_quote(char c, int quote);
+int checker_builtin(char *str);
+//void is_pipe(int *cur, char *str);
+//void redirection_end(char *str, int *cur);
 # endif

@@ -47,6 +47,7 @@ int is_separator(char c)
 void    init_token(t_token *new)
 {
     new->cur = 0;
+    new->state = DEFAULT;
     new->string = NULL;
     new->next = NULL;
 }
@@ -66,3 +67,24 @@ void token_addback(t_token **tkn, t_token *new)
 	}
 }
 
+int checker_builtin(char *str)
+{
+    if (str == NULL)
+        return (0);
+    if (!ft_strcmp(str, "exit"))
+        return (1);
+    if (!ft_strcmp(str, "cd"))
+        return (1);
+    if (!ft_strcmp(str, "echo"))
+        return (1);
+    if (!ft_strcmp(str, "env"))
+        return (1);
+    if (!ft_strcmp(str, "export"))
+        return (1);
+    if (!ft_strcmp(str, "unset"))
+        return (1);
+    if (!ft_strcmp(str, "pwd"))
+        return (1);
+    else
+        return (0);   
+}
