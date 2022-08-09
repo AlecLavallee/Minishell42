@@ -16,7 +16,7 @@ int lexer(char *str, t_command **command_line)
 {
     int res;
 
-    res = quote_check(str);    
+    res = quote_check(str);
     if (res > 0)
         return (1);
     else
@@ -27,6 +27,7 @@ int lexer(char *str, t_command **command_line)
             return (1);
         
     }
+    //res = expension_word(command_line);
     return (0);
 }
 
@@ -48,15 +49,24 @@ void    free_command_line(t_command **command_line)
 
 void    free_token(t_command **command_line)
 {
+    int i;
     t_token *token;
+    t_token *tmp;
 
-    while ((*command_line)->first_token)
+    token = (*command_line)->first_token;
+    while (token)
 	{
-		token = (*command_line)->first_token->next;
-		if ((*command_line)->first_token->string)
-			free((*command_line)->first_token->string);
-		free((*command_line)->first_token);
-		(*command_line)->first_token = token;
-	}
+        i = 0;
+		tmp = token->next;
+		if (token->string)
+        {
+            printf("[%d]:%s\n", i, token->string);
+			free(token->string);
+            token->string = NULL;
+            i++;
+        }
+		free(token);
+        token = tmp;
+    }
 }
 

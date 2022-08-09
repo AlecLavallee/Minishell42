@@ -53,11 +53,12 @@ int main(int argc, char **argv)
             //else
             //    printf("%s\n", command_line->tkn[0].string);
             free(line);
+            free_command_line(&command_line);
         }
     }
     printf("exit\n");
     free(line);
     //free(command_line);
-    free_command_line(&command_line);
+    //free_command_line(&command_line);
     return (valeur_exit);
 }

@@ -22,6 +22,7 @@ SRCS	=	./parsing/minishell.c	\
 			./parsing/get_command_line.c \
 			./parsing/split_token.c 	\
 			./parsing/outil.c			\
+			./parsing/expension.c		\
 	
 
 
@@ -37,7 +38,7 @@ CC	=	gcc
 
 RM	=	rm -f
 
-CFLAGS	=	-Wall -Wextra -Werror -g3 #-fsanitize=leak
+CFLAGS	=	-Wall -Wextra -Werror -g3 -fsanitize=leak
 
 .c.o:
 	$(CC) $(CFLAGS) -I$(HEADER) -I$(LIBFT) -c $< -o $(<:.c=.o)

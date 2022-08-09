@@ -65,7 +65,7 @@ static int tokenization(int cur, int start, char *str, t_command **command_line)
 {
     t_token *token;
 
-    token = malloc(sizeof(t_token));
+    token = malloc(sizeof(t_token)); // il faut changer
         if (token == NULL)
             return (1);
     init_token(token);

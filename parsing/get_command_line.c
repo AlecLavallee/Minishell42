@@ -38,10 +38,10 @@ static int filling_command_line(char *str, int cur, int start, t_command **comma
 {
     t_command *new;    
 
-    new = malloc(sizeof(t_command));
+    new = malloc(sizeof(t_command));// il faut changer
+    //new = *command_line;
     if (new == NULL)
         return (1);
-
     init_command_line(new);
     new->whole_str = (char *)malloc(sizeof(char) * (cur - start + 1));
     if (new->whole_str == NULL)
