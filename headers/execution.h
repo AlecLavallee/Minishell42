@@ -6,7 +6,7 @@
 /*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:53:20 by alelaval          #+#    #+#             */
-/*   Updated: 2022/08/08 11:50:24 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/08/09 14:28:00 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	executor(t_shell *shell);
 void	debug_data(t_shell *shell);
 void	fill_data(t_shell *shell, int nb_args, char **args);
 void	ft_shell(t_shell *shell);
+// builtins
+void	echo(char **av);
 // standard func
 t_shell	*init_all(void);
 t_shell	*parser(t_shell *shell, int count, char **args, char **paths);
