@@ -21,7 +21,14 @@ int is_redirection(char c)
 
 int is_quote(char c, int quote)
 {
-    if (c == '\'' || c == '\"')
+    if (c == '\'')
+    {
+        if (quote == 0)
+            quote = 2;
+        else if (quote == 2)
+            quote = 0;
+    }
+    if (c == '\"')
     {
         if (quote == 0)
             quote = 1;

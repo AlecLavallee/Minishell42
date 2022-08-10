@@ -58,7 +58,6 @@ int main(int argc, char **argv)
     }
     printf("exit\n");
     free(line);
-    //free(command_line);
     //free_command_line(&command_line);
     return (valeur_exit);
 }
