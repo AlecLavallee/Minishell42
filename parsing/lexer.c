@@ -36,17 +36,21 @@ void    free_command_line(t_command **command_line)
     t_command *tmp;
     if (*command_line)
     {
-        tmp = (*command_line)->next;
-        if ((*command_line)->first_token)
-            free((*command_line)->first_token);
-        if ((*command_line)->whole_str)
-            free((*command_line)->whole_str);
-        if ((*command_line)->first_token)
-            free_token(command_line);
-        *command_line = tmp;
+        while (*command_line)
+        {
+            tmp = (*command_line)->next;
+            if ((*command_line)->first_token)
+                free((*command_line)->first_token);
+            if ((*command_line)->whole_str)
+                free((*command_line)->whole_str);
+            if ((*command_line)->first_token)
+                free_token(command_line);
+            free(*command_line);
+            *command_line = tmp;
+        }
     }
 }
-
+/*
 void    free_token(t_command **command_line)
 {
     int i;
@@ -69,4 +73,22 @@ void    free_token(t_command **command_line)
         token = tmp;
     }
 }
+*/
+void	free_token(t_command **command_line)
+{
+	t_token	*token;
+    //int i = 0;
 
+	while ((*command_line)->first_token)
+	{
+		token = (*command_line)->first_token->next;
+		if ((*command_line)->first_token->string)
+        {
+            //printf("[%d]:%s\n", i, (*command_line)->first_token->string);
+            //i++;
+			free((*command_line)->first_token->string);
+        }
+		free((*command_line)->first_token);
+		(*command_line)->first_token = token;
+	}
+}

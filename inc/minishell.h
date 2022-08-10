@@ -39,8 +39,8 @@ typedef enum{
 	FILE_OUT, // > 3
 	OPEN_FILE, // < 4
 	EXIT_FILE, // > 5
-	FILE_OUT_SUR, // >> 6
- 	DOC, // << 7
+	FILE_OUT_AJOUTE, // >> 6
+ 	SEND_COMMAND, // << 7
 	LIMITOR, //<< 8
 	EXIT_FILE_RET, // >> 9
 	BUILTIN, //builtin command = 10

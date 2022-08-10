@@ -45,14 +45,14 @@ int word_end(char *str, int *cur)
         if (new->string[0] == '>')
             new->state = FILE_OUT;
         if (new->string[0] == '<')
-            new->state = OPEN_FILE;
+            new->state = FILE_IN;
     }
     if (len == 2)
     {
         if (new->string[0] == '>' && new->string[1] == '>')
-            new->state = FILE_OUT_SUR;
+            new->state = FILE_OUT_AJOUTE;
         if (new->string[0] == '<' && new->string[1] == '<')
-            new->state = LIMITOR;
+            new->state = SEND_COMMAND;
     }
     if (checker_builtin(new->string))
         new->state = BUILTIN;

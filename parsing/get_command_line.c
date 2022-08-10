@@ -46,7 +46,7 @@ static int filling_command_line(char *str, int cur, int start, t_command **comma
     new->whole_str = (char *)malloc(sizeof(char) * (cur - start + 1));
     if (new->whole_str == NULL)
         return (1);
-    new->whole_str = ft_strcpy(new->whole_str, str);
+    new->whole_str = ft_strncpy(new->whole_str, str + start, cur - start);
     commandline_addback(command_line, new);
     return (0);
 }
