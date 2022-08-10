@@ -52,7 +52,7 @@ static int filling_command_line(char *str, int cur, int start, t_command **comma
         return (1);
     new->whole_str = ft_strncpy(new->whole_str, str + start, cur - start);
     commandline_addback(command_line, new);
-   // (*command_line) = (*command_line)->next;
+   (*command_line) = (*command_line)->next;
     //free(new->whole_str);
     //free(new);
     return (0);

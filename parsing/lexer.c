@@ -25,7 +25,6 @@ int lexer(char *str, t_command **command_line)
             return (1);
         if (split_command_to_token(command_line) > 0)
             return (1);
-        
     }
     //res = expension_word(command_line);
     return (0);
@@ -50,7 +49,7 @@ void    free_command_line(t_command **command_line)
         }
     }
 }
-
+/*
 void    free_token(t_command **command_line)
 {
     //int i;
@@ -74,8 +73,8 @@ void    free_token(t_command **command_line)
         token = tmp;
     }
 }
+*/
 
-/*
 void	free_token(t_command **command_line)
 {
 	t_token	*token;
@@ -92,4 +91,3 @@ void	free_token(t_command **command_line)
 	    }
     }
 }
-*/

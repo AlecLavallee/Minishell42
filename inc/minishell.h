@@ -46,6 +46,14 @@ typedef enum{
 	BUILTIN, //builtin command = 10
 } t_token_state;
 
+typedef struct s_pars {
+  t_token_state kind; // state_token
+  struct s_pars *next;
+  int val;        // kindがTK_NUMの場合、その数値 = pas besoin pour minishell
+  char *str;      // string_token
+  int len;        // longuer_token
+}t_pars;
+
 typedef struct s_token
 {
 	int				cur;
@@ -112,4 +120,5 @@ int is_quote(char c, int quote);
 int checker_builtin(char *str);
 //void is_pipe(int *cur, char *str);
 //void redirection_end(char *str, int *cur);
+int parser(t_token *tkn);
 # endif
