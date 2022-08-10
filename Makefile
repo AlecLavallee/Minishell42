@@ -6,7 +6,7 @@
 #    By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/11/29 11:56:39 by alelaval          #+#    #+#              #
-#    Updated: 2022/08/09 14:34:09 by alelaval         ###   ########.fr        #
+#    Updated: 2022/08/10 15:02:10 by alelaval         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRCS = ./srcs/execution/exec.c \
 		./srcs/gnl/get_next_line.c \
 		./srcs/gnl/get_next_line_utils.c \
 		./srcs/builtins/echo.c \
+		./srcs/builtins/pwd.c \
 		./srcs/shell.c \
 		./srcs/tests.c
 
@@ -32,7 +33,7 @@ OBJS =	${SRCS:.c=.o}
 CC 	= gcc
 
 INCLUDE =	./headers/
-CFLAGS =	-Wall -Wextra -Werror -g3 #-fsanitize=address
+CFLAGS =	-Wall -Wextra -Werror -g3 -fsanitize=address
 RM = 		rm -rf
 
 all: 		${NAME}

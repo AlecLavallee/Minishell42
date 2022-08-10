@@ -6,12 +6,13 @@
 /*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:53:20 by alelaval          #+#    #+#             */
-/*   Updated: 2022/08/09 14:28:00 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/08/10 15:10:18 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXECUTION_H
 # define EXECUTION_H
+# define PATH_MAX 4096
 # include "get_next_line.h"
 # include <sys/types.h>
 # include <sys/wait.h>
@@ -24,6 +25,7 @@
 
 typedef struct s_comm
 {
+	int		isbuiltin;
 	int		nb_args;
 	char	**args;
 	char	*infile;
@@ -57,6 +59,7 @@ void	fill_data(t_shell *shell, int nb_args, char **args);
 void	ft_shell(t_shell *shell);
 // builtins
 void	echo(char **av);
+void	pwd();
 // standard func
 t_shell	*init_all(void);
 t_shell	*parser(t_shell *shell, int count, char **args, char **paths);

@@ -6,7 +6,7 @@
 /*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:53:24 by alelaval          #+#    #+#             */
-/*   Updated: 2022/08/05 16:57:30 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/08/10 14:55:14 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,19 @@ pid_t	init_pid(t_shell *shell)
 	return (pid);
 }
 
+int		isbuiltin(char *str)
+{
+	int i = 0;
+	const char * args[] = {"echo", "cd", "pwd", "export", "unset", "env", "exit", NULL};
+
+	while (args[i])
+	{
+		if (ft_strncmp(str, args[i], ft_strlen(str)) == 0)
+			return (1);
+		i++;
+	}
+	return (0);
+}
 void	fill_data(t_shell *shell, int nb_args, char **args)
 {
 	int	i;
@@ -54,6 +67,7 @@ void	fill_data(t_shell *shell, int nb_args, char **args)
 		shell->cmds[i]->args = ft_split(args[i + 1], ' ');
 		shell->cmds[i]->infile = NULL;
 		shell->cmds[i]->outfile = NULL;
+		shell->cmds[i]->isbuiltin = isbuiltin(shell->cmds[i]->args[0]);
 		i++;
 	}
 	shell->cmds[i] = NULL;
@@ -82,6 +96,7 @@ void	debug_data(t_shell *shell)
 	{
 		j = 0;
 		printf("[command:%d]\n", i);
+		printf("[IsBuiltin]:[%d]\n", shell->cmds[i]->isbuiltin);
 		while (shell->cmds[i]->args[j])
 		{
 			printf("[cmd:%d][arg:%d]:%s\n", i, j, shell->cmds[i]->args[j]);

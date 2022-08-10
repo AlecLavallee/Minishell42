@@ -6,7 +6,7 @@
 /*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 19:20:37 by alelaval          #+#    #+#             */
-/*   Updated: 2022/08/04 18:07:30 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/08/10 15:10:02 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,15 @@ void	handle_io(t_shell *shell)
 	close(shell->defoutput);
 }
 
+void	exec_builtin(t_shell *shell, int i)
+{
+	ft_putstr("heheheha\n");
+	if (!ft_strncmp(shell->cmds[i]->args[0], "echo", ft_strlen(shell->cmds[i]->args[0])))
+		echo(&shell->cmds[i]->args[1]);
+	if (!ft_strncmp(shell->cmds[i]->args[0], "pwd", ft_strlen(shell->cmds[i]->args[0])))
+		pwd();
+}
+
 /*
 * executor
 * takes a list of commands
@@ -112,7 +121,10 @@ void	executor(t_shell *shell)
 	while (i < shell->nb_cmds)
 	{
 		handle_pipes(shell, i);
-		ret = fork();
+		if (!shell->cmds[i]->isbuiltin)
+			ret = fork();
+		else
+			exec_builtin(shell, i);
 		if (ret < 0)
 		{
 			perror("fork");
