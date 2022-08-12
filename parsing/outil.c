@@ -54,7 +54,7 @@ int is_separator(char c)
 void    init_token(t_token *new)
 {
     new->cur = 0;
-    new->state = DEFAULT;
+    new->kind = DEFAULT;
     new->string = NULL;
     new->next = NULL;
 }

@@ -23,6 +23,7 @@ SRCS	=	./parsing/minishell.c	\
 			./parsing/split_token.c 	\
 			./parsing/outil.c			\
 			./parsing/expension.c		\
+			./parsing/parser.c			\
 	
 
 

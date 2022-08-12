@@ -15,6 +15,7 @@
 int lexer(char *str, t_command **command_line)
 {
     int res;
+    t_node *node;
 
     res = quote_check(str);
     if (res > 0)
@@ -34,6 +35,7 @@ int lexer(char *str, t_command **command_line)
             return (1);
         }
     }
+    node = parser()//
     //res = expension_word(command_line);
     return (0);
 }

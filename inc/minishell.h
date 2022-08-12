@@ -44,15 +44,23 @@ typedef enum{
 	LIMITOR, //<< 8
 	EXIT_FILE_RET, // >> 9
 	BUILTIN, //builtin command = 10
-} t_token_state;
+	PIPE, // | (mais je n'ai pas dintigue)
+	OP, // operands
+	TOKEN_EOF, // end of string
+} t_token_kind;
 
-typedef struct s_pars {
-  t_token_state kind; // state_token
-  struct s_pars *next;
+typedef struct s_node {
+  t_token_kind kind; // state_token
+  struct s_node *next;
   int val;        // kindがTK_NUMの場合、その数値 = pas besoin pour minishell
-  char *str;      // string_token
+  char *str;      // for word(=argument)
   int len;        // longuer_token
-}t_pars;
+  struct s_node *lhs; //left handle
+  struct s_node *rhs; // right handle
+  struct s_node *cmds;
+  struct s_node *redir_in;
+  struct s_node *redir_out;
+}t_node;
 
 typedef struct s_token
 {
@@ -60,7 +68,7 @@ typedef struct s_token
 	int 			len;
     char            *string;
 	char			*token;
-	t_token_state	state;
+	t_token_kind	kind;
 	struct s_token	*next;
 }		t_token;
 
@@ -120,6 +128,6 @@ int is_quote(char c, int quote);
 int checker_builtin(char *str);
 //void is_pipe(int *cur, char *str);
 //void redirection_end(char *str, int *cur);
-int parser(t_token *tkn);
+t_node *parser(t_token *tok);
 void	free_end(t_command **command_line, char *str);
 # endif

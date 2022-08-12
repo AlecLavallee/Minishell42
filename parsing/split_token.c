@@ -34,7 +34,7 @@ int word_end(char *str, int *cur)
     }
     return (0);
  }
-
+/*
  void init_type(t_token *new)
  {
     int len;
@@ -44,23 +44,49 @@ int word_end(char *str, int *cur)
     if (len == 1)
     {
         if (new->string[0] == '>')
-            new->state = FILE_OUT;
+            new->kind = FILE_OUT;
         if (new->string[0] == '<')
-            new->state = FILE_IN;
+            new->kind = FILE_IN;
     }
     if (len == 2)
     {
         if (new->string[0] == '>' && new->string[1] == '>')
-            new->state = FILE_OUT_SUR; // il faut modifier
+            new->kind = FILE_OUT_SUR; // il faut modifier
         if (new->string[0] == '<' && new->string[1] == '<')
-            new->state = DOC; //il faut modifier
+            new->kind = DOC; //il faut modifier
     }
     if (checker_builtin(new->string))
-        new->state = BUILTIN;
-    if (len != 0 && new->state == DEFAULT)
-        new->state = ARGUMENT;
+        new->kind = BUILTIN;
+    if (len != 0 && new->kind == DEFAULT)
+        new->kind = ARGUMENT;
 
  }  
+*/
+
+ void init_type(t_token *new)
+ {
+    int len;
+
+    if (new->string)
+        len = ft_strlen(new->string);
+    if (len == 1)
+    {
+        if (new->string[0] == '>' || new->string[0] == '<')
+            new->kind = OP;
+    }
+    if (len == 2)
+    {
+        if (new->string[0] == '>' && new->string[1] == '>')
+            new->kind = OP; // il faut modifier
+        if (new->string[0] == '<' && new->string[1] == '<')
+            new->kind = OP; //il faut modifier
+    }
+    if (checker_builtin(new->string))
+        new->kind = BUILTIN;
+    if (len != 0 && new->kind == DEFAULT)
+        new->kind = ARGUMENT;
+
+ } 
 
 static int tokenization(int cur, int start, char *str, t_command **command_line)
 {
