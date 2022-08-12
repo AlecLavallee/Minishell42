@@ -6,7 +6,7 @@
 /*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 13:50:50 by alelaval          #+#    #+#             */
-/*   Updated: 2022/08/12 15:00:40 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/08/12 20:59:22 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,30 @@
 
 void	free_cmds(t_shell *shell)
 {
+	int		i;
+	t_comm	*tmp;
+
 	while (shell->cmds)
 	{
-		/*if (shell->cmds[i]->infile)
-			free(shell->cmds[i]->infile);
-		if (shell->cmds[i]->outfile)
-			free(shell->cmds[i]->outfile);
-		shell->cmds[i]->infile = NULL;
-		shell->cmds[i]->outfile = NULL;
-		j = 0;
-		while (shell->cmds[i]->args[j])
+		i = -1;
+		if (shell->cmds->infile)
+			free(shell->cmds->infile);
+		if (shell->cmds->outfile)
+			free(shell->cmds->outfile);
+		shell->cmds->infile = NULL;
+		shell->cmds->outfile = NULL;
+		while (shell->cmds->args[++i])
 		{
-			free(shell->cmds[i]->args[j]);
-			shell->cmds[i]->args[j] = NULL;
-			j++;
+			free(shell->cmds->args[i]);
+			shell->cmds->args[i] = NULL;
 		}
-		free(shell->cmds[i]->args);
-		shell->cmds[i]->args = NULL;
-		free(shell->cmds[i]);
-		shell->cmds[i] = NULL;*/
+		if (shell->cmds->args)
+			free(shell->cmds->args);
+		shell->cmds->args = NULL;
+		tmp = shell->cmds;
+		shell->cmds = shell->cmds->next;
+		free(tmp);
 	}
-	free(shell->cmds);
 }
 
 void	free_paths(t_shell *shell)
@@ -43,12 +46,11 @@ void	free_paths(t_shell *shell)
 
 	if (shell->paths)
 	{
-		i = 0;
-		while (shell->paths[i])
+		i = -1;
+		while (shell->paths[++i])
 		{
 			free(shell->paths[i]);
 			shell->paths[i] = NULL;
-			i++;
 		}
 		free(shell->paths);
 		shell->paths = NULL;

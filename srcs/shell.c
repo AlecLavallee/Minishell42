@@ -6,7 +6,7 @@
 /*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:53:24 by alelaval          #+#    #+#             */
-/*   Updated: 2022/08/12 15:25:01 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/08/12 21:02:10 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ t_shell	*init_all(void)
 	shell = (t_shell *)malloc((sizeof(t_shell)) * 1);
 	if (!shell)
 		exit_shell(shell, EXIT_FAILURE);
+	shell->nb_cmds = 0;
+	shell->cmds = NULL;
 	shell->infile = NULL;
 	shell->outfile = NULL;
 	shell->envp = NULL;
@@ -27,23 +29,12 @@ t_shell	*init_all(void)
 	return (shell);
 }
 
-pid_t	init_pid(t_shell *shell)
-{
-	pid_t	pid;
-
-	pid = fork();
-	if (pid < 0)
-	{
-		perror("Fork ");
-		error(shell);
-	}
-	return (pid);
-}
-
 int		isbuiltin(char *str)
 {
-	int i = 0;
-	const char * args[] = {"echo", "cd", "pwd", "export", "unset", "env", "exit", NULL};
+	int			i;
+	const char	*args[] = {"echo", "cd", "pwd", "export", "unset", "env", "exit", NULL};
+
+	i = 0;
 
 	while (args[i])
 	{
@@ -59,8 +50,8 @@ void	lst_addback(t_comm **lst, t_comm *new)
 	t_comm	*a;
 
 	a = *lst;
-	if (a == NULL)
-		a = new;
+	if (*lst == NULL)
+		*lst = new;
 	else
 	{
 		while (a->next)
@@ -72,22 +63,22 @@ void	lst_addback(t_comm **lst, t_comm *new)
 void	fill_data(t_shell *shell, char **args)
 {
 	int	i;
+	t_comm *new;
 
 	i = 0;
 	shell->infile = "tests/infile";
 	shell->outfile = "tests/outfile";
-	t_comm *lst;
 	while (args[i + 1])
 	{
-		t_comm *new = (t_comm *)malloc(sizeof(t_comm) * 1);
+		new = (t_comm *)malloc(sizeof(t_comm));
 		new->args = ft_split(args[i + 1], ' ');
 		new->infile = NULL;
 		new->outfile = NULL;
+		new->next = NULL;
 		new->isbuiltin = isbuiltin(new->args[0]);
-		lst_addback(&lst, new);
+		lst_addback(&(shell->cmds), new);
 		i++;
 	}
-	shell->cmds->next = NULL;
 }
 
 void	debug_data(t_shell *shell)
@@ -105,17 +96,27 @@ void	debug_data(t_shell *shell)
 	printf("[COMMANDS]\n\n");
 	printf("Number of commands : %d\n\n", shell->nb_cmds);
 	i = 0;
-	while (i < shell->nb_cmds)
+	t_comm *lst;
+	lst = shell->cmds;
+	while (lst->next)
+	{
+		lst = lst->next;
+		shell->nb_cmds++;
+	}
+	shell->nb_cmds++;
+	lst = shell->cmds;
+	while (lst)
 	{
 		j = 0;
 		printf("[command:%d]\n", i);
-		printf("[IsBuiltin]:[%d]\n", shell->cmds->isbuiltin);
-		while (shell->cmds->args[j])
+		printf("[IsBuiltin]:[%d]\n", lst->isbuiltin);
+		while (lst->args[j])
 		{
-			printf("[cmd:%d][arg:%d]:%s\n", i, j, shell->cmds->args[j]);
+			printf("[cmd:%d][arg:%d]:%s\n", i, j, lst->args[j]);
 			j++;
 		}
-		printf("[infile]:%s\n[oufile]:%s\n\n", shell->cmds->infile, shell->cmds->outfile);
+		printf("[infile]:%s\n[oufile]:%s\n\n", lst->infile, lst->outfile);
+		lst = lst->next;
 		i++;
 	}
 	printf("Running %d commands...\n", shell->nb_cmds);

@@ -6,7 +6,7 @@
 /*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 19:20:37 by alelaval          #+#    #+#             */
-/*   Updated: 2022/08/12 14:54:02 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/08/12 20:56:40 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	handle_pipes(t_shell *shell)
 
 	dup2(shell->fdin, 0);
 	close(shell->fdin);
-	if (!(shell->cmds->next))
+	if (shell->cmds->next == NULL)
 	{
 		if (shell->cmds->outfile)
 			shell->fdout = open(shell->outfile, O_RDWR | O_APPEND);
@@ -113,13 +113,15 @@ void	exec_builtin(t_shell *shell)
 void	executor(t_shell *shell)
 {
 	int		status;
+	t_comm	*next;
 	pid_t	ret;
 
+	next = shell->cmds;
 	handle_input(shell);
-	while (shell->cmds)
+	while (next)
 	{
 		handle_pipes(shell);
-		if (!shell->cmds->isbuiltin)
+		if (!next->isbuiltin)
 			ret = fork();
 		else
 			exec_builtin(shell);
@@ -130,12 +132,12 @@ void	executor(t_shell *shell)
 		}
 		if (ret == 0)
 		{
-			shell->cmds->args[0] = get_fun(shell->cmds->args[0], shell->paths);
-			execve(shell->cmds->args[0], shell->cmds->args, shell->envp);
+			next->args[0] = get_fun(next->args[0], shell->paths);
+			execve(next->args[0], next->args, shell->envp);
 			perror("execve");
 			exit(EXIT_FAILURE);
 		}
-		shell->cmds = shell->cmds->next;
+		next = next->next;
 	}
 	handle_io(shell);
 	waitpid(ret, &status, WEXITED);
