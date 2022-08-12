@@ -6,7 +6,7 @@
 /*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 14:20:40 by alelaval          #+#    #+#             */
-/*   Updated: 2022/08/10 14:55:32 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/08/12 15:12:10 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int num_args, char **args, char **envp)
 			printf("NULL ENVP!\n");
 		// will be populated by Mariko's data later on
 		//parser(shell, num_args, args, paths);
-		fill_data(shell, num_args, args);
+		fill_data(shell, args);
 		if (debug)
 			debug_data(shell);
 		executor(shell);

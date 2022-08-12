@@ -6,7 +6,7 @@
 /*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 19:20:37 by alelaval          #+#    #+#             */
-/*   Updated: 2022/08/10 15:10:02 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/08/12 14:54:02 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,15 @@ void	handle_input(t_shell *shell)
 * setup pipes before forking and executing
 * and redirects output to outfile if needed
 */
-void	handle_pipes(t_shell *shell, int i)
+void	handle_pipes(t_shell *shell)
 {
 	int	fdpipe[2];
 
 	dup2(shell->fdin, 0);
 	close(shell->fdin);
-	if (i == shell->nb_cmds - 1)
+	if (!(shell->cmds->next))
 	{
-		if (shell->cmds[i]->outfile)
+		if (shell->cmds->outfile)
 			shell->fdout = open(shell->outfile, O_RDWR | O_APPEND);
 		else
 			shell->fdout = dup(shell->defoutput);
@@ -95,12 +95,12 @@ void	handle_io(t_shell *shell)
 	close(shell->defoutput);
 }
 
-void	exec_builtin(t_shell *shell, int i)
+void	exec_builtin(t_shell *shell)
 {
 	ft_putstr("heheheha\n");
-	if (!ft_strncmp(shell->cmds[i]->args[0], "echo", ft_strlen(shell->cmds[i]->args[0])))
-		echo(&shell->cmds[i]->args[1]);
-	if (!ft_strncmp(shell->cmds[i]->args[0], "pwd", ft_strlen(shell->cmds[i]->args[0])))
+	if (!ft_strncmp(shell->cmds->args[0], "echo", ft_strlen(shell->cmds->args[0])))
+		echo(&shell->cmds->args[1]);
+	if (!ft_strncmp(shell->cmds->args[0], "pwd", ft_strlen(shell->cmds->args[0])))
 		pwd();
 }
 
@@ -112,19 +112,17 @@ void	exec_builtin(t_shell *shell, int i)
 */
 void	executor(t_shell *shell)
 {
-	int		i;
 	int		status;
 	pid_t	ret;
 
-	i = 0;
 	handle_input(shell);
-	while (i < shell->nb_cmds)
+	while (shell->cmds)
 	{
-		handle_pipes(shell, i);
-		if (!shell->cmds[i]->isbuiltin)
+		handle_pipes(shell);
+		if (!shell->cmds->isbuiltin)
 			ret = fork();
 		else
-			exec_builtin(shell, i);
+			exec_builtin(shell);
 		if (ret < 0)
 		{
 			perror("fork");
@@ -132,12 +130,12 @@ void	executor(t_shell *shell)
 		}
 		if (ret == 0)
 		{
-			shell->cmds[i]->args[0] = get_fun(shell->cmds[i]->args[0], shell->paths);
-			execve(shell->cmds[i]->args[0], shell->cmds[i]->args, shell->envp);
+			shell->cmds->args[0] = get_fun(shell->cmds->args[0], shell->paths);
+			execve(shell->cmds->args[0], shell->cmds->args, shell->envp);
 			perror("execve");
 			exit(EXIT_FAILURE);
 		}
-		i++;
+		shell->cmds = shell->cmds->next;
 	}
 	handle_io(shell);
 	waitpid(ret, &status, WEXITED);

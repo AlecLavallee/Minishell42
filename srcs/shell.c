@@ -6,7 +6,7 @@
 /*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:53:24 by alelaval          #+#    #+#             */
-/*   Updated: 2022/08/10 14:55:14 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/08/12 15:25:01 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,28 +53,41 @@ int		isbuiltin(char *str)
 	}
 	return (0);
 }
-void	fill_data(t_shell *shell, int nb_args, char **args)
+
+void	lst_addback(t_comm **lst, t_comm *new)
+{
+	t_comm	*a;
+
+	a = *lst;
+	if (a == NULL)
+		a = new;
+	else
+	{
+		while (a->next)
+			a = a->next;
+		a->next = new;
+	}
+}
+
+void	fill_data(t_shell *shell, char **args)
 {
 	int	i;
 
 	i = 0;
 	shell->infile = "tests/infile";
 	shell->outfile = "tests/outfile";
-	shell->cmds = (t_comm **)malloc(sizeof(t_comm *) * nb_args + 1);
+	t_comm *lst;
 	while (args[i + 1])
 	{
-		shell->cmds[i] = (t_comm *)malloc((sizeof(t_comm) * 1));
-		shell->cmds[i]->args = ft_split(args[i + 1], ' ');
-		shell->cmds[i]->infile = NULL;
-		shell->cmds[i]->outfile = NULL;
-		shell->cmds[i]->isbuiltin = isbuiltin(shell->cmds[i]->args[0]);
+		t_comm *new = (t_comm *)malloc(sizeof(t_comm) * 1);
+		new->args = ft_split(args[i + 1], ' ');
+		new->infile = NULL;
+		new->outfile = NULL;
+		new->isbuiltin = isbuiltin(new->args[0]);
+		lst_addback(&lst, new);
 		i++;
 	}
-	shell->cmds[i] = NULL;
-	i = 0;
-	while (shell->cmds[i])
-		i++;
-	shell->nb_cmds = i;
+	shell->cmds->next = NULL;
 }
 
 void	debug_data(t_shell *shell)
@@ -96,13 +109,13 @@ void	debug_data(t_shell *shell)
 	{
 		j = 0;
 		printf("[command:%d]\n", i);
-		printf("[IsBuiltin]:[%d]\n", shell->cmds[i]->isbuiltin);
-		while (shell->cmds[i]->args[j])
+		printf("[IsBuiltin]:[%d]\n", shell->cmds->isbuiltin);
+		while (shell->cmds->args[j])
 		{
-			printf("[cmd:%d][arg:%d]:%s\n", i, j, shell->cmds[i]->args[j]);
+			printf("[cmd:%d][arg:%d]:%s\n", i, j, shell->cmds->args[j]);
 			j++;
 		}
-		printf("[infile]:%s\n[oufile]:%s\n\n", shell->cmds[i]->infile, shell->cmds[i]->outfile);
+		printf("[infile]:%s\n[oufile]:%s\n\n", shell->cmds->infile, shell->cmds->outfile);
 		i++;
 	}
 	printf("Running %d commands...\n", shell->nb_cmds);

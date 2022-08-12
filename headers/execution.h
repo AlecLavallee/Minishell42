@@ -6,7 +6,7 @@
 /*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:53:20 by alelaval          #+#    #+#             */
-/*   Updated: 2022/08/10 15:10:18 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/08/12 15:11:00 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_comm
 	char	*outfile;
 	int		fdin;
 	int		fdout;
+	struct s_comm	*next;
 }			t_comm;
 
 typedef struct s_shell
@@ -44,7 +45,7 @@ typedef struct s_shell
 	char		*infile;
 	char		*outfile;
 	int			nb_cmds;
-	t_comm		**cmds;
+	t_comm		*cmds;
 	char		**envp;
 	char		**paths;
 }				t_shell;
@@ -55,7 +56,7 @@ void	exit_shell(t_shell *shell, int code);
 char	*get_fun(char *arg, char **paths);
 void	executor(t_shell *shell);
 void	debug_data(t_shell *shell);
-void	fill_data(t_shell *shell, int nb_args, char **args);
+void	fill_data(t_shell *shell, char **args);
 void	ft_shell(t_shell *shell);
 // builtins
 void	echo(char **av);
