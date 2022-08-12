@@ -24,6 +24,7 @@ int word_end(char *str, int *cur)
 {
     static int quote;
 
+    quote = 0;
     while (str[(*cur)])
     {
         quote = is_quote(str[*cur], quote);
@@ -50,9 +51,9 @@ int word_end(char *str, int *cur)
     if (len == 2)
     {
         if (new->string[0] == '>' && new->string[1] == '>')
-            new->state = FILE_OUT_AJOUTE;
+            new->state = FILE_OUT_SUR; // il faut modifier
         if (new->string[0] == '<' && new->string[1] == '<')
-            new->state = SEND_COMMAND;
+            new->state = DOC; //il faut modifier
     }
     if (checker_builtin(new->string))
         new->state = BUILTIN;
@@ -73,8 +74,8 @@ static int tokenization(int cur, int start, char *str, t_command **command_line)
         if (token->string == NULL)
             return (1);
     token->string = ft_strncpy(token->string, str + start, cur - start);
-    if (token->string == NULL)
-        return (1);
+    //if (token->string == NULL)
+    //    return (1);
     init_type(token);
     token_addback(&((*command_line)->first_token), token);
     return (0);

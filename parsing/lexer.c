@@ -22,24 +22,33 @@ int lexer(char *str, t_command **command_line)
     else
     {
         if (get_command_line(str, command_line) > 0)
+        {
+            free(str);
+            free(command_line);
             return (1);
+        }
         if (split_command_to_token(command_line) > 0)
+        {
+            free(str);
+            free(command_line);
             return (1);
+        }
     }
     //res = expension_word(command_line);
     return (0);
 }
 
-void    free_command_line(t_command **command_line)
+int    free_command_line(t_command **command_line)
 {
     t_command *tmp;
+    
     if (*command_line)
     {
-        while (*command_line != NULL)
+        while (*command_line)
         {
             tmp = (*command_line)->next;
-            if ((*command_line)->first_token)
-                free((*command_line)->first_token);
+            //if ((*command_line)->first_token)
+            //    free((*command_line)->first_token);
             if ((*command_line)->whole_str)
                 free((*command_line)->whole_str);
             if ((*command_line)->first_token)
@@ -48,7 +57,24 @@ void    free_command_line(t_command **command_line)
             *command_line = tmp;
         }
     }
+    return (1);
 }
+
+void	free_token(t_command **command_line)
+{
+	t_token	*token;
+
+    while ((*command_line)->first_token)
+	{
+	    token = (*command_line)->first_token->next;
+	    if ((*command_line)->first_token->string)
+		    free((*command_line)->first_token->string);
+	    free((*command_line)->first_token);
+	    (*command_line)->first_token = token;
+	}
+}
+
+
 /*
 void    free_token(t_command **command_line)
 {
@@ -74,20 +100,3 @@ void    free_token(t_command **command_line)
     }
 }
 */
-
-void	free_token(t_command **command_line)
-{
-	t_token	*token;
-
-    if ((*command_line)->first_token)
-    {
-	    while ((*command_line)->first_token != NULL)
-	    {
-		    token = (*command_line)->first_token->next;
-		    if ((*command_line)->first_token->string)
-			    free((*command_line)->first_token->string);
-		    free((*command_line)->first_token);
-		    (*command_line)->first_token = token;
-	    }
-    }
-}

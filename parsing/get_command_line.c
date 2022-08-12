@@ -6,7 +6,7 @@
 /*   By: msuji <mtsuji@student.42.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 11:07:32 by msuji             #+#    #+#             */
-/*   Updated: 2update_quote022/08/05 11:07:34 by msuji            ###   ########.fr       */
+/*   Updated: 2022/08/05 11:07:34 by msuji            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 static void is_pipe(int *cur, char *str)
 {
-    int quote;
-    int res;
-    quote = 0;
+    static int res;
+
+    res = 0;
     while (str[*cur])
     {
-        res = is_quote(str[*cur], quote);
+        res = is_quote(str[*cur], res);
         if (res == 0 && str[*cur] == '|')
             return;
         (*cur)++;
@@ -39,22 +39,18 @@ static int filling_command_line(char *str, int cur, int start, t_command **comma
 {
     t_command *new;    
 
-    new = malloc(sizeof(t_command));// il faut changer
-    //new = *command_line;
+    new = malloc(sizeof(t_command));
     if (new == NULL)
+        return (1);
+    init_command_line(new);
+    new->whole_str = malloc(sizeof(char) * (cur - start + 1));
+    if (new->whole_str == NULL)
     {
-        //free(new);
+        free(new);
         return (1);
     }
-    init_command_line(new);
-    new->whole_str = (char *)malloc(sizeof(char) * (cur - start + 1));
-    if (new->whole_str == NULL)
-        return (1);
     new->whole_str = ft_strncpy(new->whole_str, str + start, cur - start);
     commandline_addback(command_line, new);
-   (*command_line) = (*command_line)->next;
-    //free(new->whole_str);
-    //free(new);
     return (0);
 }
 
@@ -75,8 +71,6 @@ int get_command_line(char *str, t_command **command_line)
         is_pipe(&cur, str);
         if (filling_command_line(str, cur, start, command_line) > 0)
             return (1);
-        //(*command_line)->next = NULL;
-        //(*command_line) = (*command_line)->next;
         start = cur;
         if (cur == 0)
         {
@@ -84,7 +78,6 @@ int get_command_line(char *str, t_command **command_line)
             start++;
         }
     }
-    //(*command_line)->next = NULL;
     return (0);
 }
 

@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Fri Aug 12 11:32:51 2022
+# Make data base, printed on Fri Aug 12 14:03:59 2022
 
 # Variables
 
@@ -49,7 +49,7 @@ VSCODE_NLS_CONFIG = {"locale":"ja","availableLanguages":{"*":"ja"},"_languagePac
 # environment
 _ = /usr/share/code/code
 # makefile (from 'Makefile', line 41)
-CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address 
+CFLAGS = -Wall -Wextra -Werror -g3 
 # environment
 JOURNAL_STREAM = 8:50281
 # environment
@@ -243,7 +243,7 @@ LANG = C
 # environment
 VSCODE_PID = 4104
 # variable set hash-table stats:
-# Load=116/1024=11%, Rehash=0, Collisions=21/160=13%
+# Load=116/1024=11%, Rehash=0, Collisions=19/146=13%
 
 # Pattern-specific Variable Values
 
@@ -251,9 +251,9 @@ VSCODE_PID = 4104
 
 # Directories
 
-# . (device 2050, inode 14423165): 11 files, no impossibilities.
+# . (device 2050, inode 14423165): 12 files, no impossibilities.
 
-# 11 files, no impossibilities in 1 directories.
+# 12 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -267,9 +267,7 @@ all: minishell
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has been updated.
-#  Needs to be updated (-q is set).
-# variable set hash-table stats:
-# Load=0/32=0%, Rehash=0, Collisions=0/14=0%
+#  Successfully updated.
 
 .PHONY: all clean fclean re
 #  Implicit rule search has not been done.
@@ -277,64 +275,39 @@ all: minishell
 #  File has not been updated.
 
 # Not a target:
- 
 parsing/outil.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-10 09:26:54.212006214
+#  Last modified 2022-08-12 14:02:06.754735521
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 parsing/minishell.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-10 09:26:53.400006212
+ 
+#  Last modified 2022-08-12 14:02:06.018754268
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 libft/:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-10 09:26:56.264006218
+#  Last modified 2022-08-12 14:02:08.750684678
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
-.SUFFIXES:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
-
-# Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-10 20:21:15.964668427
+#  Last modified 2022-08-12 14:02:04.02280511
 #  File has been updated.
 #  Successfully updated.
 
 minishell: parsing/minishell.o parsing/outil_signal.o parsing/error.o parsing/outil_lexer.o parsing/quoting.o parsing/lexer.o parsing/get_command_line.o parsing/split_token.o parsing/outil.o parsing/expension.o libft/
 #  Implicit rule search has not been done.
-#  Implicit/static pattern stem: ''
-#  File does not exist.
+#  Last modified 2022-08-12 14:02:08.834682539
 #  File has been updated.
-#  Needs to be updated (-q is set).
-# automatic
-# @ := minishell
-# automatic
-# % := 
-# automatic
-# * := 
-# automatic
-# + := parsing/minishell.o parsing/outil_signal.o parsing/error.o parsing/outil_lexer.o parsing/quoting.o parsing/lexer.o parsing/get_command_line.o parsing/split_token.o parsing/outil.o parsing/expension.o libft/
-# automatic
-# | := 
-# automatic
-# < := parsing/minishell.o
-# automatic
-# ^ := parsing/minishell.o parsing/outil_signal.o parsing/error.o parsing/outil_lexer.o parsing/quoting.o parsing/lexer.o parsing/get_command_line.o parsing/split_token.o parsing/outil.o parsing/expension.o libft/
-# automatic
-# ? := parsing/minishell.o parsing/outil_signal.o parsing/error.o parsing/outil_lexer.o parsing/quoting.o parsing/lexer.o parsing/get_command_line.o parsing/split_token.o parsing/outil.o parsing/expension.o libft/
-# variable set hash-table stats:
-# Load=8/32=25%, Rehash=0, Collisions=3/22=14%
+#  Successfully updated.
 #  recipe to execute (from 'Makefile', line 47):
 			@make -C $(LIBFT)
 			ar rcs $(LIBFT_A) $(OBJS)
@@ -360,14 +333,14 @@ fclean: clean
 # Not a target:
 parsing/expension.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-10 09:26:54.244006214
+#  Last modified 2022-08-12 14:02:06.778734909
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 parsing/error.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-10 09:26:53.604006212
+#  Last modified 2022-08-12 14:02:06.198749683
 #  File has been updated.
 #  Successfully updated.
 
@@ -380,14 +353,14 @@ parsing/error.o:
 # Not a target:
 parsing/lexer.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-10 09:26:53.912006213
+#  Last modified 2022-08-12 14:02:06.458743061
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 parsing/get_command_line.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-10 09:26:54.008006213
+#  Last modified 2022-08-12 14:02:06.562740411
 #  File has been updated.
 #  Successfully updated.
 
@@ -409,33 +382,33 @@ clean:
 # Not a target:
 parsing/outil_signal.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-10 09:26:53.496006212
+#  Last modified 2022-08-12 14:02:06.114751823
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 parsing/split_token.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-10 09:26:54.104006214
+#  Last modified 2022-08-12 14:02:06.654738068
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 parsing/outil_lexer.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-10 09:26:53.712006213
+#  Last modified 2022-08-12 14:02:06.282747544
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 parsing/quoting.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-10 09:26:53.820006213
+#  Last modified 2022-08-12 14:02:06.370745302
 #  File has been updated.
 #  Successfully updated.
 
 # files hash-table stats:
-# Load=21/1024=2%, Rehash=0, Collisions=0/52=0%
+# Load=21/1024=2%, Rehash=0, Collisions=0/51=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
@@ -448,6 +421,6 @@ parsing/quoting.o:
 # strcache performance: lookups = 54 / hit rate = 38%
 # hash-table stats:
 # Load=33/8192=0%, Rehash=0, Collisions=1/54=2%
-# Finished Make data base on Fri Aug 12 11:32:51 2022
+# Finished Make data base on Fri Aug 12 14:03:59 2022
 
  

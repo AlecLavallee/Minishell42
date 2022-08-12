@@ -112,7 +112,7 @@ t_token	*lstlast(t_token *lst);
 void    init_token(t_token *new);
 void commandline_addback(t_command **line, t_command *new);
 int is_redirection(char c);
-void    free_command_line(t_command **command_line);
+int    free_command_line(t_command **command_line);
 void    free_token(t_command **command_line);
 int is_separator(char c);
 int word_end(char *str, int *cur);
@@ -121,4 +121,5 @@ int checker_builtin(char *str);
 //void is_pipe(int *cur, char *str);
 //void redirection_end(char *str, int *cur);
 int parser(t_token *tkn);
+void	free_end(t_command **command_line, char *str);
 # endif

@@ -28,9 +28,9 @@ int main(int argc, char **argv)
 {
     char *line;
     t_command *command_line;
-    //int i;
 
-    //i = 0;
+
+
     command_line = NULL;
     if (argc && argv)
     {
@@ -50,14 +50,17 @@ int main(int argc, char **argv)
                 ft_error();
             if (!lexer(line, &command_line))
                 printf("%s\n", line);
-            //else
-            //    printf("%s\n", command_line->tkn[0].string);
-            free(line);
-            free_command_line(&command_line);
+
+            free_end(&command_line, line);
         }
     }
     printf("exit\n");
-    free(line);
-    //free_command_line(&command_line);
     return (valeur_exit);
+}
+
+void	free_end(t_command **command_line, char *str)
+{
+	if (str)
+		free(str);
+	free_command_line(command_line);
 }
