@@ -1,15 +1,10 @@
-make --dry-run --always-make --keep-going --print-directory
+make --dry-run --keep-going --print-directory
 make: Entering directory '/home/tj/Documents/Minishell42'
 gcc -Wall -Wextra -Werror -g3 -fsanitize=address  -I./inc/ -I./libft/ -c parsing/minishell.c -o parsing/minishell.o
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address  -I./inc/ -I./libft/ -c parsing/outil_signal.c -o parsing/outil_signal.o
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address  -I./inc/ -I./libft/ -c parsing/error.c -o parsing/error.o
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address  -I./inc/ -I./libft/ -c parsing/outil_lexer.c -o parsing/outil_lexer.o
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address  -I./inc/ -I./libft/ -c parsing/quoting.c -o parsing/quoting.o
 gcc -Wall -Wextra -Werror -g3 -fsanitize=address  -I./inc/ -I./libft/ -c parsing/lexer.c -o parsing/lexer.o
 gcc -Wall -Wextra -Werror -g3 -fsanitize=address  -I./inc/ -I./libft/ -c parsing/get_command_line.c -o parsing/get_command_line.o
 gcc -Wall -Wextra -Werror -g3 -fsanitize=address  -I./inc/ -I./libft/ -c parsing/split_token.c -o parsing/split_token.o
 gcc -Wall -Wextra -Werror -g3 -fsanitize=address  -I./inc/ -I./libft/ -c parsing/outil.c -o parsing/outil.o
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address  -I./inc/ -I./libft/ -c parsing/expension.c -o parsing/expension.o
 make -C ./libft/
 ar rcs ./libft/libft.a ./parsing/minishell.o ./parsing/outil_signal.o ./parsing/error.o ./parsing/outil_lexer.o ./parsing/quoting.o ./parsing/lexer.o ./parsing/get_command_line.o ./parsing/split_token.o ./parsing/outil.o ./parsing/expension.o
 ranlib ./libft/libft.a

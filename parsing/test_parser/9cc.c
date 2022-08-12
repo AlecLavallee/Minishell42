@@ -68,6 +68,7 @@ int main(int argc, char **argv) {
 typedef enum {
   TK_RESERVED, // 記号
   TK_NUM,      // 整数トークン
+  TK_IDENT, //識別子用
   TK_EOF,      // 入力の終わりを表すトークン
 } TokenKind;
 
@@ -126,6 +127,13 @@ bool consume(char *op) {
   if (token->kind != TK_RESERVED ||
       strlen(op) != token->len ||
       memcmp(token->str, op, token->len))
+    return false;
+  token = token->next;
+  return true;
+}
+
+bool consume_indent(void) {
+  if (token->kind != TK_IDENT || token->str[0] != op)
     return false;
   token = token->next;
   return true;
@@ -193,7 +201,12 @@ Token *tokenize() {
       continue;
     }
 
-    
+    if ('a' <= *p && *p <= 'z') {
+      cur = new_token(TK_IDENT, cur, p, 1);
+      p++;
+      cur->len = 1;
+    continue;
+    }    
     //if  (strchr("+-*/()", *p)) {
     //  cur = new_token(TK_RESERVED, cur, p++);
     //  continue;
@@ -245,6 +258,8 @@ typedef enum {
   ND_NE,  // !=
   ND_LT,  // <
   ND_LE,  // <=
+  ND_ASSIGN, // =
+  ND_LVAR // ローカル変数
 } NodeKind;
 
 // AST node type
@@ -254,13 +269,18 @@ struct Node {
   Node *lhs;     // Left-hand side
   Node *rhs;     // Right-hand side
   int val;       // Used if kind == ND_NUM
+  int offset;   // Used if kind == ND_LVAR
 };
+Node *code[100];
 
 Node *new_node(NodeKind kind) {
   Node *node = calloc(1, sizeof(Node));
   node->kind = kind;
   return node;
 }
+
+
+
 
 Node *new_binary(NodeKind kind, Node *lhs, Node *rhs) {
   Node *node = new_node(kind);
@@ -282,10 +302,10 @@ Node *primary();
 Node *equality();
 Node *relational();
 Node *add();
-
+/*
 Node *expr() {
   return equality();
-}
+}*/
 
 // equality = relational ("==" relational | "!=" relational)*
 Node *equality() {
@@ -331,7 +351,7 @@ Node *add() {
       return node;
   }
 }
-
+/*
 Node *primary() {
   // 次のトークンが"("なら、"(" expr ")"のはず
   if (consume("(")) {
@@ -343,6 +363,19 @@ Node *primary() {
   // そうでなければ数値のはず
   return new_num(expect_number());
 }
+*/
+
+//以下に識別子を読み込んでND_LVAR型のノードを返すコードを示します。
+
+Node *primary() {
+  Token *tok = consume_ident();
+  if (tok) {
+    Node *node = calloc(1, sizeof(Node));
+    node->kind = ND_LVAR;
+    node->offset = (tok->str[0] - 'a' + 1) * 8;
+    return node;
+  }
+
 
  //mul = unary ("*" unary | "/" unary)*
 Node *mul() {
@@ -381,7 +414,29 @@ Node *expr() {
       return node;
   }
 }*/
+Node *assign() {
+  Node *node = equality();
+  if (consume("="))
+    node = new_binary(ND_ASSIGN, node, assign());
+  return node;
+}
 
+Node *expr() {
+  return assign();
+}
+
+Node *stmt() {
+  Node *node = expr();
+  expect(";");
+  return node;
+}
+
+void program() {
+  int i = 0;
+  while (!at_eof())
+    code[i++] = stmt();
+  code[i] = NULL;
+}
 
 void gen(Node *node) {
   if (node->kind == ND_NUM) {

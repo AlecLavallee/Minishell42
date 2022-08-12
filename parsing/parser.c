@@ -23,11 +23,22 @@ construction de parsing:
 en utilisant la regle EBNF(Extended BNF(Backs-Naur form)) par chque token,
 apres on parse par chaque resultat de token.
 ordre d'algo : 
-1 parser
-2 command
-3 redir_in
-4 redir_out
-5 argument
-6 EOF
+1 word
+2 redir in /out
+3 command(builtin)
+4 pipe command (separateur)
+*/
+
+/*
+## EBNF pour Minishell
+parser    = stmt EOF
+stmt      = pipe_cmd ("||" | "&&") pipe_cmd)*
+pipe_cmd  = bracket ("|" bracket)*
+bracket   = "(" stmt ")"
+          | cmd
+cmd       = (word | redir_in | redir_out)*
+redir_in  = ("<" | "<<") word 
+redir_out = (">" | ">>") word
+word      = (e.g.) "ls", "-l", "file", ...
 */
 
