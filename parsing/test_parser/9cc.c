@@ -131,14 +131,14 @@ bool consume(char *op) {
   token = token->next;
   return true;
 }
-
+/*
 bool consume_indent(void) {
   if (token->kind != TK_IDENT || token->str[0] != op)
     return false;
   token = token->next;
   return true;
 }
-
+*/
 // 次のトークンが期待している記号のときには、トークンを1つ読み進める。
 // それ以外の場合にはエラーを報告する。
 /*
@@ -351,7 +351,7 @@ Node *add() {
       return node;
   }
 }
-/*
+
 Node *primary() {
   // 次のトークンが"("なら、"(" expr ")"のはず
   if (consume("(")) {
@@ -363,10 +363,10 @@ Node *primary() {
   // そうでなければ数値のはず
   return new_num(expect_number());
 }
-*/
+
 
 //以下に識別子を読み込んでND_LVAR型のノードを返すコードを示します。
-
+/*
 Node *primary() {
   Token *tok = consume_ident();
   if (tok) {
@@ -375,7 +375,7 @@ Node *primary() {
     node->offset = (tok->str[0] - 'a' + 1) * 8;
     return node;
   }
-
+*/
 
  //mul = unary ("*" unary | "/" unary)*
 Node *mul() {
