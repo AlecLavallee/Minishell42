@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Fri Aug 12 14:03:59 2022
+# Make data base, printed on Fri Aug 12 18:06:20 2022
 
 # Variables
 
@@ -42,13 +42,13 @@ XMODIFIERS = @im=ibus
 CURDIR := /home/tj/Documents/Minishell42
 # makefile
 SHELL = /bin/sh
-# makefile (from 'Makefile', line 39)
+# makefile (from 'Makefile', line 40)
 RM = rm -f
 # environment
-VSCODE_NLS_CONFIG = {"locale":"ja","availableLanguages":{"*":"ja"},"_languagePackId":"29207410cd77a70b4b25e4878dda93be.ja","_translationsConfigFile":"/home/tj/.config/Code/clp/29207410cd77a70b4b25e4878dda93be.ja/tcf.json","_cacheRoot":"/home/tj/.config/Code/clp/29207410cd77a70b4b25e4878dda93be.ja","_resolvedLanguagePackCoreLocation":"/home/tj/.config/Code/clp/29207410cd77a70b4b25e4878dda93be.ja/6d9b74a70ca9c7733b29f0456fd8195364076dda","_corruptedFile":"/home/tj/.config/Code/clp/29207410cd77a70b4b25e4878dda93be.ja/corrupted.info","_languagePackSupport":true}
+VSCODE_NLS_CONFIG = {"locale":"ja","availableLanguages":{"*":"ja"},"_languagePackId":"e6c586e25df759b7fd1d7a26b78d86d4.ja","_translationsConfigFile":"/home/tj/.config/Code/clp/e6c586e25df759b7fd1d7a26b78d86d4.ja/tcf.json","_cacheRoot":"/home/tj/.config/Code/clp/e6c586e25df759b7fd1d7a26b78d86d4.ja","_resolvedLanguagePackCoreLocation":"/home/tj/.config/Code/clp/e6c586e25df759b7fd1d7a26b78d86d4.ja/6d9b74a70ca9c7733b29f0456fd8195364076dda","_corruptedFile":"/home/tj/.config/Code/clp/e6c586e25df759b7fd1d7a26b78d86d4.ja/corrupted.info","_languagePackSupport":true}
 # environment
 _ = /usr/share/code/code
-# makefile (from 'Makefile', line 41)
+# makefile (from 'Makefile', line 42)
 CFLAGS = -Wall -Wextra -Werror -g3 
 # environment
 JOURNAL_STREAM = 8:50281
@@ -68,7 +68,7 @@ MAKELEVEL := 0
 XDG_DATA_DIRS = /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
 # environment
 DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
-# makefile (from 'Makefile', line 29)
+# makefile (from 'Makefile', line 30)
 OBJS = $(SRCS:.c=.o)
 # environment
 MANAGERPID = 2077
@@ -105,7 +105,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 4104
+GIO_LAUNCHED_DESKTOP_FILE_PID = 89821
 # automatic
 %F = $(notdir $%)
 # environment
@@ -129,7 +129,7 @@ VSCODE_CODE_CACHE_PATH = /home/tj/.config/Code/CachedData/6d9b74a70ca9c7733b29f0
 # environment
 LOGNAME = tj
 # environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
 # automatic
 +F = $(notdir $+)
 # environment
@@ -149,12 +149,12 @@ MAKECMDGOALS := all
 # environment
 QT_IM_MODULE = ibus
 # makefile (from 'Makefile', line 16)
-SRCS = ./parsing/minishell.c ./parsing/outil_signal.c ./parsing/error.c ./parsing/outil_lexer.c ./parsing/quoting.c ./parsing/lexer.c ./parsing/get_command_line.c ./parsing/split_token.c ./parsing/outil.c ./parsing/expension.c 
+SRCS = ./parsing/minishell.c ./parsing/outil_signal.c ./parsing/error.c ./parsing/outil_lexer.c ./parsing/quoting.c ./parsing/lexer.c ./parsing/get_command_line.c ./parsing/split_token.c ./parsing/outil.c ./parsing/expension.c ./parsing/parser.c 
 # environment
 SHLVL = 0
-# makefile (from 'Makefile', line 33)
+# makefile (from 'Makefile', line 34)
 LIBFT = ./libft/
-# makefile (from 'Makefile', line 37)
+# makefile (from 'Makefile', line 38)
 CC = gcc
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
@@ -200,7 +200,7 @@ MAIL = tj@student.42.fr
 +D = $(patsubst %/,%,$(dir $+))
 # environment
 GDK_BACKEND = x11
-# makefile (from 'Makefile', line 35)
+# makefile (from 'Makefile', line 36)
 LIBFT_A = ./libft/libft.a
 # environment
 LC_PAPER = fr_FR.UTF-8
@@ -218,7 +218,7 @@ LC_MEASUREMENT = fr_FR.UTF-8
 PAGER = less
 # environment
 LC_ALL = C
-# makefile (from 'Makefile', line 31)
+# makefile (from 'Makefile', line 32)
 HEADER = ./inc/
 # environment
 GJS_DEBUG_TOPICS = JS ERROR;JS LOG
@@ -241,7 +241,7 @@ LC_ADDRESS = fr_FR.UTF-8
 # environment
 LANG = C
 # environment
-VSCODE_PID = 4104
+VSCODE_PID = 89821
 # variable set hash-table stats:
 # Load=116/1024=11%, Rehash=0, Collisions=19/146=13%
 
@@ -277,38 +277,45 @@ all: minishell
 # Not a target:
 parsing/outil.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-12 14:02:06.754735521
+ 
+#  Last modified 2022-08-12 18:05:45.631704561
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 parsing/minishell.o:
 #  Implicit rule search has been done.
- 
-#  Last modified 2022-08-12 14:02:06.018754268
+#  Last modified 2022-08-12 18:05:44.771726963
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 libft/:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-12 14:02:08.750684678
+#  Last modified 2022-08-12 18:05:47.651651945
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-12 14:02:04.02280511
+#  Last modified 2022-08-12 18:05:42.03579824
 #  File has been updated.
 #  Successfully updated.
 
-minishell: parsing/minishell.o parsing/outil_signal.o parsing/error.o parsing/outil_lexer.o parsing/quoting.o parsing/lexer.o parsing/get_command_line.o parsing/split_token.o parsing/outil.o parsing/expension.o libft/
-#  Implicit rule search has not been done.
-#  Last modified 2022-08-12 14:02:08.834682539
+# Not a target:
+parsing/parser.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-12 18:05:45.775700809
 #  File has been updated.
 #  Successfully updated.
-#  recipe to execute (from 'Makefile', line 47):
+
+minishell: parsing/minishell.o parsing/outil_signal.o parsing/error.o parsing/outil_lexer.o parsing/quoting.o parsing/lexer.o parsing/get_command_line.o parsing/split_token.o parsing/outil.o parsing/expension.o parsing/parser.o libft/
+#  Implicit rule search has not been done.
+#  Last modified 2022-08-12 18:05:47.735649757
+#  File has been updated.
+#  Successfully updated.
+#  recipe to execute (from 'Makefile', line 48):
 			@make -C $(LIBFT)
 			ar rcs $(LIBFT_A) $(OBJS)
 			ranlib $(LIBFT_A)
@@ -318,7 +325,7 @@ minishell: parsing/minishell.o parsing/outil_signal.o parsing/error.o parsing/ou
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 44):
+#  recipe to execute (from 'Makefile', line 45):
 	$(CC) $(CFLAGS) -I$(HEADER) -I$(LIBFT) -c $< -o $(<:.c=.o)
 
 fclean: clean
@@ -326,21 +333,21 @@ fclean: clean
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 59):
+#  recipe to execute (from 'Makefile', line 60):
 		$(MAKE) fclean -C $(LIBFT)
 		$(RM) $(NAME)
 
 # Not a target:
 parsing/expension.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-12 14:02:06.778734909
+#  Last modified 2022-08-12 18:05:45.655703935
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 parsing/error.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-12 14:02:06.198749683
+#  Last modified 2022-08-12 18:05:45.035720086
 #  File has been updated.
 #  Successfully updated.
 
@@ -353,14 +360,14 @@ parsing/error.o:
 # Not a target:
 parsing/lexer.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-12 14:02:06.458743061
+#  Last modified 2022-08-12 18:05:45.291713416
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 parsing/get_command_line.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-12 14:02:06.562740411
+#  Last modified 2022-08-12 18:05:45.38371102
 #  File has been updated.
 #  Successfully updated.
 
@@ -375,52 +382,52 @@ clean:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 55):
+#  recipe to execute (from 'Makefile', line 56):
 		$(MAKE) clean -C $(LIBFT)
 		$(RM) $(OBJS)
 
 # Not a target:
 parsing/outil_signal.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-12 14:02:06.114751823
+#  Last modified 2022-08-12 18:05:44.955722169
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 parsing/split_token.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-12 14:02:06.654738068
+#  Last modified 2022-08-12 18:05:45.539706957
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 parsing/outil_lexer.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-12 14:02:06.282747544
+#  Last modified 2022-08-12 18:05:45.123717793
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 parsing/quoting.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-12 14:02:06.370745302
+#  Last modified 2022-08-12 18:05:45.199715814
 #  File has been updated.
 #  Successfully updated.
 
 # files hash-table stats:
-# Load=21/1024=2%, Rehash=0, Collisions=0/51=0%
+# Load=22/1024=2%, Rehash=0, Collisions=0/53=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 33 / storage = 395 B / avg = 11 B
-# current buf: size = 8162 B / used = 395 B / count = 33 / avg = 11 B
+# strcache buffers: 1 (0) / strings = 34 / storage = 412 B / avg = 12 B
+# current buf: size = 8162 B / used = 412 B / count = 34 / avg = 12 B
 
-# strcache performance: lookups = 54 / hit rate = 38%
+# strcache performance: lookups = 55 / hit rate = 38%
 # hash-table stats:
-# Load=33/8192=0%, Rehash=0, Collisions=1/54=2%
-# Finished Make data base on Fri Aug 12 14:03:59 2022
+# Load=34/8192=0%, Rehash=0, Collisions=1/55=2%
+# Finished Make data base on Fri Aug 12 18:06:20 2022
 
  
