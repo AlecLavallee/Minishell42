@@ -11,18 +11,19 @@
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
-
-int lexer(char *str, t_command **command_line)
+/*
+version 08/12
+int lexer(char *str, t_command *command_line)
 {
     int res;
-    t_node *node;
+    //t_node *node;
 
     res = quote_check(str);
     if (res > 0)
         return (1);
     else
     {
-        if (get_command_line(str, command_line) > 0)
+        if (get_command_line(str, command_line))
         {
             free(str);
             free(command_line);
@@ -35,7 +36,7 @@ int lexer(char *str, t_command **command_line)
             return (1);
         }
     }
-    node = parser()//
+    //node = parser()//
     //res = expension_word(command_line);
     return (0);
 }
@@ -75,30 +76,58 @@ void	free_token(t_command **command_line)
 	    (*command_line)->first_token = token;
 	}
 }
-
-
-/*
-void    free_token(t_command **command_line)
-{
-    //int i;
-    t_token *token;
-    t_token *tmp;
-
-    token = (*command_line)->first_token;
-    while (token)
-	{
-        //i = 0;
-        if (token->next)
-		    tmp = token->next;
-		if (token->string)
-        {
-            //printf("[%d]:%s\n", i, token->string);
-			free(token->string);
-            token->string = NULL;
-            //i++;
-        }
-		free(token);
-        token = tmp;
-    }
-}
 */
+
+t_command *lexer(char *str)
+{
+    int res;
+    t_command *command_line;
+
+    res = quote_check(str);
+    if (res > 0)
+        exit (1);
+    else
+    {
+        command_line = get_command_line(str);
+        if (split_command_line(command_line) > 0)
+        {
+            free(str);
+            free(command_line);
+            exit (1);
+        }
+    }
+    //node = parser()//
+    //res = expension_word(command_line);
+    return (command_line);
+}
+
+int    free_command_line(t_command *command_line)
+{
+    
+    if (command_line)
+    {
+        //while (command_line)
+        //{
+            //if (command_line->whole_str)
+                free(command_line->whole_str);
+            if (command_line->first_token)
+                free_token(&command_line);
+            free(command_line);
+        //}
+    }
+    return (1);
+}
+
+void	free_token(t_command **command_line)
+{
+	t_token	*token;
+
+    while ((*command_line)->first_token)
+	{
+	    token = (*command_line)->first_token->next;
+	    if ((*command_line)->first_token->string)
+		    free((*command_line)->first_token->string);
+	    free((*command_line)->first_token);
+	    (*command_line)->first_token = token;
+	}
+}

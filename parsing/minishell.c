@@ -28,10 +28,10 @@ int main(int argc, char **argv)
 {
     char *line;
     t_command *command_line;
-    t_node *node;
+    //t_node *node;
 
 
-    command_line = NULL;
+    //command_line = NULL;
     if (argc && argv)
     {
         while (1)
@@ -48,16 +48,17 @@ int main(int argc, char **argv)
             }
             if (first_word_is_pipe(line) != 0)
                 ft_error();
-            if (!lexer(line, &command_line))
+            command_line = lexer(line);
                 printf("%s\n", line);
-            free_end(&command_line, line);
+            free(line);
         }
     }
     printf("exit\n");
+    free_end(command_line, line);
     return (valeur_exit);
 }
 
-void	free_end(t_command **command_line, char *str)
+void	free_end(t_command *command_line, char *str)
 {
 	if (str)
 		free(str);

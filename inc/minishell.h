@@ -96,31 +96,29 @@ int quote_check(char *str);
 int simple_quote(char *str);
 int double_quote(char *str);
 int quoting(char *str);
-//int lexer(char *str, t_command **command_line);
-//int get_command_line(char *str, t_command **command_line);
-//int split_command_to_token(t_command **command_line);
-//int split_command_line(t_token **token, t_command **command);
-//
 int first_word_is_pipe(char *str);
-//void init_command_line(t_command *command_line);
+
 void	ft_error(void);
 
 
-//lexer avec struct t_tc
-int lexer(char *str, t_command **command_line);
-int get_command_line(char *str, t_command **command_line);
-//int filling_command_line(char *str, int cur, int start, t_command **command_line);
+
+//int lexer(char *str, t_command **command_line);
+t_command *lexer(char *str);
+//int get_command_line(char *str, t_command **command_line);
+t_command *get_command_line(char *str);
+int filling_command_line(char *str, int cur, int start, t_command **command_line);
 void check_pipe(int cur, char *str);
-int split_command_to_token(t_command **command_line);
-//int split_command_line(t_command **command_line);
-//void init_command_line(t_command *command_line);
+//int split_command_to_token(t_command **command_line);
+int split_command_to_token(t_command *command_line);
+//void token_addback(t_token **tkn, t_token *new);
 void token_addback(t_token **tkn, t_token *new);
 t_token	*lstlast(t_token *lst);
-//int tokenization(int cur, int start, char *str, t_command **command_line);
 void    init_token(t_token *new);
-void commandline_addback(t_command **line, t_command *new);
+//void commandline_addback(t_command **line, t_command *new);
+void commandline_addback(t_command *line, t_command *new);
 int is_redirection(char c);
-int    free_command_line(t_command **command_line);
+//int    free_command_line(t_command **command_line);
+int    free_command_line(t_command *command_line);
 void    free_token(t_command **command_line);
 int is_separator(char c);
 int word_end(char *str, int *cur);
@@ -129,5 +127,7 @@ int checker_builtin(char *str);
 //void is_pipe(int *cur, char *str);
 //void redirection_end(char *str, int *cur);
 t_node *parser(t_token *tok);
-void	free_end(t_command **command_line, char *str);
+//void	free_end(t_command **command_line, char *str);
+void	free_end(t_command *command_line, char *str);
+int split_command_line(t_command *command_line); //version0813
 # endif
