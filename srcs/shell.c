@@ -6,7 +6,7 @@
 /*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:53:24 by alelaval          #+#    #+#             */
-/*   Updated: 2022/08/12 21:02:10 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/08/13 14:22:49 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ void	fill_data(t_shell *shell, char **args)
 	t_comm *new;
 
 	i = 0;
-	shell->infile = "tests/infile";
-	shell->outfile = "tests/outfile";
+	shell->infile = NULL;
+	shell->outfile = NULL;
 	while (args[i + 1])
 	{
 		new = (t_comm *)malloc(sizeof(t_comm));
@@ -85,6 +85,7 @@ void	debug_data(t_shell *shell)
 {
 	int	i;
 	int	j;
+	t_comm *lst;
 
 	i = 0;
 	printf("Environment Paths:\n");
@@ -96,7 +97,6 @@ void	debug_data(t_shell *shell)
 	printf("[COMMANDS]\n\n");
 	printf("Number of commands : %d\n\n", shell->nb_cmds);
 	i = 0;
-	t_comm *lst;
 	lst = shell->cmds;
 	while (lst->next)
 	{

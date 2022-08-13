@@ -6,7 +6,7 @@
 /*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 19:20:37 by alelaval          #+#    #+#             */
-/*   Updated: 2022/08/12 20:56:40 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/08/13 14:23:55 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ char	*get_fun(char *arg, char **paths)
 	char	*tmp;
 	char	*join;
 
+	// to do : check if features missing in bash documentation
 	if (ft_strchr(arg, '/') != NULL)
 		return (ft_strdup(arg));
 	else
@@ -45,12 +46,13 @@ char	*get_fun(char *arg, char **paths)
 * handle default streams and
 * redirects standard input if needed
 */
-void	handle_input(t_shell *shell)
+void	handle_input(t_shell *shell, t_comm *cmd)
 {
 	shell->definput = dup(0);
 	shell->defoutput = dup(1);
-	if (shell->infile)
-		shell->fdin = open(shell->infile, O_RDONLY);
+	// to consider : do I treat infile just like any file?
+	if (cmd->infile)
+		shell->fdin = open(cmd->infile, O_RDONLY);
 	else
 		shell->fdin = dup(shell->definput);
 }
@@ -59,16 +61,18 @@ void	handle_input(t_shell *shell)
 * setup pipes before forking and executing
 * and redirects output to outfile if needed
 */
-void	handle_pipes(t_shell *shell)
+void	handle_pipes(t_shell *shell, t_comm *cmd)
 {
 	int	fdpipe[2];
 
 	dup2(shell->fdin, 0);
 	close(shell->fdin);
-	if (shell->cmds->next == NULL)
+	if (cmd->next == NULL)
 	{
-		if (shell->cmds->outfile)
-			shell->fdout = open(shell->outfile, O_RDWR | O_APPEND);
+		// to do : gestion of multiple outfiles
+		// in normal mode or in append
+		if (cmd->outfile)
+			shell->fdout = open(cmd->outfile, O_RDWR);
 		else
 			shell->fdout = dup(shell->defoutput);
 	}
@@ -78,6 +82,8 @@ void	handle_pipes(t_shell *shell)
 		shell->fdin = fdpipe[0];
 		shell->fdout = fdpipe[1];
 	}
+	// to do : closing of multiples outfiles
+	// or just closing the last one?
 	dup2(shell->fdout, 1);
 	close(shell->fdout);
 }
@@ -97,6 +103,7 @@ void	handle_io(t_shell *shell)
 
 void	exec_builtin(t_shell *shell)
 {
+	//to do : create an enum in the header with builtins listed
 	ft_putstr("heheheha\n");
 	if (!ft_strncmp(shell->cmds->args[0], "echo", ft_strlen(shell->cmds->args[0])))
 		echo(&shell->cmds->args[1]);
@@ -113,14 +120,14 @@ void	exec_builtin(t_shell *shell)
 void	executor(t_shell *shell)
 {
 	int		status;
-	t_comm	*next;
+	t_comm	*cmd;
 	pid_t	ret;
 
-	next = shell->cmds;
-	handle_input(shell);
+	cmd = shell->cmds;
+	handle_input(shell, cmd);
 	while (next)
 	{
-		handle_pipes(shell);
+		handle_pipes(shell, cmd);
 		if (!next->isbuiltin)
 			ret = fork();
 		else
@@ -132,12 +139,12 @@ void	executor(t_shell *shell)
 		}
 		if (ret == 0)
 		{
-			next->args[0] = get_fun(next->args[0], shell->paths);
-			execve(next->args[0], next->args, shell->envp);
+			cmd->args[0] = get_fun(cmd->args[0], shell->paths);
+			execve(cmd->args[0], cmd->args, shell->envp);
 			perror("execve");
 			exit(EXIT_FAILURE);
 		}
-		next = next->next;
+		cmd = cmd->next;
 	}
 	handle_io(shell);
 	waitpid(ret, &status, WEXITED);
