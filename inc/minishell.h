@@ -129,10 +129,17 @@ t_node *command(t_token **token);
 t_node *redir_in(t_token **token);
 t_node *redir_out(t_token **token);
 t_node *word(t_token **token);
+
+
+//util_for_parser
 int consume(t_token *token, t_token_kind kind, char *str);
 t_token *skip(t_token *token, t_token_kind kind, char *str);
-t_node *new_node_word(t_token *token);
 t_node *new_node_pipe(t_node *lhs, t_node *rhs);
+t_node *new_node_command(void);
+t_node *new_node_word(t_token *token);
+void command_addback(t_node *command, t_node *word);
+void redir_in_addback(t_node *command, t_node *rdr_in);
+void redir_out_addback(t_node *command, t_node *rdr_out);
 
 //free
 int    free_command_line(t_command *command_line);
