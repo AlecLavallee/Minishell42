@@ -67,7 +67,6 @@ typedef struct s_token
 	int				cur;
 	int 			len;
     char            *string;
-	char			*token;
 	t_token_kind	kind;
 	struct s_token	*next;
 }		t_token;
@@ -102,32 +101,60 @@ void	ft_error(void);
 
 
 
-//int lexer(char *str, t_command **command_line);
+//lexer
 t_command *lexer(char *str);
-//int get_command_line(char *str, t_command **command_line);
+int is_quote(char c, int quote);
+
+//get_command_line
 t_command *get_command_line(char *str);
 int filling_command_line(char *str, int cur, int start, t_command **command_line);
-void check_pipe(int cur, char *str);
-//int split_command_to_token(t_command **command_line);
-int split_command_to_token(t_command *command_line);
-//void token_addback(t_token **tkn, t_token *new);
-void token_addback(t_token **tkn, t_token *new);
-t_token	*lstlast(t_token *lst);
-void    init_token(t_token *new);
-//void commandline_addback(t_command **line, t_command *new);
 void commandline_addback(t_command *line, t_command *new);
+void check_pipe(int cur, char *str);
+
+//tokenization
+void	free_end(t_command *command_line, char *str);
+int split_command_line(t_command *command_line);
+int split_command_to_token(t_command *command_line);
+void token_addback(t_token **tkn, t_token *new);
+void    init_token(t_token *new);
 int is_redirection(char c);
-//int    free_command_line(t_command **command_line);
-int    free_command_line(t_command *command_line);
-void    free_token(t_command **command_line);
 int is_separator(char c);
 int word_end(char *str, int *cur);
-int is_quote(char c, int quote);
 int checker_builtin(char *str);
-//void is_pipe(int *cur, char *str);
-//void redirection_end(char *str, int *cur);
-t_node *parser(t_token *tok);
-//void	free_end(t_command **command_line, char *str);
-void	free_end(t_command *command_line, char *str);
-int split_command_line(t_command *command_line); //version0813
+
+//parser
+t_node *parser(t_token *token);
+t_node *pipe_cmd(t_token **token);
+t_node *command(t_token **token);
+t_node *redir_in(t_token **token);
+t_node *redir_out(t_token **token);
+t_node *word(t_token **token);
+int consume(t_token *token, t_token_kind kind, char *str);
+t_token *skip(t_token *token, t_token_kind kind, char *str);
+t_node *new_node_word(t_token *token);
+t_node *new_node_pipe(t_node *lhs, t_node *rhs);
+
+//free
+int    free_command_line(t_command *command_line);
+void    free_token(t_command **command_line);
+void free_node(t_node *node);
+
+
+// lexer version until 08/12 (double pointeur)
+/*
+int lexer(char *str, t_command **command_line);
+int get_command_line(char *str, t_command **command_line);
+int split_command_to_token(t_command **command_line);
+void token_addback(t_token **tkn, t_token *new);
+void commandline_addback(t_command **line, t_command *new);
+int    free_command_line(t_command **command_line);
+void	free_end(t_command **command_line, char *str);
+
+** supprime
+void is_pipe(int *cur, char *str);
+
+*/
+
+
+
 # endif

@@ -137,7 +137,7 @@ t_command *get_command_line(char *str)
     {
         free(new);
         exit (1);
-    }
+    } 
     new->whole_str = ft_strcpy(new->whole_str, str);
     //commandline_addback(command_line, new);
     //command_line = new;
