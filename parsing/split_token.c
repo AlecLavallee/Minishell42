@@ -223,9 +223,9 @@ int word_end(char *str, int *cur)
             new->kind = OP; //il faut modifier
     }
     if (checker_builtin(new->string))
-        new->kind = BUILTIN;
+        new->kind = TOKEN_BUILTIN;
     if (len != 0 && new->kind == DEFAULT)
-        new->kind = ARGUMENT;
+        new->kind = TOKEN_ARGUMENT;
 
  } 
 
@@ -261,7 +261,7 @@ int	put_eof(t_command *command_line)
         return (1);
     }
 	token->kind = TOKEN_EOF;
-	token->string = 0;
+	token->string = NULL;
 	token->len = 0;
     token_addback(&command_line->first_token, token);
     return (0);

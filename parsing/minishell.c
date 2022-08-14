@@ -49,6 +49,7 @@ int main(int argc, char **argv)
             if (first_word_is_pipe(line) != 0)
                 ft_error();
             command_line = lexer(line);
+            parser(command_line->first_token);
                 printf("%s\n", line);
             free(line);
         }

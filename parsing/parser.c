@@ -109,12 +109,12 @@ void command_addback(t_node *command, t_node *word)
 {
     t_node *last;
     
-    last = command->cmds;
     if (command->cmds == NULL) 
     {
         command->cmds = word;
         return ;
     }
+    last = command->cmds;
     while (last->next != NULL) 
         last = last->next;
     last->next = word;
@@ -122,28 +122,31 @@ void command_addback(t_node *command, t_node *word)
 
 void redir_in_addback(t_node *command, t_node *rdr_in) 
 {
+    t_node *last;
+
     if (command->redir_in == NULL)
     {
-        command->redir_in == rdr_in;
+        command->redir_in = rdr_in;
         return ;
     }
-    t_node *last;
+    last = command->redir_in;
     while (last->next != NULL) 
         last = last->next;
-    last->next = redir_in;
+    last->next = rdr_in;
 }
 
 void redir_out_addback(t_node *command, t_node *rdr_out) 
 {
+    t_node *last;
     if (command->redir_out == NULL)
     {
-        command->redir_out == rdr_out;
+        command->redir_out = rdr_out;
         return ;
     }
-    t_node *last;
+    last = command->redir_out;
     while (last->next != NULL) 
         last = last->next;
-    last->next = redir_out;
+    last->next = rdr_out;
 }
 
 //parser    = pipe_cmd EOF
@@ -155,7 +158,7 @@ t_node *parser(t_token *token)
     if (!consume(token, TOKEN_EOF, NULL))
     { 
         printf("parsing error : 'TOKEN_EOF'\n");
-        exitt(0);
+        exit(0);
     }
     token = skip(token, TOKEN_EOF, NULL);
     return (node);
@@ -167,11 +170,11 @@ t_node *pipe_cmd(t_token **token)
     t_node *node;
     
     node =  new_node_pipe(NULL, command(token));
-    if (!consume(token, PIPE, "|"))
-        *token = skip(*token, PIPE, "|"); 
-    else 
-        printf("parsing error : '|'\n");
-    node = command(&token);
+    if (!consume(*token, TOKEN_PIPE, "|"))
+    {
+        *token = skip(*token, TOKEN_PIPE, "|");
+        node  = new_node_pipe(node, command(token));
+    } 
     return (node);
 }
 
@@ -182,27 +185,16 @@ t_node *pipe_cmd(t_token **token)
 t_node *command(t_token **token)
 {
     t_node *node;
-    int res;
-    
-    res = 0;
+
     node = new_node_command();
     command_addback(node, word(token));
-    while (res == 0)
+    while (1)
     {
-        res = consume(token, ARGUMENT, NULL);
-        if (res == 0)
+        if (!consume(*token, TOKEN_ARGUMENT, NULL))
             command_addback(node, word(token));
-        res = consume(token, OP, "<");
-        if (res == 0)
+        if (!consume(*token, TOKEN_OP, "<") || !consume(*token, TOKEN_OP, "<<"))
             redir_in_addback(node, redir_in(token));
-        res = consume(token, OP, "<<");
-        if (res == 0)
-            redir_in_addback(node, redir_in(token));
-        res = consume(token, OP, ">");
-        if (res == 0)
-            redir_out_addback(node, redir_out(token));
-        res = consume(token, OP, ">>");
-        if (res == 0)
+        if (!consume(*token, TOKEN_OP, ">") || !consume(*token, TOKEN_OP, ">>"))
             redir_out_addback(node, redir_out(token));
         else
             break;
@@ -215,13 +207,13 @@ t_node *redir_in(t_token **token)
 {
     t_node *node;
 
-    node = word(&token);
-    if (!consume(token, OP, "<"))
-        *token = skip(*token, OP, "<");
-    else if (!consume(token, OP, "<<"))
-        *token = skip(*token, OP, "<<"); 
+    if (!consume(*token, TOKEN_OP, "<"))
+        *token = skip(*token, TOKEN_OP, "<");
+    else if (!consume(*token, TOKEN_OP, "<<"))
+        *token = skip(*token, TOKEN_OP, "<<"); 
     else 
         printf("parsing error : '<' or '<<'\n");
+    node = word(token);
     return (node);
 }
 
@@ -230,13 +222,13 @@ t_node *redir_out(t_token **token)
 {
     t_node *node;
 
-    node = word(&token);
-    if (!consume(token, OP, ">"))
-        *token = skip(*token, OP, ">");
-    else if (!consume(token, OP, ">>"))
-        *token = skip(*token, OP, ">>"); 
+    if (!consume(*token, TOKEN_OP, ">"))
+        *token = skip(*token, TOKEN_OP, ">");
+    else if (!consume(*token, TOKEN_OP, ">>"))
+        *token = skip(*token, TOKEN_OP, ">>"); 
     else 
         printf("parsing error : '>' or '>>'\n");
+    node = word(token);
     return (node);
 }
 
@@ -245,9 +237,9 @@ t_node *word(t_token **token)
 {
     t_node *node;
 
-    if (!consume(token, ARGUMENT, NULL))
+    if (!consume(*token, TOKEN_ARGUMENT, NULL))
         node = new_node_word(*token);
-    token = skip(&token, ARGUMENT, NULL);
+    *token = skip(*token, TOKEN_ARGUMENT, NULL);
     return (node);
 }
 

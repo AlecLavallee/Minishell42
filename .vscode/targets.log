@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Fri Aug 12 18:06:20 2022
+# Make data base, printed on Sun Aug 14 10:37:01 2022
 
 # Variables
 
@@ -49,9 +49,9 @@ VSCODE_NLS_CONFIG = {"locale":"ja","availableLanguages":{"*":"ja"},"_languagePac
 # environment
 _ = /usr/share/code/code
 # makefile (from 'Makefile', line 42)
-CFLAGS = -Wall -Wextra -Werror -g3 
+CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address -fsanitize=leak
 # environment
-JOURNAL_STREAM = 8:50281
+JOURNAL_STREAM = 8:52507
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # makefile (from 'Makefile', line 1)
@@ -71,7 +71,7 @@ DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 # makefile (from 'Makefile', line 30)
 OBJS = $(SRCS:.c=.o)
 # environment
-MANAGERPID = 2077
+MANAGERPID = 2030
 # environment
 LC_NAME = fr_FR.UTF-8
 # environment
@@ -87,7 +87,7 @@ GJS_DEBUG_OUTPUT = stderr
 # environment
 LSCOLORS = Gxfxcxdxbxegedabagacad
 # environment
-SESSION_MANAGER = local/tj-MacBookPro:@/tmp/.ICE-unix/2287,unix/tj-MacBookPro:/tmp/.ICE-unix/2287
+SESSION_MANAGER = local/tj-MacBookPro:@/tmp/.ICE-unix/2250,unix/tj-MacBookPro:/tmp/.ICE-unix/2250
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -95,7 +95,7 @@ XDG_MENU_PREFIX = gnome-
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = 1e72b8ba58b648dda3c66213aee86a14
+INVOCATION_ID = 76bb8f7d37544cfda87ff2f21bab292f
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
@@ -105,7 +105,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 89821
+GIO_LAUNCHED_DESKTOP_FILE_PID = 30022
 # automatic
 %F = $(notdir $%)
 # environment
@@ -115,7 +115,7 @@ PWD = /home/tj/Documents/Minishell42
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 2250
+SSH_AGENT_PID = 2213
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -241,7 +241,7 @@ LC_ADDRESS = fr_FR.UTF-8
 # environment
 LANG = C
 # environment
-VSCODE_PID = 89821
+VSCODE_PID = 30022
 # variable set hash-table stats:
 # Load=116/1024=11%, Rehash=0, Collisions=19/146=13%
 
@@ -278,41 +278,41 @@ all: minishell
 parsing/outil.o:
 #  Implicit rule search has been done.
  
-#  Last modified 2022-08-12 18:05:45.631704561
+#  Last modified 2022-08-13 21:28:26.769970632
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 parsing/minishell.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-12 18:05:44.771726963
+#  Last modified 2022-08-13 21:28:25.9340267
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 libft/:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-12 18:05:47.651651945
+#  Last modified 2022-08-13 21:28:29.081815575
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-12 18:05:42.03579824
+#  Last modified 2022-08-13 17:06:31.214362177
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 parsing/parser.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-12 18:05:45.775700809
+#  Last modified 2022-08-13 21:28:27.077949976
 #  File has been updated.
 #  Successfully updated.
 
 minishell: parsing/minishell.o parsing/outil_signal.o parsing/error.o parsing/outil_lexer.o parsing/quoting.o parsing/lexer.o parsing/get_command_line.o parsing/split_token.o parsing/outil.o parsing/expension.o parsing/parser.o libft/
 #  Implicit rule search has not been done.
-#  Last modified 2022-08-12 18:05:47.735649757
+#  Last modified 2022-08-13 21:28:29.177809137
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 48):
@@ -340,14 +340,14 @@ fclean: clean
 # Not a target:
 parsing/expension.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-12 18:05:45.655703935
+#  Last modified 2022-08-13 21:28:26.809967949
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 parsing/error.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-12 18:05:45.035720086
+#  Last modified 2022-08-13 21:28:26.14201275
 #  File has been updated.
 #  Successfully updated.
 
@@ -360,14 +360,14 @@ parsing/error.o:
 # Not a target:
 parsing/lexer.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-12 18:05:45.291713416
+#  Last modified 2022-08-13 21:28:26.425993703
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 parsing/get_command_line.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-12 18:05:45.38371102
+#  Last modified 2022-08-13 21:28:26.545985655
 #  File has been updated.
 #  Successfully updated.
 
@@ -389,28 +389,28 @@ clean:
 # Not a target:
 parsing/outil_signal.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-12 18:05:44.955722169
+#  Last modified 2022-08-13 21:28:26.034019994
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 parsing/split_token.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-12 18:05:45.539706957
+#  Last modified 2022-08-13 21:28:26.665977607
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 parsing/outil_lexer.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-12 18:05:45.123717793
+#  Last modified 2022-08-13 21:28:26.23400658
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 parsing/quoting.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-12 18:05:45.199715814
+#  Last modified 2022-08-13 21:28:26.322000678
 #  File has been updated.
 #  Successfully updated.
 
@@ -428,6 +428,6 @@ parsing/quoting.o:
 # strcache performance: lookups = 55 / hit rate = 38%
 # hash-table stats:
 # Load=34/8192=0%, Rehash=0, Collisions=1/55=2%
-# Finished Make data base on Fri Aug 12 18:06:20 2022
+# Finished Make data base on Sun Aug 14 10:37:01 2022
 
  

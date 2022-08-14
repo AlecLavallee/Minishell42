@@ -34,6 +34,15 @@
 
 typedef enum{
     DEFAULT, //default 0
+    TOKEN_ARGUMENT, // word 1
+	TOKEN_BUILTIN,
+	TOKEN_PIPE, // | (mais je n'ai pas dintigue)
+	TOKEN_OP, // operands
+	TOKEN_EOF, // end of string
+} t_token_kind;
+
+typedef enum
+{
     ARGUMENT, // word 1
     FILE_IN, // < 2 
 	FILE_OUT, // > 3
@@ -46,11 +55,12 @@ typedef enum{
 	BUILTIN, //builtin command = 10
 	PIPE, // | (mais je n'ai pas dintigue)
 	OP, // operands
-	TOKEN_EOF, // end of string
-} t_token_kind;
+	NODE_EOF, // end of string
+} t_node_kind;
+
 
 typedef struct s_node {
-  t_token_kind kind; // state_token
+  t_node_kind kind; // state_token
   struct s_node *next;
   int val;        // kindがTK_NUMの場合、その数値 = pas besoin pour minishell
   char *str;      // for word(=argument)
