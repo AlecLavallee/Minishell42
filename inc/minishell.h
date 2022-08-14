@@ -17,6 +17,7 @@
 # define STDERR 2
 # define STDIN 0
 # define STDOUT 1
+# define INDENT_WIDTH 4 //tester
 # include <stdio.h>
 # include <stdlib.h>
 # include <stdint.h>
@@ -35,27 +36,28 @@
 typedef enum{
     DEFAULT, //default 0
     TOKEN_ARGUMENT, // word 1
-	TOKEN_BUILTIN,
-	TOKEN_PIPE, // | (mais je n'ai pas dintigue)
+	//TOKEN_BUILTIN,
+	TOKEN_PIPE, // | 
 	TOKEN_OP, // operands
 	TOKEN_EOF, // end of string
 } t_token_kind;
 
 typedef enum
 {
-    ARGUMENT, // word 1
-    FILE_IN, // < 2 
-	FILE_OUT, // > 3
-	OPEN_FILE, // < 4
-	EXIT_FILE, // > 5
-	FILE_OUT_SUR, // >> 6
- 	DOC, // << 7
-	LIMITOR, //<< 8
-	EXIT_FILE_RET, // >> 9
-	BUILTIN, //builtin command = 10
-	PIPE, // | (mais je n'ai pas dintigue)
-	OP, // operands
-	NODE_EOF, // end of string
+    ARGUMENT, // word 0
+    FILE_IN, // < 1
+	FILE_OUT, // > 2
+	OPEN_FILE, // < 3
+	EXIT_FILE, // > 4
+	FILE_OUT_SUR, // >> 5
+ 	DOC, // << 6
+	LIMITOR, //<< 7
+	EXIT_FILE_RET, // >> 8
+	BUILTIN, //builtin command = 9
+	COMMAND,//10
+	PIPE, // | 11
+	OP, // operands 12
+	NODE_EOF, // end of string 13
 } t_node_kind;
 
 
@@ -139,6 +141,11 @@ t_node *command(t_token **token);
 t_node *redir_in(t_token **token);
 t_node *redir_out(t_token **token);
 t_node *word(t_token **token);
+void node_init(t_node *node); // provisoire
+
+//expander
+t_node expension(t_node *node);
+char remove_quote(char *str);
 
 
 //util_for_parser

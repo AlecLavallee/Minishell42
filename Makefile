@@ -6,7 +6,7 @@
 #    By: msuji <mtsuji@student.42.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/01 12:35:48 by msuji             #+#    #+#              #
-#    Updated: 2022/08/01 12:35:49 by msuji            ###   ########.fr        #
+#    Updated: 2022/08/14 14:29:50 by msuji            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,7 @@ SRCS	=	./parsing/minishell.c	\
 			./parsing/outil.c			\
 			./parsing/expension.c		\
 			./parsing/parser.c			\
-	
+			./parsing/outil_parser.c	\
 
 
 OBJS	=	$(SRCS:.c=.o)
@@ -39,7 +39,7 @@ CC	=	gcc
 
 RM	=	rm -f
 
-CFLAGS	=	-Wall -Wextra -Werror -g3 -fsanitize=address -fsanitize=leak
+CFLAGS	=	-Wall -Wextra -Werror -g3 #-fsanitize=address -fsanitize=leak
 
 .c.o:
 	$(CC) $(CFLAGS) -I$(HEADER) -I$(LIBFT) -c $< -o $(<:.c=.o)
