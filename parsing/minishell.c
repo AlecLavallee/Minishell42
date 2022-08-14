@@ -28,6 +28,7 @@ int main(int argc, char **argv)
 {
     char *line;
     t_command *command_line;
+    t_node *node;
     //t_node *node;
 
 
@@ -49,13 +50,14 @@ int main(int argc, char **argv)
             if (first_word_is_pipe(line) != 0)
                 ft_error();
             command_line = lexer(line);
-            parser(command_line->first_token);
+            node = parser(command_line->first_token);
                 printf("%s\n", line);
             free(line);
         }
     }
     printf("exit\n");
     free_end(command_line, line);
+    free_node(node);
     return (valeur_exit);
 }
 

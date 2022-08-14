@@ -211,19 +211,19 @@ int word_end(char *str, int *cur)
     if (len == 1)
     {
         if (new->string[0] == '>' || new->string[0] == '<')
-            new->kind = OP;
+            new->kind = TOKEN_OP;
         if (new->string[0] == '|')
-            new->kind = PIPE;
+            new->kind = TOKEN_PIPE;
     }
     if (len == 2)
     {
         if (new->string[0] == '>' && new->string[1] == '>')
-            new->kind = OP; // il faut modifier
+            new->kind = TOKEN_OP; // il faut modifier
         if (new->string[0] == '<' && new->string[1] == '<')
-            new->kind = OP; //il faut modifier
+            new->kind = TOKEN_OP; //il faut modifier
     }
-    if (checker_builtin(new->string))
-        new->kind = TOKEN_BUILTIN;
+    //if (checker_builtin(new->string))
+    //    new->kind = TOKEN_BUILTIN;
     if (len != 0 && new->kind == DEFAULT)
         new->kind = TOKEN_ARGUMENT;
 
