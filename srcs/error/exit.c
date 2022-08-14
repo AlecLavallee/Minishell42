@@ -6,7 +6,7 @@
 /*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 13:50:50 by alelaval          #+#    #+#             */
-/*   Updated: 2022/08/12 20:59:22 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/08/14 17:10:51 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,6 @@ void	free_cmds(t_shell *shell)
 	while (shell->cmds)
 	{
 		i = -1;
-		if (shell->cmds->infile)
-			free(shell->cmds->infile);
-		if (shell->cmds->outfile)
-			free(shell->cmds->outfile);
-		shell->cmds->infile = NULL;
-		shell->cmds->outfile = NULL;
 		while (shell->cmds->args[++i])
 		{
 			free(shell->cmds->args[i]);

@@ -6,7 +6,7 @@
 /*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 19:20:37 by alelaval          #+#    #+#             */
-/*   Updated: 2022/08/13 14:23:55 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/08/14 19:44:56 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,26 @@ void	handle_input(t_shell *shell, t_comm *cmd)
 	shell->definput = dup(0);
 	shell->defoutput = dup(1);
 	// to consider : do I treat infile just like any file?
-	if (cmd->infile)
+	shell->fdin = dup(shell->definput);
+	(void)cmd;
+	/*if (cmd->infile)
 		shell->fdin = open(cmd->infile, O_RDONLY);
 	else
-		shell->fdin = dup(shell->definput);
+		shell->fdin = dup(shell->definput);*/
+}
+
+/* handle_outfiles
+* will handle the redirected streams
+*/
+void	handle_outfiles(t_shell *shell, t_comm *cmd)
+{
+	shell->fdout = dup(shell->defoutput);
+	// td : handle multiple outfiles
+	(void)cmd;
+	/*if (cmd->files)
+		shell->fdout = open((*cmd->files), O_RDWR);
+	else
+		shell->fdout = dup(shell->defoutput);*/
 }
 
 /* handle_pipes
@@ -67,18 +83,18 @@ void	handle_pipes(t_shell *shell, t_comm *cmd)
 
 	dup2(shell->fdin, 0);
 	close(shell->fdin);
+	// to do : gestion of multiple outfiles
+	// in normal mode or in append
 	if (cmd->next == NULL)
-	{
-		// to do : gestion of multiple outfiles
-		// in normal mode or in append
-		if (cmd->outfile)
-			shell->fdout = open(cmd->outfile, O_RDWR);
-		else
-			shell->fdout = dup(shell->defoutput);
-	}
+		handle_outfiles(shell, cmd);
 	else
 	{
-		pipe(fdpipe);
+		// td : save pipe and test it
+		if (pipe(fdpipe) < 0)
+		{
+			perror("pipe");
+			exit_shell(shell, EXIT_FAILURE);
+		}
 		shell->fdin = fdpipe[0];
 		shell->fdout = fdpipe[1];
 	}
@@ -125,10 +141,10 @@ void	executor(t_shell *shell)
 
 	cmd = shell->cmds;
 	handle_input(shell, cmd);
-	while (next)
+	while (cmd)
 	{
 		handle_pipes(shell, cmd);
-		if (!next->isbuiltin)
+		if (!cmd->isbuiltin)
 			ret = fork();
 		else
 			exec_builtin(shell);
@@ -139,13 +155,17 @@ void	executor(t_shell *shell)
 		}
 		if (ret == 0)
 		{
+			// to do : close all other pipes to prevent leaks
+			close(shell->fdin);
 			cmd->args[0] = get_fun(cmd->args[0], shell->paths);
 			execve(cmd->args[0], cmd->args, shell->envp);
 			perror("execve");
 			exit(EXIT_FAILURE);
 		}
+		close(shell->fdout);
 		cmd = cmd->next;
 	}
+	// to do : closing all loose fds
 	handle_io(shell);
 	waitpid(ret, &status, WEXITED);
 }

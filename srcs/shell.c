@@ -6,7 +6,7 @@
 /*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:53:24 by alelaval          #+#    #+#             */
-/*   Updated: 2022/08/13 14:22:49 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/08/14 19:02:56 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ t_shell	*init_all(void)
 		exit_shell(shell, EXIT_FAILURE);
 	shell->nb_cmds = 0;
 	shell->cmds = NULL;
-	shell->infile = NULL;
-	shell->outfile = NULL;
 	shell->envp = NULL;
 	shell->paths = NULL;
 	shell->ret = 1;
@@ -66,14 +64,10 @@ void	fill_data(t_shell *shell, char **args)
 	t_comm *new;
 
 	i = 0;
-	shell->infile = NULL;
-	shell->outfile = NULL;
 	while (args[i + 1])
 	{
 		new = (t_comm *)malloc(sizeof(t_comm));
 		new->args = ft_split(args[i + 1], ' ');
-		new->infile = NULL;
-		new->outfile = NULL;
 		new->next = NULL;
 		new->isbuiltin = isbuiltin(new->args[0]);
 		lst_addback(&(shell->cmds), new);
@@ -91,9 +85,9 @@ void	debug_data(t_shell *shell)
 	printf("Environment Paths:\n");
 	while (shell->paths[i++])
 		printf("[%d]:[%s]\n", i, shell->paths[i]);
-	printf("\n[Redirections by default]\n");
+	/*printf("\n[Redirections by default]\n");
 	printf("[infile]:%s\n", shell->infile);
-	printf("[outfile]:%s\n\n", shell->outfile);
+	printf("[outfile]:%s\n\n", shell->outfile);*/
 	printf("[COMMANDS]\n\n");
 	printf("Number of commands : %d\n\n", shell->nb_cmds);
 	i = 0;
@@ -115,7 +109,8 @@ void	debug_data(t_shell *shell)
 			printf("[cmd:%d][arg:%d]:%s\n", i, j, lst->args[j]);
 			j++;
 		}
-		printf("[infile]:%s\n[oufile]:%s\n\n", lst->infile, lst->outfile);
+		printf("\n");
+		//printf("[infile]:%s\n[oufile]:%s\n\n", lst->infile, lst->outfile);
 		lst = lst->next;
 		i++;
 	}

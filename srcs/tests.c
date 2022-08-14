@@ -6,7 +6,7 @@
 /*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 14:20:40 by alelaval          #+#    #+#             */
-/*   Updated: 2022/08/12 15:12:10 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/08/14 19:43:07 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int num_args, char **args, char **envp)
 	t_shell	*shell;
 
 	shell = NULL;
-	debug = 1;
+	debug = 0;
 	if (num_args > 1)
 	{
 		shell = init_all();

@@ -6,7 +6,7 @@
 /*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:53:20 by alelaval          #+#    #+#             */
-/*   Updated: 2022/08/12 15:11:00 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/08/14 19:31:33 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,9 @@
 typedef struct s_comm
 {
 	int		isbuiltin;
-	int		nb_args;
+	int		pipe[2];
 	char	**args;
-	char	*infile;
-	char	*outfile;
-	int		fdin;
-	int		fdout;
+	char	**files;
 	struct s_comm	*next;
 }			t_comm;
 
@@ -42,7 +39,6 @@ typedef struct s_shell
 	int			defoutput;
 	int			fdin;
 	int			fdout;
-	char		*infile;
 	char		*outfile;
 	int			nb_cmds;
 	t_comm		*cmds;
