@@ -92,6 +92,20 @@ typedef struct s_command
 	struct s_command	*next;
 }		t_command;
 
+typedef struct s_shell
+{
+	int			ret;
+	int			definput;
+	int			defoutput;
+	int			fdin;
+	int			fdout;
+	char		*outfile;
+	int			nb_cmds;
+	char		**envp;
+	char		**paths;
+}				t_shell;
+
+
 /*
 typedef struct s_tc
 {
