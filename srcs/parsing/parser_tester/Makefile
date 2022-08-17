@@ -1,26 +1,26 @@
 NAME	=	parsing_test
 
-SRCS	=	../../parsing/outil_signal.c		\
-			../../parsing/error.c 				\
-			../../parsing/outil_lexer.c			\
-			../../parsing/quoting.c 			\
-			../../parsing/lexer.c 				\
-			../../parsing/get_command_line.c \
-			../../parsing/split_token.c 	\
-			../../parsing/outil.c			\
-			../../parsing/expension.c		\
-			../../parsing/parser.c			\
-			../../parsing/outil_parser.c	\
-			./tester_parser_minishell.c					\
+SRCS	=	./../../parsing/outil_signal.c		\
+			./../../parsing/error.c 				\
+			./../../parsing/outil_lexer.c			\
+			./../../parsing/quoting.c 			\
+			./../../parsing/lexer.c 				\
+			./../../parsing/get_command_line.c \
+			./../../parsing/split_token.c 	\
+			./../../parsing/outil.c			\
+			./../../expension/expension.c		\
+			./../../parsing/outil_parser.c	\
+			./../../parsing/parser.c			\
+			./tester_parser_minishell.c			\
 
 
 OBJS	=	$(SRCS:.c=.o)
 
-HEADER	=	../../inc/
+HEADER	=	../../../inc/
 
-LIBFT	=	../../libft/
+LIBFT	=	../../../libft/
 
-LIBFT_A	=	../../libft/libft.a
+LIBFT_A	=	../../../libft/libft.a
 
 CC	=	gcc
 

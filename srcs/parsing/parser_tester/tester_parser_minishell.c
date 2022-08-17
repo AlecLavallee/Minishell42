@@ -1,4 +1,4 @@
-#include "../../inc/minishell.h"
+#include "../../../inc/minishell.h"
 void test(void);
 void debug_parser(t_node *node);
 void debug_parser_recursive(t_node *node);

@@ -1,6 +1,4 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
-make: *** No rule to make target 'srcs/parsing/minishell.o', needed by 'minishell'.  Stop.
-
 # GNU Make 4.2.1
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2016 Free Software Foundation, Inc.
@@ -8,7 +6,7 @@ make: *** No rule to make target 'srcs/parsing/minishell.o', needed by 'minishel
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Wed Aug 17 16:45:02 2022
+# Make data base, printed on Wed Aug 17 16:52:20 2022
 
 # Variables
 
@@ -151,7 +149,7 @@ MAKECMDGOALS := all
 # environment
 QT_IM_MODULE = ibus
 # makefile (from 'Makefile', line 16)
-SRCS = ./srcs/parsing/minishell.c ./srcs/parsing/outil_signal.c ./srcs/parsing/error.c ./srcs/parsing/outil_lexer.c ./srcs/parsing/quoting.c ./srcs/parsing/lexer.c ./srcs/parsing/get_command_line.c ./srcs/parsing/split_token.c ./srcs/parsing/outil.c ./srcs/parsing/expension.c ./srcs/parsing/parser.c ./srcs/parsing/outil_parser.c 
+SRCS = ./srcs/parsing/minishell.c ./srcs/parsing/outil_signal.c ./srcs/parsing/error.c ./srcs/parsing/outil_lexer.c ./srcs/parsing/quoting.c ./srcs/parsing/lexer.c ./srcs/parsing/get_command_line.c ./srcs/parsing/split_token.c ./srcs/parsing/outil.c ./srcs/expension/expension.c ./srcs/parsing/parser.c ./srcs/parsing/outil_parser.c 
 # environment
 SHLVL = 0
 # makefile (from 'Makefile', line 34)
@@ -279,6 +277,9 @@ all: minishell
 # Not a target:
 srcs/parsing/quoting.o:
 #  Implicit rule search has not been done.
+ 
+make: *** No rule to make target 'srcs/parsing/minishell.o', needed by 'minishell'.  Stop.
+
 #  Modification time never checked.
 #  File has not been updated.
 
@@ -296,7 +297,7 @@ libft/:
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-17 16:44:41.703099649
+#  Last modified 2022-08-17 16:46:56.191417535
 #  File has been updated.
 #  Successfully updated.
 
@@ -312,7 +313,7 @@ srcs/parsing/minishell.o:
 #  File does not exist.
 #  File has not been updated.
 
-minishell: srcs/parsing/minishell.o srcs/parsing/outil_signal.o srcs/parsing/error.o srcs/parsing/outil_lexer.o srcs/parsing/quoting.o srcs/parsing/lexer.o srcs/parsing/get_command_line.o srcs/parsing/split_token.o srcs/parsing/outil.o srcs/parsing/expension.o srcs/parsing/parser.o srcs/parsing/outil_parser.o libft/
+minishell: srcs/parsing/minishell.o srcs/parsing/outil_signal.o srcs/parsing/error.o srcs/parsing/outil_lexer.o srcs/parsing/quoting.o srcs/parsing/lexer.o srcs/parsing/get_command_line.o srcs/parsing/split_token.o srcs/parsing/outil.o srcs/expension/expension.o srcs/parsing/parser.o srcs/parsing/outil_parser.o libft/
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
@@ -349,7 +350,12 @@ srcs/parsing/parser.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
- 
+
+# Not a target:
+srcs/expension/expension.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 re: fclean all
 #  Phony target (prerequisite of .PHONY).
@@ -365,12 +371,6 @@ clean:
 #  recipe to execute (from 'Makefile', line 56):
 		$(MAKE) clean -C $(LIBFT)
 		$(RM) $(OBJS)
-
-# Not a target:
-srcs/parsing/expension.o:
-#  Implicit rule search has not been done.
-#  Modification time never checked.
-#  File has not been updated.
 
 # Not a target:
 srcs/parsing/error.o:
@@ -416,12 +416,12 @@ srcs/parsing/split_token.o:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 35 / storage = 492 B / avg = 14 B
-# current buf: size = 8162 B / used = 492 B / count = 35 / avg = 14 B
+# strcache buffers: 1 (0) / strings = 35 / storage = 494 B / avg = 14 B
+# current buf: size = 8162 B / used = 494 B / count = 35 / avg = 14 B
 
 # strcache performance: lookups = 55 / hit rate = 36%
 # hash-table stats:
 # Load=35/8192=0%, Rehash=0, Collisions=1/55=2%
-# Finished Make data base on Wed Aug 17 16:45:02 2022
+# Finished Make data base on Wed Aug 17 16:52:20 2022
 
  
