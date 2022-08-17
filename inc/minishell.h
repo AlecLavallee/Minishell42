@@ -133,8 +133,10 @@ int is_redirection(char c);
 int is_separator(char c);
 int word_end(char *str, int *cur);
 int checker_builtin(char *str);
+int	put_eof(t_command *command_line, char *str, int len);
 
 //parser
+t_node *stmt(t_token **token);
 t_node *parser(t_token *token);
 t_node *pipe_cmd(t_token **token);
 t_node *command(t_token **token);

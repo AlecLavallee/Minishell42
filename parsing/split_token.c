@@ -249,10 +249,12 @@ static int tokenization(int cur, int start, char *str, t_command *command_line)
     return (0);
 }
 
-int	put_eof(t_command *command_line)
+int	put_eof(t_command *command_line, char *str, int len)
 {
 	t_token	*token;
+    t_token *end;
 
+    end = NULL;
 	token = (t_token *)ft_calloc(1, sizeof(t_token));
 	if (token == NULL)
     {
@@ -261,9 +263,10 @@ int	put_eof(t_command *command_line)
         return (1);
     }
 	token->kind = TOKEN_EOF;
-	token->string = NULL;
-	token->len = 0;
+	token->string = str;
+	token->len = len;
     token_addback(&command_line->first_token, token);
+    token->next = end;
     return (0);
 }
 
@@ -290,7 +293,7 @@ int split_command_line(t_command *command_line)
         if (tokenization(cur, start, command_line->whole_str, command_line) > 0)
             return (1);
     }
-    if (put_eof(command_line) > 0)
+    if (put_eof(command_line, 0, 0) > 0)
         free(command_line);
     return (0);
 }

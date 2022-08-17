@@ -29,10 +29,9 @@ int main(int argc, char **argv)
     char *line;
     t_command *command_line;
     t_node *node;
-    //t_node *node;
 
 
-    //command_line = NULL;
+    command_line = NULL;
     if (argc && argv)
     {
         while (1)

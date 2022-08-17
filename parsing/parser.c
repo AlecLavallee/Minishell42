@@ -55,7 +55,9 @@ EOF       = ε (nothing (= 0))
 
 
 //ordre de fonction parser
+//t_node *stmt(t_token **token);
 t_node *parser(t_token *token); // -> pipe_cmd
+t_node *stmt(t_token **token);
 t_node *pipe_cmd(t_token **token);// -> command
 t_node *command(t_token **token);// -> word | redir_in | redir_out
 t_node *redir_in(t_token **token);// -> word
@@ -66,7 +68,7 @@ t_node *word(t_token **token); // -> argument
 //parser    = pipe_cmd EOF
 t_node *parser(t_token *token)
 {
-    t_node *node;
+     t_node *node;
 
     node = pipe_cmd(&token);
     if (consume(token, TOKEN_EOF, NULL))
@@ -74,9 +76,10 @@ t_node *parser(t_token *token)
         printf("parsing error : 'TOKEN_EOF'\n");
         exit(0);
     }
-    token = skip(token, TOKEN_EOF, NULL);
+        token = skip(token, TOKEN_EOF, NULL);
     return (node);
-}
+}   
+
 
 //pipe_cmd  = command ("|" command)*
 t_node *pipe_cmd(t_token **token)
@@ -84,7 +87,7 @@ t_node *pipe_cmd(t_token **token)
     t_node *node;
     
     node =  new_node_pipe(NULL, command(token));
-    if (!consume(*token, TOKEN_PIPE, "|"))
+    while (!consume(*token, TOKEN_PIPE, "|"))
     {
         *token = skip(*token, TOKEN_PIPE, "|");
         node  = new_node_pipe(node, command(token));
@@ -116,6 +119,32 @@ t_node *command(t_token **token)
     }
     return (node);
 }
+
+/*
+t_node *command(t_token **token)
+{
+    t_node *node;
+    int res = 0;
+
+    node = new_node_command();
+    command_addback(node, word(token));
+    while (res == 0)
+    {
+        if ((res = consume(*token, TOKEN_ARGUMENT, NULL)) == 0)
+            command_addback(node, word(token));
+        else if ((res = consume(*token, TOKEN_OP, "<")) == 0 
+            || (res = consume(*token, TOKEN_OP, "<<")) == 0)
+            redir_in_addback(node, redir_in(token));
+        else if ((res = consume(*token, TOKEN_OP, ">")) == 0 
+            || (res = consume(*token, TOKEN_OP, ">>")) == 0)
+            redir_out_addback(node, redir_out(token));
+        else
+            break;
+    }
+    return (node);
+}
+*/
+
 
 //redir_in  = ("<" | "<<") word
 t_node *redir_in(t_token **token)

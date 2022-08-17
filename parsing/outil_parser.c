@@ -46,6 +46,7 @@ void free_node(t_node *node)
     free_node(node->cmds);
     free_node(node->redir_in);
     free_node(node->redir_out);
+    free(node->str);
     free(node);
 }
 
@@ -75,7 +76,8 @@ t_node *new_node_word(t_token *token)
     
     node = ft_calloc(1, sizeof(t_node));
     node->kind = ARGUMENT;
-    node->str = ft_substr(token->string, 0, token->len);
+    node->str = malloc(sizeof(char *) * token->len + 1);
+    node->str = ft_strncpy(node->str, token->string, token->len);
     return (node);
 }
 

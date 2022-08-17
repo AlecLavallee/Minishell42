@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sun Aug 14 10:37:01 2022
+# Make data base, printed on Wed Aug 17 10:57:45 2022
 
 # Variables
 
@@ -105,7 +105,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 30022
+GIO_LAUNCHED_DESKTOP_FILE_PID = 103273
 # automatic
 %F = $(notdir $%)
 # environment
@@ -149,7 +149,7 @@ MAKECMDGOALS := all
 # environment
 QT_IM_MODULE = ibus
 # makefile (from 'Makefile', line 16)
-SRCS = ./parsing/minishell.c ./parsing/outil_signal.c ./parsing/error.c ./parsing/outil_lexer.c ./parsing/quoting.c ./parsing/lexer.c ./parsing/get_command_line.c ./parsing/split_token.c ./parsing/outil.c ./parsing/expension.c ./parsing/parser.c 
+SRCS = ./parsing/minishell.c ./parsing/outil_signal.c ./parsing/error.c ./parsing/outil_lexer.c ./parsing/quoting.c ./parsing/lexer.c ./parsing/get_command_line.c ./parsing/split_token.c ./parsing/outil.c ./parsing/expension.c ./parsing/parser.c ./parsing/outil_parser.c 
 # environment
 SHLVL = 0
 # makefile (from 'Makefile', line 34)
@@ -241,7 +241,7 @@ LC_ADDRESS = fr_FR.UTF-8
 # environment
 LANG = C
 # environment
-VSCODE_PID = 30022
+VSCODE_PID = 103273
 # variable set hash-table stats:
 # Load=116/1024=11%, Rehash=0, Collisions=19/146=13%
 
@@ -278,41 +278,64 @@ all: minishell
 parsing/outil.o:
 #  Implicit rule search has been done.
  
-#  Last modified 2022-08-13 21:28:26.769970632
+#  Last modified 2022-08-17 10:57:02.53048656
+ 
 #  File has been updated.
+ 
 #  Successfully updated.
+ 
 
+ 
 # Not a target:
+ 
 parsing/minishell.o:
+ 
 #  Implicit rule search has been done.
-#  Last modified 2022-08-13 21:28:25.9340267
+ 
+#  Last modified 2022-08-17 10:57:01.362518538
+ 
 #  File has been updated.
+ 
 #  Successfully updated.
+ 
 
+ 
 # Not a target:
+ 
 libft/:
+ 
 #  Implicit rule search has been done.
-#  Last modified 2022-08-13 21:28:29.081815575
+ 
+#  Last modified 2022-08-17 10:57:05.96639249
+ 
 #  File has been updated.
+ 
 #  Successfully updated.
+ 
 
+ 
 # Not a target:
+ 
 Makefile:
+ 
 #  Implicit rule search has been done.
-#  Last modified 2022-08-13 17:06:31.214362177
+ 
+#  Last modified 2022-08-17 10:56:58.99858326
+ 
 #  File has been updated.
 #  Successfully updated.
+ 
 
 # Not a target:
 parsing/parser.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-13 21:28:27.077949976
+#  Last modified 2022-08-17 10:57:02.910476157
 #  File has been updated.
 #  Successfully updated.
 
-minishell: parsing/minishell.o parsing/outil_signal.o parsing/error.o parsing/outil_lexer.o parsing/quoting.o parsing/lexer.o parsing/get_command_line.o parsing/split_token.o parsing/outil.o parsing/expension.o parsing/parser.o libft/
+minishell: parsing/minishell.o parsing/outil_signal.o parsing/error.o parsing/outil_lexer.o parsing/quoting.o parsing/lexer.o parsing/get_command_line.o parsing/split_token.o parsing/outil.o parsing/expension.o parsing/parser.o parsing/outil_parser.o libft/
 #  Implicit rule search has not been done.
-#  Last modified 2022-08-13 21:28:29.177809137
+#  Last modified 2022-08-17 10:57:06.086389205
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 48):
@@ -340,14 +363,14 @@ fclean: clean
 # Not a target:
 parsing/expension.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-13 21:28:26.809967949
+#  Last modified 2022-08-17 10:57:02.574485356
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 parsing/error.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-13 21:28:26.14201275
+#  Last modified 2022-08-17 10:57:01.674509996
 #  File has been updated.
 #  Successfully updated.
 
@@ -360,14 +383,14 @@ parsing/error.o:
 # Not a target:
 parsing/lexer.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-13 21:28:26.425993703
+#  Last modified 2022-08-17 10:57:02.050499702
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 parsing/get_command_line.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-13 21:28:26.545985655
+#  Last modified 2022-08-17 10:57:02.19849565
 #  File has been updated.
 #  Successfully updated.
 
@@ -387,47 +410,54 @@ clean:
 		$(RM) $(OBJS)
 
 # Not a target:
+parsing/outil_parser.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-17 10:57:03.074471667
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
 parsing/outil_signal.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-13 21:28:26.034019994
+#  Last modified 2022-08-17 10:57:01.514514377
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 parsing/split_token.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-13 21:28:26.665977607
+#  Last modified 2022-08-17 10:57:02.386490503
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 parsing/outil_lexer.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-13 21:28:26.23400658
+#  Last modified 2022-08-17 10:57:01.798506601
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 parsing/quoting.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-13 21:28:26.322000678
+#  Last modified 2022-08-17 10:57:01.910503535
 #  File has been updated.
 #  Successfully updated.
 
 # files hash-table stats:
-# Load=22/1024=2%, Rehash=0, Collisions=0/53=0%
+# Load=23/1024=2%, Rehash=0, Collisions=0/55=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 34 / storage = 412 B / avg = 12 B
-# current buf: size = 8162 B / used = 412 B / count = 34 / avg = 12 B
+# strcache buffers: 1 (0) / strings = 35 / storage = 435 B / avg = 12 B
+# current buf: size = 8162 B / used = 435 B / count = 35 / avg = 12 B
 
-# strcache performance: lookups = 55 / hit rate = 38%
+# strcache performance: lookups = 56 / hit rate = 37%
 # hash-table stats:
-# Load=34/8192=0%, Rehash=0, Collisions=1/55=2%
-# Finished Make data base on Sun Aug 14 10:37:01 2022
+# Load=35/8192=0%, Rehash=0, Collisions=1/56=2%
+# Finished Make data base on Wed Aug 17 10:57:45 2022
 
  

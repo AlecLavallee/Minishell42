@@ -8,7 +8,7 @@
             "name": "(gdb) 起動",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/minishell",
+            "program": "${workspaceFolder}/parsing/parser_tester/parsing_test",
             "args": [""],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",

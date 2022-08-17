@@ -108,7 +108,7 @@ int    free_command_line(t_command *command_line)
     {
         //while (command_line)
         //{
-            //if (command_line->whole_str)
+            if (command_line->whole_str)
                 free(command_line->whole_str);
             if (command_line->first_token)
                 free_token(&command_line);

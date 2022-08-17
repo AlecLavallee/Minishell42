@@ -1,4 +1,4 @@
-#include "../inc/minishell.h"
+#include "../../inc/minishell.h"
 void test(void);
 void debug_parser(t_node *node);
 void debug_parser_recursive(t_node *node);
@@ -16,13 +16,14 @@ void test(void)
     t_command *token;
     t_node *node;
 
-    char *str = "echo hello | file";
+    char *str = "echo hello > file ";
     token = lexer(str);
     node = parser(token->first_token);
     if (node == NULL)
         printf("node error\n");
-    
     debug_parser_recursive(node);
+    free_command_line(token);
+    free_node(node);
 }
 
 
@@ -38,7 +39,7 @@ void debug_parser_recursive(t_node *node)
             debug_parser_recursive(node->lhs);
             printf("---Pipe---\n");
         }
-        debug_parser_recursive(ngit lode->rhs);
+        debug_parser_recursive(node->rhs);
     }
 
     if (node->kind == COMMAND) 
