@@ -121,3 +121,51 @@ void	free_all(t_shell *shell)
 	}
 }
 
+void	fill_data(t_shell *shell, char **args)
+{
+	int	i;
+	t_comm *new;
+
+	i = 0;
+	while (args[i + 1])
+	{
+		new = (t_comm *)malloc(sizeof(t_comm));
+		new->args = ft_split(args[i + 1], ' ');
+		new->next = NULL;
+		new->isbuiltin = isbuiltin(new->args[0]);
+		lst_addback(&(shell->cmds), new);
+		i++;
+	}
+	return;
+}
+
+int		isbuiltin(char *str)
+{
+	int			i;
+	const char	*args[] = {"echo", "cd", "pwd", "export", "unset", "env", "exit", NULL};
+
+	i = 0;
+
+	while (args[i])
+	{
+		if (ft_strncmp(str, args[i], ft_strlen(str)) == 0)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+void	lst_addback(t_comm **lst, t_comm *new)
+{
+	t_comm	*a;
+
+	a = *lst;
+	if (*lst == NULL)
+		*lst = new;
+	else
+	{
+		while (a->next)
+			a = a->next;
+		a->next = new;
+	}
+}

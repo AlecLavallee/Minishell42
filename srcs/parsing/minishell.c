@@ -24,16 +24,22 @@ gcc minishell.h parsing/lexer.c parsing/outil_lexer.c parsing/minishell.c parsin
 
 
 //int main(int argc, char **argv, char **envp)
-int main(int argc, char **argv)
+int main(int argc, char **argv, char **envp)
 {
     char *line;
     t_command *command_line;
     t_node *node;
+    t_shell *shell;
 
-
+    shell = NULL;
     command_line = NULL;
     if (argc && argv)
     {
+        shell = init_all();
+        shell->envp = get_paths(shell, envp);
+        if (!shell->envp)
+            printf("NULL ENVP\n");
+        fill_data(shell, argv);
         while (1)
         {
             line = readline(">team_90's ");
@@ -57,6 +63,7 @@ int main(int argc, char **argv)
     printf("exit\n");
     free_end(command_line, line);
     free_node(node);
+    exit_shell(shell, 0);
     return (valeur_exit);
 }
 
