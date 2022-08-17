@@ -93,6 +93,22 @@ typedef struct s_command
 	struct s_command	*next;
 }		t_command;
 
+
+/*
+** alelaval's stducture
+*/
+typedef struct s_comm
+{
+	int		isbuiltin;
+	int		pipe[2];
+	char	**args;
+	char	**files;
+	struct s_comm	*next;
+}			t_comm;
+
+/*
+**alelaval's structure
+*/
 typedef struct s_shell
 {
 	int			ret;
@@ -102,19 +118,10 @@ typedef struct s_shell
 	int			fdout;
 	char		*outfile;
 	int			nb_cmds;
+	t_comm		*cmds;
 	char		**envp;
 	char		**paths;
 }				t_shell;
-
-
-/*
-typedef struct s_tc
-{
-	t_token **tkn;
-	t_command *cmd;
-	struct s_tc *next;
-}	t_tc;
-*/
 
 extern int valeur_exit; 
 void    signal_input(int signal);
@@ -179,6 +186,14 @@ void redir_out_addback(t_node *command, t_node *rdr_out);
 int    free_command_line(t_command *command_line);
 void    free_token(t_command **command_line);
 void free_node(t_node *node);
+
+//alelaval's focntion
+char	*get_path_line(char **paths);
+char	**get_paths(t_shell *shell, char **envp);
+void	exit_shell(t_shell *shell, int code);
+void	free_all(t_shell *shell);
+void	free_paths(t_shell *shell);
+void	free_cmds(t_shell *shell);
 
 
 // lexer version until 08/12 (double pointeur)

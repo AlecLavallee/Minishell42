@@ -25,6 +25,7 @@ SRCS	=	./srcs/parsing/minishell.c	\
 			./srcs/expension/expension.c		\
 			./srcs/parsing/parser.c			\
 			./srcs/parsing/outil_parser.c	\
+			./srcs/alelaval/get_env.c		\
 
 
 OBJS	=	$(SRCS:.c=.o)
