@@ -13,18 +13,18 @@
 
 NAME	=	minishell
 
-SRCS	=	./parsing/minishell.c	\
-			./parsing/outil_signal.c		\
-			./parsing/error.c 				\
-			./parsing/outil_lexer.c			\
-			./parsing/quoting.c 			\
-			./parsing/lexer.c 				\
-			./parsing/get_command_line.c \
-			./parsing/split_token.c 	\
-			./parsing/outil.c			\
-			./parsing/expension.c		\
-			./parsing/parser.c			\
-			./parsing/outil_parser.c	\
+SRCS	=	./srcs/parsing/minishell.c	\
+			./srcs/parsing/outil_signal.c		\
+			./srcs/parsing/error.c 				\
+			./srcs/parsing/outil_lexer.c			\
+			./srcs/parsing/quoting.c 			\
+			./srcs/parsing/lexer.c 				\
+			./srcs/parsing/get_command_line.c \
+			./srcs/parsing/split_token.c 	\
+			./srcs/parsing/outil.c			\
+			./srcs/expension/expension.c		\
+			./srcs/parsing/parser.c			\
+			./srcs/parsing/outil_parser.c	\
 
 
 OBJS	=	$(SRCS:.c=.o)

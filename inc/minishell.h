@@ -17,7 +17,8 @@
 # define STDERR 2
 # define STDIN 0
 # define STDOUT 1
-# define INDENT_WIDTH 4 //tester
+# define PATH_MAX 4096
+
 # include <stdio.h>
 # include <stdlib.h>
 # include <stdint.h>
