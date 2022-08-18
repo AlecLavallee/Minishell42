@@ -60,6 +60,7 @@ t_shell	*init_all(void)
 	shell->envp = NULL;
 	shell->paths = NULL;
 	shell->ret = 1;
+	//shell->env = NULL; //ajoute
 	return (shell);
 }
 
@@ -116,6 +117,8 @@ void	free_all(t_shell *shell)
 			free_cmds(shell);
 		if (shell->paths)
 			free_paths(shell);
+		if (shell->env)//ajoute
+			free_env(shell);//ajoute
 		free(shell);
 		shell = NULL;
 	}
