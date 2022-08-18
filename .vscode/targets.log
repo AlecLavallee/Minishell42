@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Wed Aug 17 17:21:45 2022
+# Make data base, printed on Thu Aug 18 17:07:41 2022
 
 # Variables
 
@@ -42,14 +42,14 @@ XMODIFIERS = @im=ibus
 CURDIR := /home/tj/Documents/Minishell42
 # makefile
 SHELL = /bin/sh
-# makefile (from 'Makefile', line 41)
+# makefile (from 'Makefile', line 42)
 RM = rm -f
 # environment
 VSCODE_NLS_CONFIG = {"locale":"ja","availableLanguages":{"*":"ja"},"_languagePackId":"e6c586e25df759b7fd1d7a26b78d86d4.ja","_translationsConfigFile":"/home/tj/.config/Code/clp/e6c586e25df759b7fd1d7a26b78d86d4.ja/tcf.json","_cacheRoot":"/home/tj/.config/Code/clp/e6c586e25df759b7fd1d7a26b78d86d4.ja","_resolvedLanguagePackCoreLocation":"/home/tj/.config/Code/clp/e6c586e25df759b7fd1d7a26b78d86d4.ja/6d9b74a70ca9c7733b29f0456fd8195364076dda","_corruptedFile":"/home/tj/.config/Code/clp/e6c586e25df759b7fd1d7a26b78d86d4.ja/corrupted.info","_languagePackSupport":true}
 # environment
 _ = /usr/share/code/code
-# makefile (from 'Makefile', line 43)
-CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address -fsanitize=leak
+# makefile (from 'Makefile', line 44)
+CFLAGS = -Wall -Wextra -Werror -g3 
 # environment
 JOURNAL_STREAM = 8:52507
 # environment
@@ -68,7 +68,7 @@ MAKELEVEL := 0
 XDG_DATA_DIRS = /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
 # environment
 DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
-# makefile (from 'Makefile', line 31)
+# makefile (from 'Makefile', line 32)
 OBJS = $(SRCS:.c=.o)
 # environment
 MANAGERPID = 2030
@@ -149,12 +149,12 @@ MAKECMDGOALS := all
 # environment
 QT_IM_MODULE = ibus
 # makefile (from 'Makefile', line 16)
-SRCS = ./srcs/parsing/minishell.c ./srcs/parsing/outil_signal.c ./srcs/parsing/error.c ./srcs/parsing/outil_lexer.c ./srcs/parsing/quoting.c ./srcs/parsing/lexer.c ./srcs/parsing/get_command_line.c ./srcs/parsing/split_token.c ./srcs/parsing/outil.c ./srcs/expension/expension.c ./srcs/parsing/parser.c ./srcs/parsing/outil_parser.c ./srcs/alelaval/get_env.c 
+SRCS = ./srcs/parsing/minishell.c ./srcs/parsing/outil_signal.c ./srcs/parsing/error.c ./srcs/parsing/outil_lexer.c ./srcs/parsing/quoting.c ./srcs/parsing/lexer.c ./srcs/parsing/get_command_line.c ./srcs/parsing/split_token.c ./srcs/parsing/outil.c ./srcs/expension/expension.c ./srcs/parsing/parser.c ./srcs/parsing/outil_parser.c ./srcs/alelaval/get_env.c ./srcs/shell/create_shell.c 
 # environment
 SHLVL = 0
-# makefile (from 'Makefile', line 35)
+# makefile (from 'Makefile', line 36)
 LIBFT = ./libft/
-# makefile (from 'Makefile', line 39)
+# makefile (from 'Makefile', line 40)
 CC = gcc
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
@@ -198,9 +198,10 @@ MFLAGS = -pqrR
 MAIL = tj@student.42.fr
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
+ 
 # environment
 GDK_BACKEND = x11
-# makefile (from 'Makefile', line 37)
+# makefile (from 'Makefile', line 38)
 LIBFT_A = ./libft/libft.a
 # environment
 LC_PAPER = fr_FR.UTF-8
@@ -218,7 +219,7 @@ LC_MEASUREMENT = fr_FR.UTF-8
 PAGER = less
 # environment
 LC_ALL = C
-# makefile (from 'Makefile', line 33)
+# makefile (from 'Makefile', line 34)
 HEADER = ./inc/
 # environment
 GJS_DEBUG_TOPICS = JS ERROR;JS LOG
@@ -264,7 +265,7 @@ VSCODE_PID = 103273
 # Not a target:
 srcs/parsing/outil_lexer.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-17 17:21:36.654457166
+#  Last modified 2022-08-18 17:06:37.909360224
 #  File has been updated.
 #  Successfully updated.
 
@@ -279,8 +280,7 @@ all: minishell
 # Not a target:
 srcs/parsing/quoting.o:
 #  Implicit rule search has been done.
- 
-#  Last modified 2022-08-17 17:21:36.734454976
+#  Last modified 2022-08-18 17:06:38.033357141
 #  File has been updated.
 #  Successfully updated.
 
@@ -292,37 +292,37 @@ srcs/parsing/quoting.o:
 # Not a target:
 libft/:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-17 17:21:39.410381712
+#  Last modified 2022-08-18 17:06:41.569269207
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-17 17:21:28.73067411
+#  Last modified 2022-08-18 17:06:31.097529626
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 srcs/parsing/outil.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-17 17:21:37.210441944
+#  Last modified 2022-08-18 17:06:38.433347193
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 srcs/parsing/minishell.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-17 17:21:36.322466256
+#  Last modified 2022-08-18 17:06:37.489370669
 #  File has been updated.
 #  Successfully updated.
 
-minishell: srcs/parsing/minishell.o srcs/parsing/outil_signal.o srcs/parsing/error.o srcs/parsing/outil_lexer.o srcs/parsing/quoting.o srcs/parsing/lexer.o srcs/parsing/get_command_line.o srcs/parsing/split_token.o srcs/parsing/outil.o srcs/expension/expension.o srcs/parsing/parser.o srcs/parsing/outil_parser.o srcs/alelaval/get_env.o libft/
+minishell: srcs/parsing/minishell.o srcs/parsing/outil_signal.o srcs/parsing/error.o srcs/parsing/outil_lexer.o srcs/parsing/quoting.o srcs/parsing/lexer.o srcs/parsing/get_command_line.o srcs/parsing/split_token.o srcs/parsing/outil.o srcs/expension/expension.o srcs/parsing/parser.o srcs/parsing/outil_parser.o srcs/alelaval/get_env.o srcs/shell/create_shell.o libft/
 #  Implicit rule search has not been done.
-#  Last modified 2022-08-17 17:21:39.502379194
+#  Last modified 2022-08-18 17:06:41.66926672
 #  File has been updated.
 #  Successfully updated.
-#  recipe to execute (from 'Makefile', line 49):
+#  recipe to execute (from 'Makefile', line 50):
 			@make -C $(LIBFT)
 			ar rcs $(LIBFT_A) $(OBJS)
 			ranlib $(LIBFT_A)
@@ -332,7 +332,7 @@ minishell: srcs/parsing/minishell.o srcs/parsing/outil_signal.o srcs/parsing/err
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 46):
+#  recipe to execute (from 'Makefile', line 47):
 	$(CC) $(CFLAGS) -I$(HEADER) -I$(LIBFT) -c $< -o $(<:.c=.o)
 
 fclean: clean
@@ -340,14 +340,14 @@ fclean: clean
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 61):
+#  recipe to execute (from 'Makefile', line 62):
 		$(MAKE) fclean -C $(LIBFT)
 		$(RM) $(NAME)
 
 # Not a target:
 srcs/parsing/parser.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-17 17:21:37.34243833
+#  Last modified 2022-08-18 17:06:38.617342618
 #  File has been updated.
 #  Successfully updated.
 
@@ -360,7 +360,7 @@ srcs/parsing/parser.o:
 # Not a target:
 srcs/expension/expension.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-17 17:21:37.246440959
+#  Last modified 2022-08-18 17:06:38.465346398
 #  File has been updated.
 #  Successfully updated.
 
@@ -375,73 +375,80 @@ clean:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 57):
+#  recipe to execute (from 'Makefile', line 58):
 		$(MAKE) clean -C $(LIBFT)
 		$(RM) $(OBJS)
 
 # Not a target:
 srcs/alelaval/get_env.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-17 17:21:37.558432417
+#  Last modified 2022-08-18 17:06:38.893335754
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 srcs/parsing/error.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-17 17:21:36.558459794
+#  Last modified 2022-08-18 17:06:37.789363208
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 srcs/parsing/lexer.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-17 17:21:36.830452348
+#  Last modified 2022-08-18 17:06:38.137354554
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 srcs/parsing/get_command_line.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-17 17:21:36.942449281
+#  Last modified 2022-08-18 17:06:38.237352068
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 srcs/parsing/outil_parser.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-17 17:21:37.450435373
+#  Last modified 2022-08-18 17:06:38.741339534
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 srcs/parsing/outil_signal.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-17 17:21:36.458462532
+#  Last modified 2022-08-18 17:06:37.64936669
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 srcs/parsing/split_token.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-17 17:21:37.122444353
+#  Last modified 2022-08-18 17:06:38.341349481
+#  File has been updated.
+#  Successfully updated.
+
+# Not a target:
+srcs/shell/create_shell.o:
+#  Implicit rule search has been done.
+#  Last modified 2022-08-18 17:06:39.08533098
 #  File has been updated.
 #  Successfully updated.
 
 # files hash-table stats:
-# Load=24/1024=2%, Rehash=0, Collisions=0/57=0%
+# Load=25/1024=2%, Rehash=0, Collisions=0/59=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 36 / storage = 518 B / avg = 14 B
-# current buf: size = 8162 B / used = 518 B / count = 36 / avg = 14 B
+# strcache buffers: 1 (0) / strings = 37 / storage = 544 B / avg = 14 B
+# current buf: size = 8162 B / used = 544 B / count = 37 / avg = 14 B
 
-# strcache performance: lookups = 57 / hit rate = 36%
+# strcache performance: lookups = 58 / hit rate = 36%
 # hash-table stats:
-# Load=36/8192=0%, Rehash=0, Collisions=1/57=2%
-# Finished Make data base on Wed Aug 17 17:21:45 2022
+# Load=37/8192=0%, Rehash=0, Collisions=1/58=2%
+# Finished Make data base on Thu Aug 18 17:07:41 2022
 
  

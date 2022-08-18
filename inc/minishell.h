@@ -51,7 +51,7 @@ typedef enum
 	OPEN_FILE, // < 3
 	EXIT_FILE, // > 4
 	FILE_OUT_SUR, // >> 5
- 	DOC, // << 6
+ 	HEREDOC, // << 6
 	LIMITOR, //<< 7
 	EXIT_FILE_RET, // >> 8
 	BUILTIN, //builtin command = 9
@@ -61,6 +61,22 @@ typedef enum
 	NODE_EOF, // end of string 13
 } t_node_kind;
 
+typedef enum
+{
+	REDIR_OUT, // >
+	REDIR_IN, // <
+	REDIR_APPEND, // >>
+	REDIR_HEREDOC, // <<
+}	t_redir_kind;
+
+typedef struct s_redir
+{
+	t_redir_kind kind;
+	char *str;
+	int fd;
+	int cur;
+	struct s_redir *next;
+} t_redir;
 
 typedef struct s_node {
   t_node_kind kind; // state_token
@@ -71,9 +87,11 @@ typedef struct s_node {
   struct s_node *lhs; //left handle
   struct s_node *rhs; // right handle
   struct s_node *cmds;
-  struct s_node *redir_in;
-  struct s_node *redir_out;
+  t_redir *redir_in;
+  t_redir *redir_out;
 }t_node;
+
+
 
 typedef struct s_token
 {
@@ -106,6 +124,13 @@ typedef struct s_comm
 	struct s_comm	*next;
 }			t_comm;
 
+typedef struct s_env
+{
+	char *name;
+	char *body;
+	struct s_env *next;
+} t_env;
+
 /*
 **alelaval's structure
 */
@@ -121,6 +146,7 @@ typedef struct s_shell
 	t_comm		*cmds;
 	char		**envp;
 	char		**paths;
+	t_env		*env; // ajoute
 }				t_shell;
 
 extern int valeur_exit; 
@@ -179,22 +205,34 @@ t_node *new_node_pipe(t_node *lhs, t_node *rhs);
 t_node *new_node_command(void);
 t_node *new_node_word(t_token *token);
 void command_addback(t_node *command, t_node *word);
-void redir_in_addback(t_node *command, t_node *rdr_in);
-void redir_out_addback(t_node *command, t_node *rdr_out);
+void redir_in_addback(t_node *command, t_redir *rdr_in, t_redir_kind kind);
+void redir_out_addback(t_node *command, t_redir *rer_out, t_redir_kind kind);
+void free_redirection(t_redir *redir_in);
 
 //free
 int    free_command_line(t_command *command_line);
 void    free_token(t_command **command_line);
 void free_node(t_node *node);
 
+//env
+t_shell *create_shell(char **envp, char **argv);
+t_env	*create_env(char **envp);
+t_env	*env_addback(t_env *env, char *name, char *body);
+char	*create_env_name(char *str);
+char	*create_env_body(char *str);
+void    free_env(t_shell *shell);
+
 //alelaval's focntion
+t_shell	*init_all(void);
 char	*get_path_line(char **paths);
 char	**get_paths(t_shell *shell, char **envp);
 void	exit_shell(t_shell *shell, int code);
 void	free_all(t_shell *shell);
 void	free_paths(t_shell *shell);
 void	free_cmds(t_shell *shell);
-
+void	fill_data(t_shell *shell, char **args);
+void	lst_addback(t_comm **lst, t_comm *new);
+int		isbuiltin(char *str);
 
 // lexer version until 08/12 (double pointeur)
 /*

@@ -26,6 +26,7 @@ SRCS	=	./srcs/parsing/minishell.c	\
 			./srcs/parsing/parser.c			\
 			./srcs/parsing/outil_parser.c	\
 			./srcs/alelaval/get_env.c		\
+			./srcs/shell/create_shell.c		\
 
 
 OBJS	=	$(SRCS:.c=.o)
@@ -40,7 +41,7 @@ CC	=	gcc
 
 RM	=	rm -f
 
-CFLAGS	=	-Wall -Wextra -Werror -g3 -fsanitize=address -fsanitize=leak
+CFLAGS	=	-Wall -Wextra -Werror -g3 #-fsanitize=address -fsanitize=leak
 
 .c.o:
 	$(CC) $(CFLAGS) -I$(HEADER) -I$(LIBFT) -c $< -o $(<:.c=.o)

@@ -16,7 +16,7 @@ void test(void)
     t_command *token;
     t_node *node;
 
-    char *str = "echo hello > file ";
+    char *str = "echo hello | file ";
     token = lexer(str);
     node = parser(token->first_token);
     if (node == NULL)
@@ -55,7 +55,7 @@ void debug_parser_recursive(t_node *node)
         if (node->redir_in)
         {
             printf("redir_in : ");
-            t_node *redir_in = node->redir_in;
+            t_redir *redir_in = node->redir_in;
             while (redir_in) 
             {
                 printf("'%s' ", redir_in->str);
@@ -66,7 +66,7 @@ void debug_parser_recursive(t_node *node)
         if (node->redir_out) 
         {
             printf("redir_out: ");
-            t_node *redir_out = node->redir_out;
+            t_redir *redir_out = node->redir_out;
             while (redir_out) 
             {
                 printf("'%s' ", redir_out->str);

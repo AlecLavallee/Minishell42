@@ -111,9 +111,9 @@ t_node *command(t_token **token)
         if (!consume(*token, TOKEN_ARGUMENT, NULL))
             command_addback(node, word(token));
         if (!consume(*token, TOKEN_OP, "<") || !consume(*token, TOKEN_OP, "<<"))
-            redir_in_addback(node, redir_in(token));
+            redir_in(token);
         if (!consume(*token, TOKEN_OP, ">") || !consume(*token, TOKEN_OP, ">>"))
-            redir_out_addback(node, redir_out(token));
+            redir_out(token);
         else
             break;
     }
@@ -150,14 +150,20 @@ t_node *command(t_token **token)
 t_node *redir_in(t_token **token)
 {
     t_node *node;
-
+    node = word(token);
     if (!consume(*token, TOKEN_OP, "<"))
+    {
         *token = skip(*token, TOKEN_OP, "<");
+        redir_in_addback(node, node->redir_in, REDIR_IN);
+    }
     else if (!consume(*token, TOKEN_OP, "<<"))
-        *token = skip(*token, TOKEN_OP, "<<"); 
+    {
+        *token = skip(*token, TOKEN_OP, "<<");
+        redir_in_addback(node, node->redir_out, REDIR_HEREDOC);
+    } 
     else 
         printf("parsing error : '<' or '<<'\n");
-    node = word(token);
+    //node = word(token);
     return (node);
 }
 
@@ -167,9 +173,15 @@ t_node *redir_out(t_token **token)
     t_node *node;
 
     if (!consume(*token, TOKEN_OP, ">"))
+    {
         *token = skip(*token, TOKEN_OP, ">");
+        //add_redire_out
+    }
     else if (!consume(*token, TOKEN_OP, ">>"))
-        *token = skip(*token, TOKEN_OP, ">>"); 
+    {
+        *token = skip(*token, TOKEN_OP, ">>");
+        //add_redir_out
+    } 
     else 
         printf("parsing error : '>' or '>>'\n");
     node = word(token);

@@ -44,10 +44,21 @@ void free_node(t_node *node)
     free_node(node->rhs);
     free_node(node->next);
     free_node(node->cmds);
-    free_node(node->redir_in);
-    free_node(node->redir_out);
+    //free_node(node->redir_in);
+    //free_node(node->redir_out);
     free(node->str);
+    free_redirection(node->redir_in);
+    free_redirection(node->redir_out);
     free(node);
+}
+
+void free_redirection(t_redir *redirection)
+{
+    if (!redirection)
+        return ;
+    free_redirection(redirection->next);
+    //free_redir_in();
+    free(redirection);
 }
 
 t_node *new_node_pipe(t_node *lhs, t_node *rhs) 
@@ -96,10 +107,12 @@ void command_addback(t_node *command, t_node *word)
     last->next = word;
 }
 
-void redir_in_addback(t_node *command, t_node *rdr_in) 
+void redir_in_addback(t_node *command, t_redir *rdr_in, t_redir_kind kind) 
 {
-    t_node *last;
+    t_redir *last;
 
+    last = ft_calloc(1, sizeof(t_redir));
+    last->kind = kind;
     if (command->redir_in == NULL)
     {
         command->redir_in = rdr_in;
@@ -111,6 +124,24 @@ void redir_in_addback(t_node *command, t_node *rdr_in)
     last->next = rdr_in;
 }
 
+void redir_out_addback(t_node *command, t_redir *rdr_out, t_redir_kind kind) 
+{
+    t_redir *last;
+
+    last = ft_calloc(1, sizeof(t_redir));
+    last->kind = kind;
+    if (command->redir_out == NULL)
+    {
+        command->redir_out = rdr_out;
+        return ;
+    }
+    last = command->redir_out;
+    while (last->next != NULL) 
+        last = last->next;
+    last->next = rdr_out;
+}
+
+/* version 08/18
 void redir_out_addback(t_node *command, t_node *rdr_out) 
 {
     t_node *last;
@@ -124,6 +155,8 @@ void redir_out_addback(t_node *command, t_node *rdr_out)
         last = last->next;
     last->next = rdr_out;
 }
+*/
+
 
 void node_init(t_node *node)// provisoire
 {
@@ -133,4 +166,24 @@ void node_init(t_node *node)// provisoire
     node->cmds = NULL;
     node->redir_in = NULL;
     node->redir_out = NULL;   
+}
+
+void	_add_redir_in(t_node *node, t_redir_kind kind, char *str, long len)
+{
+	t_redir	*redir;
+	t_redir	*now;
+
+	redir = ft_calloc(1, sizeof(t_redir));
+	redir->fd = -1;
+	redir->str = ft_strndup(str, len);
+	redir->kind = kind;
+	if (!node->redir_in)
+		node->redir_in = redir;
+	else
+	{
+		now = node->redir_in;
+		while (now->next)
+			now = now->next;
+		now->next = redir;
+	}
 }

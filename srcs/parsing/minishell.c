@@ -35,11 +35,10 @@ int main(int argc, char **argv, char **envp)
     command_line = NULL;
     if (argc && argv)
     {
-        shell = init_all();
-        shell->envp = get_paths(shell, envp);
-        if (!shell->envp)
-            printf("NULL ENVP\n");
-        fill_data(shell, argv);
+        //shell = init_all();
+        //shell->envp = get_paths(shell, envp);
+        shell = create_shell(envp, argv);
+
         while (1)
         {
             line = readline(">team_90's ");
