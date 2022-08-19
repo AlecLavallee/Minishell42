@@ -40,15 +40,23 @@ void free_node(t_node *node)
 {
     if (node == NULL)
         return;
-    free_node(node->lhs);
-    free_node(node->rhs);
-    free_node(node->next);
-    free_node(node->cmds);
+    if (node->kind != COMMAND)
+    {
+        free_node(node->lhs);
+        free_node(node->rhs);
+    }
+    //free_node(node->next);
+    //free_node(node->cmds);
     //free_node(node->redir_in);
     //free_node(node->redir_out);
-    free(node->str);
-    free_redirection(node->redir_in);
-    free_redirection(node->redir_out);
+    //free(node->str);
+    else
+    {
+        free_word(node->cmds->word);
+        free_redirection(node->cmds->redir_in);
+        free_redirection(node->cmds->redir_out);
+        free(node->cmds);
+    }
     free(node);
 }
 
@@ -57,19 +65,37 @@ void free_redirection(t_redir *redirection)
     if (!redirection)
         return ;
     free_redirection(redirection->next);
+    free(redirection->str);
     //free_redir_in();
     free(redirection);
 }
 
-t_node *new_node_pipe(t_node *lhs, t_node *rhs) 
+void free_word(t_word *word)
+{
+    if (!word)
+        return ;
+    free_word(word->next);
+    free(word->str);
+    free(word);
+} 
+
+t_node *new_node_pipe(t_node *cmd_node) 
 {
     t_node *node;
     
     node = ft_calloc(1, sizeof(t_node));
     node->kind = PIPE;
-    node->lhs = lhs; // left handle 
-    node->rhs = rhs; // right handle
+    node->rhs = cmd_node; // right handle
     return (node);
+}
+
+t_node	*add_node_pipe(t_node *node, t_node *cmd_node)
+{
+	t_node	*new;
+
+	new = new_node_pipe(cmd_node);
+	new->lhs = node;
+	return (new);
 }
 
 t_node *new_node_command(void)
@@ -77,6 +103,7 @@ t_node *new_node_command(void)
     t_node *node;
 
     node = ft_calloc(1, sizeof(t_node));
+    node->cmds = ft_calloc(1, sizeof(t_cmd));
     node->kind = COMMAND; 
     return (node);   
 }
@@ -92,27 +119,31 @@ t_node *new_node_word(t_token *token)
     return (node);
 }
 
-void command_addback(t_node *command, t_node *word) 
+void word_addback(t_cmd *command, char *str, long len) 
 {
-    t_node *last;
+    t_word *word;
+    t_word *last;
     
-    if (command->cmds == NULL) 
+    word = ft_calloc(1, sizeof(t_word));
+    word->str = ft_strndup(str, len);
+    if (command->word == NULL) 
     {
-        command->cmds = word;
+        command->word = word;
         return ;
     }
-    last = command->cmds;
+    last = command->word;
     while (last->next != NULL) 
         last = last->next;
     last->next = word;
 }
 
-void redir_in_addback(t_node *command, t_redir *rdr_in, t_redir_kind kind) 
+void redir_in_addback(t_cmd *command, t_redir *rdr_in, t_redir_kind kind, char *str, int len) 
 {
     t_redir *last;
 
     last = ft_calloc(1, sizeof(t_redir));
     last->kind = kind;
+    last->str = ft_strndup(str, len);
     if (command->redir_in == NULL)
     {
         command->redir_in = rdr_in;
@@ -124,12 +155,13 @@ void redir_in_addback(t_node *command, t_redir *rdr_in, t_redir_kind kind)
     last->next = rdr_in;
 }
 
-void redir_out_addback(t_node *command, t_redir *rdr_out, t_redir_kind kind) 
+void redir_out_addback(t_cmd *command, t_redir *rdr_out, t_redir_kind kind, char *str, int len) 
 {
     t_redir *last;
 
     last = ft_calloc(1, sizeof(t_redir));
     last->kind = kind;
+    last->str = ft_strndup(str, len);
     if (command->redir_out == NULL)
     {
         command->redir_out = rdr_out;

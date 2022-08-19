@@ -23,7 +23,7 @@ gcc minishell.h parsing/lexer.c parsing/outil_lexer.c parsing/minishell.c parsin
 */
 
 
-//int main(int argc, char **argv, char **envp)
+//int main(int argc, char **argv)
 int main(int argc, char **argv, char **envp)
 {
     char *line;
@@ -33,7 +33,7 @@ int main(int argc, char **argv, char **envp)
 
     shell = NULL;
     command_line = NULL;
-    if (argc && argv)
+    if (argc && argv && envp)
     {
         //shell = init_all();
         //shell->envp = get_paths(shell, envp);

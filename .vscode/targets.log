@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Thu Aug 18 17:07:41 2022
+# Make data base, printed on Fri Aug 19 11:58:13 2022
 
 # Variables
 
@@ -49,7 +49,7 @@ VSCODE_NLS_CONFIG = {"locale":"ja","availableLanguages":{"*":"ja"},"_languagePac
 # environment
 _ = /usr/share/code/code
 # makefile (from 'Makefile', line 44)
-CFLAGS = -Wall -Wextra -Werror -g3 
+CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address -fsanitize=leak
 # environment
 JOURNAL_STREAM = 8:52507
 # environment
@@ -198,7 +198,6 @@ MFLAGS = -pqrR
 MAIL = tj@student.42.fr
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
- 
 # environment
 GDK_BACKEND = x11
 # makefile (from 'Makefile', line 38)
@@ -265,7 +264,7 @@ VSCODE_PID = 103273
 # Not a target:
 srcs/parsing/outil_lexer.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-18 17:06:37.909360224
+#  Last modified 2022-08-19 11:57:55.037828189
 #  File has been updated.
 #  Successfully updated.
 
@@ -278,9 +277,10 @@ all: minishell
 #  Successfully updated.
 
 # Not a target:
+ 
 srcs/parsing/quoting.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-18 17:06:38.033357141
+#  Last modified 2022-08-19 11:57:55.129825902
 #  File has been updated.
 #  Successfully updated.
 
@@ -292,34 +292,34 @@ srcs/parsing/quoting.o:
 # Not a target:
 libft/:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-18 17:06:41.569269207
+#  Last modified 2022-08-19 11:57:58.293747219
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-18 17:06:31.097529626
+#  Last modified 2022-08-19 11:57:51.285921494
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 srcs/parsing/outil.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-18 17:06:38.433347193
+#  Last modified 2022-08-19 11:57:55.549815457
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 srcs/parsing/minishell.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-18 17:06:37.489370669
+#  Last modified 2022-08-19 11:57:54.557840126
 #  File has been updated.
 #  Successfully updated.
 
 minishell: srcs/parsing/minishell.o srcs/parsing/outil_signal.o srcs/parsing/error.o srcs/parsing/outil_lexer.o srcs/parsing/quoting.o srcs/parsing/lexer.o srcs/parsing/get_command_line.o srcs/parsing/split_token.o srcs/parsing/outil.o srcs/expension/expension.o srcs/parsing/parser.o srcs/parsing/outil_parser.o srcs/alelaval/get_env.o srcs/shell/create_shell.o libft/
 #  Implicit rule search has not been done.
-#  Last modified 2022-08-18 17:06:41.66926672
+#  Last modified 2022-08-19 11:57:58.421744036
 #  File has been updated.
 #  Successfully updated.
 #  recipe to execute (from 'Makefile', line 50):
@@ -347,7 +347,7 @@ fclean: clean
 # Not a target:
 srcs/parsing/parser.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-18 17:06:38.617342618
+#  Last modified 2022-08-19 11:57:55.709811478
 #  File has been updated.
 #  Successfully updated.
 
@@ -360,7 +360,7 @@ srcs/parsing/parser.o:
 # Not a target:
 srcs/expension/expension.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-18 17:06:38.465346398
+#  Last modified 2022-08-19 11:57:55.589814462
 #  File has been updated.
 #  Successfully updated.
 
@@ -382,56 +382,56 @@ clean:
 # Not a target:
 srcs/alelaval/get_env.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-18 17:06:38.893335754
+#  Last modified 2022-08-19 11:57:55.965805112
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 srcs/parsing/error.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-18 17:06:37.789363208
+#  Last modified 2022-08-19 11:57:54.88583197
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 srcs/parsing/lexer.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-18 17:06:38.137354554
+#  Last modified 2022-08-19 11:57:55.225823514
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 srcs/parsing/get_command_line.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-18 17:06:38.237352068
+#  Last modified 2022-08-19 11:57:55.333820828
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 srcs/parsing/outil_parser.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-18 17:06:38.741339534
+#  Last modified 2022-08-19 11:57:55.841808196
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 srcs/parsing/outil_signal.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-18 17:06:37.64936669
+#  Last modified 2022-08-19 11:57:54.749835351
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 srcs/parsing/split_token.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-18 17:06:38.341349481
+#  Last modified 2022-08-19 11:57:55.445818043
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 srcs/shell/create_shell.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-18 17:06:39.08533098
+#  Last modified 2022-08-19 11:57:56.069802526
 #  File has been updated.
 #  Successfully updated.
 
@@ -449,6 +449,6 @@ srcs/shell/create_shell.o:
 # strcache performance: lookups = 58 / hit rate = 36%
 # hash-table stats:
 # Load=37/8192=0%, Rehash=0, Collisions=1/58=2%
-# Finished Make data base on Thu Aug 18 17:07:41 2022
+# Finished Make data base on Fri Aug 19 11:58:13 2022
 
  

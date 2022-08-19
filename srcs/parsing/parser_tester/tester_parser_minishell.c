@@ -16,7 +16,7 @@ void test(void)
     t_command *token;
     t_node *node;
 
-    char *str = "echo hello | file ";
+    char *str = "echo hello > file ";
     token = lexer(str);
     node = parser(token->first_token);
     if (node == NULL)
@@ -45,32 +45,32 @@ void debug_parser_recursive(t_node *node)
     if (node->kind == COMMAND) 
     {
         printf("cmds   :");
-        t_node *cmd = node->cmds;
+        t_node *cmd = node;
         while (cmd) 
         {
-            printf("'%s' ", cmd->str);
-            cmd = cmd->next;
+            printf("'%s' ", cmd->cmds->word->str);
+            cmd = node->next;
         }
         printf("\n");
         if (node->redir_in)
         {
             printf("redir_in : ");
-            t_redir *redir_in = node->redir_in;
-            while (redir_in) 
+            t_node *rdr_in = node;
+            while (rdr_in) 
             {
-                printf("'%s' ", redir_in->str);
-                redir_in = redir_in->next;
+                printf("'%s' ", rdr_in->redir_in->str);
+                rdr_in = node->next;
             }
             printf("\n");
         }
         if (node->redir_out) 
         {
             printf("redir_out: ");
-            t_redir *redir_out = node->redir_out;
-            while (redir_out) 
+            t_node *rdr_out = node;
+            while (rdr_out) 
             {
-                printf("'%s' ", redir_out->str);
-                redir_out = redir_out->next;
+                printf("'%s' ", rdr_out->redir_out->str);
+                rdr_out = redir_out->next;
             }
             printf("\n");
         }

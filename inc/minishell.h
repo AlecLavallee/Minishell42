@@ -86,10 +86,24 @@ typedef struct s_node {
   int len;        // longuer_token
   struct s_node *lhs; //left handle
   struct s_node *rhs; // right handle
-  struct s_node *cmds;
+  struct s_cmd *cmds;
   t_redir *redir_in;
   t_redir *redir_out;
 }t_node;
+
+typedef struct s_word
+{
+	struct s_word *next;
+	char *str;
+} t_word;
+
+
+typedef struct s_cmd
+{
+	t_redir *redir_in;
+	t_redir *redir_out;
+	t_word *word;
+} t_cmd;
 
 
 
@@ -111,6 +125,13 @@ typedef struct s_command
 	struct s_command	*next;
 }		t_command;
 
+typedef struct s_env
+{
+	char *name;
+	char *body;
+	struct s_env *next;
+} t_env;
+
 
 /*
 ** alelaval's stducture
@@ -123,13 +144,6 @@ typedef struct s_comm
 	char	**files;
 	struct s_comm	*next;
 }			t_comm;
-
-typedef struct s_env
-{
-	char *name;
-	char *body;
-	struct s_env *next;
-} t_env;
 
 /*
 **alelaval's structure
@@ -188,8 +202,8 @@ t_node *stmt(t_token **token);
 t_node *parser(t_token *token);
 t_node *pipe_cmd(t_token **token);
 t_node *command(t_token **token);
-t_node *redir_in(t_token **token);
-t_node *redir_out(t_token **token);
+//void redir_in(t_token **token, t_node *node);
+//void redir_out(t_token **token, t_node *node);
 t_node *word(t_token **token);
 void node_init(t_node *node); // provisoire
 
@@ -201,18 +215,20 @@ char remove_quote(char *str);
 //util_for_parser
 int consume(t_token *token, t_token_kind kind, char *str);
 t_token *skip(t_token *token, t_token_kind kind, char *str);
-t_node *new_node_pipe(t_node *lhs, t_node *rhs);
+t_node *new_node_pipe(t_node *cmd_node);
+t_node	*add_node_pipe(t_node *node, t_node *cmd_node);
 t_node *new_node_command(void);
 t_node *new_node_word(t_token *token);
-void command_addback(t_node *command, t_node *word);
-void redir_in_addback(t_node *command, t_redir *rdr_in, t_redir_kind kind);
-void redir_out_addback(t_node *command, t_redir *rer_out, t_redir_kind kind);
-void free_redirection(t_redir *redir_in);
+void word_addback(t_cmd *command, char *str, long len);
+void redir_in_addback(t_cmd *command, t_redir *rdr_in, t_redir_kind kind, char *str, int len);
+void redir_out_addback(t_cmd *command, t_redir *rer_out, t_redir_kind kind, char *str, int len);
 
 //free
 int    free_command_line(t_command *command_line);
 void    free_token(t_command **command_line);
 void free_node(t_node *node);
+void free_word(t_word *word);
+void free_redirection(t_redir *redir_in);
 
 //env
 t_shell *create_shell(char **envp, char **argv);
