@@ -137,40 +137,42 @@ void word_addback(t_cmd *command, char *str, long len)
     last->next = word;
 }
 
-void redir_in_addback(t_cmd *command, t_redir *rdr_in, t_redir_kind kind, char *str, int len) 
+void redir_in_addback(t_cmd *command, t_redir_kind kind, char *str, int len) 
 {
+    t_redir *rdr;
     t_redir *last;
 
-    last = ft_calloc(1, sizeof(t_redir));
-    last->kind = kind;
-    last->str = ft_strndup(str, len);
+    rdr = ft_calloc(1, sizeof(t_redir));
+    rdr->kind = kind;
+    rdr->str = ft_strndup(str, len);
     if (command->redir_in == NULL)
     {
-        command->redir_in = rdr_in;
+        command->redir_in = rdr;
         return ;
     }
     last = command->redir_in;
     while (last->next != NULL) 
         last = last->next;
-    last->next = rdr_in;
+    last->next = rdr;
 }
 
-void redir_out_addback(t_cmd *command, t_redir *rdr_out, t_redir_kind kind, char *str, int len) 
+void redir_out_addback(t_cmd *command, t_redir_kind kind, char *str, int len) 
 {
+    t_redir *rdr;
     t_redir *last;
 
-    last = ft_calloc(1, sizeof(t_redir));
-    last->kind = kind;
-    last->str = ft_strndup(str, len);
+    rdr = ft_calloc(1, sizeof(t_redir));
+    rdr->kind = kind;
+    rdr->str = ft_strndup(str, len);
     if (command->redir_out == NULL)
     {
-        command->redir_out = rdr_out;
+        command->redir_out = rdr;
         return ;
     }
     last = command->redir_out;
     while (last->next != NULL) 
         last = last->next;
-    last->next = rdr_out;
+    last->next = rdr;
 }
 
 /* version 08/18

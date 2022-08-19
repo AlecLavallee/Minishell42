@@ -220,8 +220,8 @@ t_node	*add_node_pipe(t_node *node, t_node *cmd_node);
 t_node *new_node_command(void);
 t_node *new_node_word(t_token *token);
 void word_addback(t_cmd *command, char *str, long len);
-void redir_in_addback(t_cmd *command, t_redir *rdr_in, t_redir_kind kind, char *str, int len);
-void redir_out_addback(t_cmd *command, t_redir *rer_out, t_redir_kind kind, char *str, int len);
+void redir_in_addback(t_cmd *command, t_redir_kind kind, char *str, int len);
+void redir_out_addback(t_cmd *command, t_redir_kind kind, char *str, int len);
 
 //free
 int    free_command_line(t_command *command_line);

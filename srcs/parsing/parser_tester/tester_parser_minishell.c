@@ -16,7 +16,7 @@ void test(void)
     t_command *token;
     t_node *node;
 
-    char *str = "echo hello > file ";
+    char *str = "ls -l | cat << file";
     token = lexer(str);
     node = parser(token->first_token);
     if (node == NULL)
@@ -37,43 +37,53 @@ void debug_parser_recursive(t_node *node)
         if (node->lhs != NULL) 
         {
             debug_parser_recursive(node->lhs);
-            printf("---Pipe---\n");
+            printf("---PIPE---\n");
         }
         debug_parser_recursive(node->rhs);
     }
 
     if (node->kind == COMMAND) 
     {
-        printf("cmds   :");
-        t_node *cmd = node;
-        while (cmd) 
-        {
-            printf("'%s' ", cmd->cmds->word->str);
-            cmd = node->next;
-        }
-        printf("\n");
-        if (node->redir_in)
-        {
-            printf("redir_in : ");
-            t_node *rdr_in = node;
-            while (rdr_in) 
+            if (node->cmds->word) 
             {
-                printf("'%s' ", rdr_in->redir_in->str);
-                rdr_in = node->next;
+                printf("COMMAND   :");
+                t_word *word = node->cmds->word;
+                while (word)
+                {
+                    printf("'%s' ", word->str);
+                    word = word->next;
+                }
             }
             printf("\n");
-        }
-        if (node->redir_out) 
-        {
-            printf("redir_out: ");
-            t_node *rdr_out = node;
-            while (rdr_out) 
+            
+            if (node->cmds->redir_in)
             {
-                printf("'%s' ", rdr_out->redir_out->str);
-                rdr_out = redir_out->next;
+                if (node->cmds->redir_in->kind == REDIR_IN)
+                    printf("REDIR_IN : ");
+                else
+                    printf("HEREDOC : ");
+                t_redir *rdr_in = node->cmds->redir_in;
+                while (rdr_in) 
+                {
+                    printf("'%s' ", rdr_in->str);
+                    rdr_in = rdr_in->next;
+                }
+                printf("\n");
             }
-            printf("\n");
-        }
+            if (node->cmds->redir_out) 
+            {
+                if (node->cmds->redir_out->kind == REDIR_OUT) 
+                    printf("REDIR_OUT: ");
+                else
+                    printf("REDIR_APPRND : ");
+                t_redir *rdr_out = node->cmds->redir_out;
+                while (rdr_out) 
+                {
+                    printf("'%s' ", rdr_out->str);
+                    rdr_out = rdr_out->next;
+                }
+                printf("\n");
+            }
     }
 }
 /*

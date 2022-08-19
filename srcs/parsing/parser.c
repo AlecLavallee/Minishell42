@@ -109,12 +109,12 @@ void redir_in(t_token **token, t_node *node)
     if (!consume(*token, TOKEN_OP, "<"))
     {
         *token = skip(*token, TOKEN_OP, "<");
-        redir_in_addback(node->cmds, node->redir_in, REDIR_IN, (*token)->string, (*token)->len);
+        redir_in_addback(node->cmds, REDIR_IN, (*token)->string, (*token)->len);
     }
     else if (!consume(*token, TOKEN_OP, "<<"))
     {
         *token = skip(*token, TOKEN_OP, "<<");
-        redir_in_addback(node->cmds, node->redir_out, REDIR_HEREDOC, (*token)->string, (*token)->len);
+        redir_in_addback(node->cmds, REDIR_HEREDOC, (*token)->string, (*token)->len);
     } 
     else 
         printf("parsing error : '<' or '<<'\n");
@@ -130,12 +130,12 @@ void redir_out(t_token **token, t_node *node)
     if (!consume(*token, TOKEN_OP, ">"))
     {
         *token = skip(*token, TOKEN_OP, ">");
-        redir_out_addback(node->cmds, node->redir_out, REDIR_OUT, (*token)->string, (*token)->len);
+        redir_out_addback(node->cmds, REDIR_OUT, (*token)->string, (*token)->len);
     }
     else if (!consume(*token, TOKEN_OP, ">>"))
     {
         *token = skip(*token, TOKEN_OP, ">>");
-        redir_out_addback(node->cmds, node->redir_out, REDIR_APPEND, (*token)->string, (*token)->len);
+        redir_out_addback(node->cmds, REDIR_APPEND, (*token)->string, (*token)->len);
     } 
     else 
         printf("parsing error : '>' or '>>'\n");
