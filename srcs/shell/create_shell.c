@@ -36,7 +36,7 @@ char	*create_env_name(char *str)
 	if (eq == NULL)
 		name = ft_strdup(str);
 	else
-		name = ft_strndup(str, eq - str); //977
+		name = ft_strndup(str, eq - str); 
 	return (name);
 }
 
@@ -48,7 +48,7 @@ char	*create_env_body(char *str)
 	eq = ft_strchr(str, '=');
 	if (eq == NULL)
 		return (NULL);
-	body = ft_strdup(eq + 1);//2820
+	body = ft_strdup(eq + 1);
 	return (body);
 }
 
@@ -57,7 +57,7 @@ t_env	*env_addback(t_env *env, char *name, char *body)
 	t_env	*now;
 	t_env	*new;
 
-	new = ft_calloc(1, sizeof(t_env));//24 //1728
+	new = ft_calloc(1, sizeof(t_env));
 	new->name = name;
 	new->body = body;
 	if (env == NULL)

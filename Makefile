@@ -22,12 +22,19 @@ SRCS	=	./srcs/parsing/minishell.c	\
 			./srcs/parsing/get_command_line.c \
 			./srcs/parsing/split_token.c 	\
 			./srcs/parsing/outil.c			\
-			./srcs/expension/expension.c		\
 			./srcs/parsing/parser.c			\
 			./srcs/parsing/outil_parser.c	\
 			./srcs/alelaval/get_env.c		\
 			./srcs/shell/create_shell.c		\
-
+			./srcs/expansion/expansion.c		\
+			./srcs/expansion/variables.c		\
+			./srcs/expansion/outil_expension.c		\
+			./srcs/expansion/outil_variables.c		\
+			./srcs/expansion/outil_variables_2.c		\
+			./srcs/expansion/split_string.c		\
+			./srcs/expansion/outil_split.c		\
+			./srcs/expansion/remove_quote.c		\
+			./srcs/expansion/outil_remove_quote.c		\
 
 OBJS	=	$(SRCS:.c=.o)
 

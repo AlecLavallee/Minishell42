@@ -161,7 +161,11 @@ typedef struct s_shell
 	char		**envp;
 	char		**paths;
 	t_env		*env; // ajoute
+	int			exit_status; //ajoute
 }				t_shell;
+
+//variable globale
+t_shell *global_shell;
 
 extern int valeur_exit; 
 void    signal_input(int signal);
@@ -207,10 +211,34 @@ t_node *command(t_token **token);
 t_node *word(t_token **token);
 void node_init(t_node *node); // provisoire
 
-//expander
+//expension
+void	expander(t_node *node);
+void	expand_var(t_node *node);
+void	expand_var_in_word(t_word *word);
+void	expand_var_in_redir(t_redir *redir);
+char	*expand_var_in_str(char *str);
+long	at_doller_mark(char *str, char **new, long i);
+void	split_space(t_node *node);
+t_word	*_split_space_in_word(t_word *word);
+t_word	*_create_splited_words(char *str);
+long	_get_word_len_to_space(char *str);
 t_node expension(t_node *node);
-char remove_quote(char *str);
+char	*remove_quote_string(char *str);
+void remove_quote_word(t_word *word);
+void    remove_quote_redir(t_redir *redir);
+void	remove_quote_heredoc(t_redir *redir);
+void remove_quote(t_node *node);
 
+//util for expansion
+char	*add_char(char *str, char c);
+char	*ft_strjoin_and_free(char *s1, int i1, char *s2, int i2);
+char	*get_env_body(char *name);
+char	*_get_var_name(char *str);
+int	is_var_name_char(char c);
+int	is_var_name_char_1st(char c);
+char	*ft_str_add_char(char *str, char c);
+void	word_add_back_for_split(t_word *word, char *str);
+t_word	*word_last(t_word *word);
 
 //util_for_parser
 int consume(t_token *token, t_token_kind kind, char *str);

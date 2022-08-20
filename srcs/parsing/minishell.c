@@ -29,15 +29,15 @@ int main(int argc, char **argv, char **envp)
     char *line;
     t_command *command_line;
     t_node *node;
-    t_shell *shell;
+    //t_shell *shell;
 
-    shell = NULL;
+    //shell = NULL;
     command_line = NULL;
     if (argc && argv && envp)
     {
         //shell = init_all();
         //shell->envp = get_paths(shell, envp);
-        shell = create_shell(envp, argv);
+        global_shell = create_shell(envp, argv);
 
         while (1)
         {
@@ -55,6 +55,7 @@ int main(int argc, char **argv, char **envp)
                 ft_error();
             command_line = lexer(line);
             node = parser(command_line->first_token);
+            expand_var(node);
                 printf("%s\n", line);
             free(line);
         }
@@ -62,8 +63,8 @@ int main(int argc, char **argv, char **envp)
     printf("exit\n");
     free_end(command_line, line);
     free_node(node);
-    exit_shell(shell, 0);
-    return (valeur_exit);
+    exit_shell(global_shell, 0);
+    return (global_shell->exit_status);
 }
 
 void	free_end(t_command *command_line, char *str)
