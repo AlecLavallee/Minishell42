@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../inc/minishell.h"
+#include "../inc/minishell.h"
 
 int valeur_exit;
 /*
@@ -38,14 +38,13 @@ int main(int argc, char **argv, char **envp)
         //shell = init_all();
         //shell->envp = get_paths(shell, envp);
         global_shell = create_shell(envp, argv);
-
+        global_shell->exit_status = 0;
+        signal_init();
         while (1)
         {
             line = readline(">team_90's ");
             add_history(line);
-            signal(SIGQUIT, SIG_IGN);
-            if (signal(SIGINT, signal_input) == SIG_ERR)
-                exit(1);
+            signal_init();
             if (line == NULL) 
             { 
                 free(line);

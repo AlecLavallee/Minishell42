@@ -1,5 +1,11 @@
 make --dry-run --keep-going --print-directory
 make: Entering directory '/home/tj/Documents/Minishell42'
-make: 'minishell' is up to date.
+gcc -Wall -Wextra -Werror -g3 -fsanitize=address -fsanitize=leak -I./inc/ -I./libft/ -c srcs/signal/signal_init.c -o srcs/signal/signal_init.o
+ 
+make -C ./libft/
+ar rcs ./libft/libft.a ./srcs/minishell.o ./srcs/signal/signal_init.o ./srcs/parsing/error.o ./srcs/parsing/outil_lexer.o ./srcs/parsing/quoting.o ./srcs/parsing/lexer.o ./srcs/parsing/get_command_line.o ./srcs/parsing/split_token.o ./srcs/parsing/outil.o ./srcs/parsing/parser.o ./srcs/parsing/outil_parser.o ./srcs/alelaval/get_env.o ./srcs/shell/create_shell.o ./srcs/expansion/expansion.o ./srcs/expansion/variables.o ./srcs/expansion/outil_expension.o ./srcs/expansion/outil_variables.o ./srcs/expansion/outil_variables_2.o ./srcs/expansion/split_string.o ./srcs/expansion/outil_split.o ./srcs/expansion/remove_quote.o ./srcs/expansion/outil_remove_quote.o
+ranlib ./libft/libft.a
+ 
+gcc -Wall -Wextra -Werror -g3 -fsanitize=address -fsanitize=leak ./srcs/minishell.o ./srcs/signal/signal_init.o ./srcs/parsing/error.o ./srcs/parsing/outil_lexer.o ./srcs/parsing/quoting.o ./srcs/parsing/lexer.o ./srcs/parsing/get_command_line.o ./srcs/parsing/split_token.o ./srcs/parsing/outil.o ./srcs/parsing/parser.o ./srcs/parsing/outil_parser.o ./srcs/alelaval/get_env.o ./srcs/shell/create_shell.o ./srcs/expansion/expansion.o ./srcs/expansion/variables.o ./srcs/expansion/outil_expension.o ./srcs/expansion/outil_variables.o ./srcs/expansion/outil_variables_2.o ./srcs/expansion/split_string.o ./srcs/expansion/outil_split.o ./srcs/expansion/remove_quote.o ./srcs/expansion/outil_remove_quote.o ./libft/libft.a -lreadline -o minishell
 make: Leaving directory '/home/tj/Documents/Minishell42'
  

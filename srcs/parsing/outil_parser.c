@@ -107,7 +107,7 @@ t_node *new_node_command(void)
     node->kind = COMMAND; 
     return (node);   
 }
-
+/*
 t_node *new_node_word(t_token *token) 
 {
     t_node *node;
@@ -118,7 +118,7 @@ t_node *new_node_word(t_token *token)
     node->str = ft_strncpy(node->str, token->string, token->len);
     return (node);
 }
-
+*/
 void word_addback(t_cmd *command, char *str, long len) 
 {
     t_word *word;

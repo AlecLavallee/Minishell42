@@ -37,7 +37,6 @@
 typedef enum{
     DEFAULT, //default 0
     TOKEN_ARGUMENT, // word 1
-	//TOKEN_BUILTIN,
 	TOKEN_PIPE, // | 
 	TOKEN_OP, // operands
 	TOKEN_EOF, // end of string
@@ -45,20 +44,10 @@ typedef enum{
 
 typedef enum
 {
-    ARGUMENT, // word 0
-    FILE_IN, // < 1
-	FILE_OUT, // > 2
-	OPEN_FILE, // < 3
-	EXIT_FILE, // > 4
-	FILE_OUT_SUR, // >> 5
- 	HEREDOC, // << 6
-	LIMITOR, //<< 7
-	EXIT_FILE_RET, // >> 8
-	BUILTIN, //builtin command = 9
-	COMMAND,//10
-	PIPE, // | 11
-	OP, // operands 12
-	NODE_EOF, // end of string 13
+	BUILTIN, 
+	COMMAND,// word, redir
+	PIPE, // | 
+	NODE_EOF, // end of string 
 } t_node_kind;
 
 typedef enum
@@ -104,7 +93,6 @@ typedef struct s_cmd
 	t_redir *redir_out;
 	t_word *word;
 } t_cmd;
-
 
 
 typedef struct s_token
@@ -160,28 +148,29 @@ typedef struct s_shell
 	t_comm		*cmds;
 	char		**envp;
 	char		**paths;
-	t_env		*env; // ajoute
-	int			exit_status; //ajoute
+	t_env		*env; // ajoute by mtsuji
+	int			exit_status; //ajoute by mtsuji
 }				t_shell;
 
 //variable globale
 t_shell *global_shell;
 
 extern int valeur_exit; 
+
+
+//signal
 void    signal_input(int signal);
+void    signal_init(void);
+
+//lexer
+t_command *lexer(char *str);
+int is_quote(char c, int quote);
 int quote_check(char *str);
 int simple_quote(char *str);
 int double_quote(char *str);
 int quoting(char *str);
 int first_word_is_pipe(char *str);
-
 void	ft_error(void);
-
-
-
-//lexer
-t_command *lexer(char *str);
-int is_quote(char c, int quote);
 
 //get_command_line
 t_command *get_command_line(char *str);
@@ -290,9 +279,6 @@ void	free_end(t_command **command_line, char *str);
 
 ** supprime
 void is_pipe(int *cur, char *str);
-
 */
-
-
 
 # endif

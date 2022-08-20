@@ -1,57 +1,97 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
-# GNU Make 4.2.1
-# Built for x86_64-pc-linux-gnu
-# Copyright (C) 1988-2016 Free Software Foundation, Inc.
-# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
-# This is free software: you are free to change and redistribute it.
-# There is NO WARRANTY, to the extent permitted by law.
+make: *** No rule to make target 'srcs/signal/signal_init.o', needed by 'minishell'.  Stop.
 
-# Make data base, printed on Fri Aug 19 11:58:13 2022
+# GNU Make 4.2.1
+ 
+# Built for x86_64-pc-linux-gnu
+ 
+# Copyright (C) 1988-2016 Free Software Foundation, Inc.
+ 
+# License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+ 
+# This is free software: you are free to change and redistribute it.
+ 
+# There is NO WARRANTY, to the extent permitted by law.
+ 
+
+ 
+# Make data base, printed on Sat Aug 20 19:48:54 2022
+ 
 
 # Variables
+ 
 
+ 
 # 'override' directive
+ 
 GNUMAKEFLAGS := 
+ 
 # automatic
+ 
 <D = $(patsubst %/,%,$(dir $<))
+ 
 # automatic
+ 
 ?F = $(notdir $?)
+ 
 # environment
+ 
 PAPERSIZE = a4
+ 
 # environment
+ 
 DESKTOP_SESSION = ubuntu
+ 
 # default
+ 
 .SHELLFLAGS := -c
+ 
 # environment
+ 
 XDG_SESSION_CLASS = user
+ 
 # environment
+ 
 XDG_SESSION_TYPE = x11
+ 
 # automatic
+ 
 ?D = $(patsubst %/,%,$(dir $?))
+ 
 # environment
+ 
 IM_CONFIG_PHASE = 1
+ 
 # automatic
+ 
 @D = $(patsubst %/,%,$(dir $@))
+ 
 # environment
+ 
 XAUTHORITY = /run/user/1000/gdm/Xauthority
+ 
 # environment
+ 
 GDMSESSION = ubuntu
+ 
 # environment
+ 
 XMODIFIERS = @im=ibus
+ 
 # makefile
 CURDIR := /home/tj/Documents/Minishell42
 # makefile
 SHELL = /bin/sh
-# makefile (from 'Makefile', line 42)
+# makefile (from 'Makefile', line 49)
 RM = rm -f
 # environment
-VSCODE_NLS_CONFIG = {"locale":"ja","availableLanguages":{"*":"ja"},"_languagePackId":"e6c586e25df759b7fd1d7a26b78d86d4.ja","_translationsConfigFile":"/home/tj/.config/Code/clp/e6c586e25df759b7fd1d7a26b78d86d4.ja/tcf.json","_cacheRoot":"/home/tj/.config/Code/clp/e6c586e25df759b7fd1d7a26b78d86d4.ja","_resolvedLanguagePackCoreLocation":"/home/tj/.config/Code/clp/e6c586e25df759b7fd1d7a26b78d86d4.ja/6d9b74a70ca9c7733b29f0456fd8195364076dda","_corruptedFile":"/home/tj/.config/Code/clp/e6c586e25df759b7fd1d7a26b78d86d4.ja/corrupted.info","_languagePackSupport":true}
+VSCODE_NLS_CONFIG = {"locale":"ja","availableLanguages":{"*":"ja"},"_languagePackId":"0eea3b1222777374459e015adf6fd29b.ja","_translationsConfigFile":"/home/tj/.config/Code/clp/0eea3b1222777374459e015adf6fd29b.ja/tcf.json","_cacheRoot":"/home/tj/.config/Code/clp/0eea3b1222777374459e015adf6fd29b.ja","_resolvedLanguagePackCoreLocation":"/home/tj/.config/Code/clp/0eea3b1222777374459e015adf6fd29b.ja/6d9b74a70ca9c7733b29f0456fd8195364076dda","_corruptedFile":"/home/tj/.config/Code/clp/0eea3b1222777374459e015adf6fd29b.ja/corrupted.info","_languagePackSupport":true}
 # environment
-_ = /usr/share/code/code
-# makefile (from 'Makefile', line 44)
+_ = /usr/bin/dbus-update-activation-environment
+# makefile (from 'Makefile', line 51)
 CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address -fsanitize=leak
 # environment
-JOURNAL_STREAM = 8:52507
+JOURNAL_STREAM = 8:50268
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # makefile (from 'Makefile', line 1)
@@ -68,10 +108,10 @@ MAKELEVEL := 0
 XDG_DATA_DIRS = /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
 # environment
 DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
-# makefile (from 'Makefile', line 32)
+# makefile (from 'Makefile', line 39)
 OBJS = $(SRCS:.c=.o)
 # environment
-MANAGERPID = 2030
+MANAGERPID = 1900
 # environment
 LC_NAME = fr_FR.UTF-8
 # environment
@@ -85,9 +125,7 @@ GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
 GJS_DEBUG_OUTPUT = stderr
 # environment
-LSCOLORS = Gxfxcxdxbxegedabagacad
-# environment
-SESSION_MANAGER = local/tj-MacBookPro:@/tmp/.ICE-unix/2250,unix/tj-MacBookPro:/tmp/.ICE-unix/2250
+SESSION_MANAGER = local/tj-MacBookPro:@/tmp/.ICE-unix/2116,unix/tj-MacBookPro:/tmp/.ICE-unix/2116
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -95,17 +133,15 @@ XDG_MENU_PREFIX = gnome-
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = 76bb8f7d37544cfda87ff2f21bab292f
+INVOCATION_ID = 6ea7e9fdb2204f1bbf9dd27f087f972b
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
-# environment
-LS_COLORS = 
 # environment
 XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 103273
+GIO_LAUNCHED_DESKTOP_FILE_PID = 2609
 # automatic
 %F = $(notdir $%)
 # environment
@@ -115,7 +151,7 @@ PWD = /home/tj/Documents/Minishell42
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 2213
+SSH_AGENT_PID = 2079
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -133,8 +169,6 @@ APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = true
 # automatic
 +F = $(notdir $+)
 # environment
-ZSH = /home/tj/.oh-my-zsh
-# environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # environment
 GNOME_DESKTOP_SESSION_ID = this-is-deprecated
@@ -149,12 +183,12 @@ MAKECMDGOALS := all
 # environment
 QT_IM_MODULE = ibus
 # makefile (from 'Makefile', line 16)
-SRCS = ./srcs/parsing/minishell.c ./srcs/parsing/outil_signal.c ./srcs/parsing/error.c ./srcs/parsing/outil_lexer.c ./srcs/parsing/quoting.c ./srcs/parsing/lexer.c ./srcs/parsing/get_command_line.c ./srcs/parsing/split_token.c ./srcs/parsing/outil.c ./srcs/expension/expension.c ./srcs/parsing/parser.c ./srcs/parsing/outil_parser.c ./srcs/alelaval/get_env.c ./srcs/shell/create_shell.c 
+SRCS = ./srcs/minishell.c ./srcs/signal/signal_init.c ./srcs/parsing/error.c ./srcs/parsing/outil_lexer.c ./srcs/parsing/quoting.c ./srcs/parsing/lexer.c ./srcs/parsing/get_command_line.c ./srcs/parsing/split_token.c ./srcs/parsing/outil.c ./srcs/parsing/parser.c ./srcs/parsing/outil_parser.c ./srcs/alelaval/get_env.c ./srcs/shell/create_shell.c ./srcs/expansion/expansion.c ./srcs/expansion/variables.c ./srcs/expansion/outil_expension.c ./srcs/expansion/outil_variables.c ./srcs/expansion/outil_variables_2.c ./srcs/expansion/split_string.c ./srcs/expansion/outil_split.c ./srcs/expansion/remove_quote.c ./srcs/expansion/outil_remove_quote.c 
 # environment
 SHLVL = 0
-# makefile (from 'Makefile', line 36)
+# makefile (from 'Makefile', line 43)
 LIBFT = ./libft/
-# makefile (from 'Makefile', line 40)
+# makefile (from 'Makefile', line 47)
 CC = gcc
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
@@ -170,16 +204,12 @@ LC_MONETARY = fr_FR.UTF-8
 XDG_CURRENT_DESKTOP = Unity
 # makefile (from 'Makefile', line 14)
 NAME = minishell
-# environment
-LESS = -R
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
 # environment
 LC_TELEPHONE = fr_FR.UTF-8
 # default
 MAKE_COMMAND := make
-# environment
-OLDPWD = /home/tj
 # default
 .VARIABLES := 
 # automatic
@@ -190,17 +220,17 @@ LANGUAGE = en_US:en
 VSCODE_IPC_HOOK = /run/user/1000/vscode-ad2a177a-1.70.1-main.sock
 # makefile
 MAKEFLAGS = pqrR
+ 
 # environment
+ 
 MFLAGS = -pqrR
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
-# environment
-MAIL = tj@student.42.fr
 # automatic
 +D = $(patsubst %/,%,$(dir $+))
 # environment
 GDK_BACKEND = x11
-# makefile (from 'Makefile', line 38)
+# makefile (from 'Makefile', line 45)
 LIBFT_A = ./libft/libft.a
 # environment
 LC_PAPER = fr_FR.UTF-8
@@ -215,10 +245,8 @@ LC_NUMERIC = fr_FR.UTF-8
 # environment
 LC_MEASUREMENT = fr_FR.UTF-8
 # environment
-PAGER = less
-# environment
 LC_ALL = C
-# makefile (from 'Makefile', line 34)
+# makefile (from 'Makefile', line 41)
 HEADER = ./inc/
 # environment
 GJS_DEBUG_TOPICS = JS ERROR;JS LOG
@@ -241,9 +269,9 @@ LC_ADDRESS = fr_FR.UTF-8
 # environment
 LANG = C
 # environment
-VSCODE_PID = 103273
+VSCODE_PID = 2609
 # variable set hash-table stats:
-# Load=116/1024=11%, Rehash=0, Collisions=19/146=13%
+# Load=109/1024=11%, Rehash=0, Collisions=19/139=14%
 
 # Pattern-specific Variable Values
 
@@ -262,27 +290,41 @@ VSCODE_PID = 103273
 # Files
 
 # Not a target:
+srcs/expansion/expansion.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
 srcs/parsing/outil_lexer.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-19 11:57:55.037828189
-#  File has been updated.
-#  Successfully updated.
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+srcs/expansion/remove_quote.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 all: minishell
 #  Phony target (prerequisite of .PHONY).
 #  Command line target.
 #  Implicit rule search has not been done.
 #  File does not exist.
-#  File has been updated.
-#  Successfully updated.
+#  File has not been updated.
 
 # Not a target:
- 
 srcs/parsing/quoting.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-19 11:57:55.129825902
-#  File has been updated.
-#  Successfully updated.
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+srcs/expansion/outil_expension.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 .PHONY: all clean fclean re
 #  Implicit rule search has not been done.
@@ -291,48 +333,50 @@ srcs/parsing/quoting.o:
 
 # Not a target:
 libft/:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-19 11:57:58.293747219
-#  File has been updated.
-#  Successfully updated.
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+srcs/expansion/outil_variables.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-19 11:57:51.285921494
+#  Last modified 2022-08-20 19:48:51.951362269
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
 srcs/parsing/outil.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-19 11:57:55.549815457
-#  File has been updated.
-#  Successfully updated.
-
-# Not a target:
-srcs/parsing/minishell.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-19 11:57:54.557840126
-#  File has been updated.
-#  Successfully updated.
-
-minishell: srcs/parsing/minishell.o srcs/parsing/outil_signal.o srcs/parsing/error.o srcs/parsing/outil_lexer.o srcs/parsing/quoting.o srcs/parsing/lexer.o srcs/parsing/get_command_line.o srcs/parsing/split_token.o srcs/parsing/outil.o srcs/expension/expension.o srcs/parsing/parser.o srcs/parsing/outil_parser.o srcs/alelaval/get_env.o srcs/shell/create_shell.o libft/
 #  Implicit rule search has not been done.
-#  Last modified 2022-08-19 11:57:58.421744036
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 50):
+#  Modification time never checked.
+#  File has not been updated.
+
+minishell: srcs/minishell.o srcs/signal/signal_init.o srcs/parsing/error.o srcs/parsing/outil_lexer.o srcs/parsing/quoting.o srcs/parsing/lexer.o srcs/parsing/get_command_line.o srcs/parsing/split_token.o srcs/parsing/outil.o srcs/parsing/parser.o srcs/parsing/outil_parser.o srcs/alelaval/get_env.o srcs/shell/create_shell.o srcs/expansion/expansion.o srcs/expansion/variables.o srcs/expansion/outil_expension.o srcs/expansion/outil_variables.o srcs/expansion/outil_variables_2.o srcs/expansion/split_string.o srcs/expansion/outil_split.o srcs/expansion/remove_quote.o srcs/expansion/outil_remove_quote.o libft/
+#  Implicit rule search has not been done.
+#  Last modified 2022-08-20 19:45:10.495368074
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 57):
 			@make -C $(LIBFT)
 			ar rcs $(LIBFT_A) $(OBJS)
 			ranlib $(LIBFT_A)
 			$(CC) $(CFLAGS) $(OBJS) $(LIBFT_A) -lreadline -o $(NAME)
 
+# Not a target:
+srcs/expansion/outil_split.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
 .c.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 47):
+#  recipe to execute (from 'Makefile', line 54):
 	$(CC) $(CFLAGS) -I$(HEADER) -I$(LIBFT) -c $< -o $(<:.c=.o)
 
 fclean: clean
@@ -340,16 +384,34 @@ fclean: clean
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 62):
+#  recipe to execute (from 'Makefile', line 69):
 		$(MAKE) fclean -C $(LIBFT)
 		$(RM) $(NAME)
 
 # Not a target:
+srcs/expansion/split_string.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
 srcs/parsing/parser.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+srcs/minishell.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-19 11:57:55.709811478
+#  Last modified 2022-08-20 19:45:05.835368196
 #  File has been updated.
 #  Successfully updated.
+
+# Not a target:
+srcs/expansion/outil_remove_quote.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 .DEFAULT:
@@ -358,11 +420,10 @@ srcs/parsing/parser.o:
 #  File has not been updated.
 
 # Not a target:
-srcs/expension/expension.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-19 11:57:55.589814462
-#  File has been updated.
-#  Successfully updated.
+srcs/expansion/outil_variables_2.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 re: fclean all
 #  Phony target (prerequisite of .PHONY).
@@ -375,80 +436,80 @@ clean:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 58):
+#  recipe to execute (from 'Makefile', line 65):
 		$(MAKE) clean -C $(LIBFT)
 		$(RM) $(OBJS)
 
 # Not a target:
 srcs/alelaval/get_env.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-19 11:57:55.965805112
-#  File has been updated.
-#  Successfully updated.
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 srcs/parsing/error.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-19 11:57:54.88583197
-#  File has been updated.
-#  Successfully updated.
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 srcs/parsing/lexer.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+srcs/signal/signal_init.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-19 11:57:55.225823514
-#  File has been updated.
-#  Successfully updated.
+#  File does not exist.
+#  File has not been updated.
 
 # Not a target:
 srcs/parsing/get_command_line.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-19 11:57:55.333820828
-#  File has been updated.
-#  Successfully updated.
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 srcs/parsing/outil_parser.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-19 11:57:55.841808196
-#  File has been updated.
-#  Successfully updated.
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
-srcs/parsing/outil_signal.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-19 11:57:54.749835351
-#  File has been updated.
-#  Successfully updated.
+srcs/expansion/variables.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 srcs/parsing/split_token.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-19 11:57:55.445818043
-#  File has been updated.
-#  Successfully updated.
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 srcs/shell/create_shell.o:
-#  Implicit rule search has been done.
-#  Last modified 2022-08-19 11:57:56.069802526
-#  File has been updated.
-#  Successfully updated.
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # files hash-table stats:
-# Load=25/1024=2%, Rehash=0, Collisions=0/59=0%
+# Load=33/1024=3%, Rehash=0, Collisions=0/75=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 37 / storage = 544 B / avg = 14 B
-# current buf: size = 8162 B / used = 544 B / count = 37 / avg = 14 B
+# strcache buffers: 1 (0) / strings = 45 / storage = 787 B / avg = 17 B
+ 
+# current buf: size = 8162 B / used = 787 B / count = 45 / avg = 17 B
+ 
 
-# strcache performance: lookups = 58 / hit rate = 36%
+# strcache performance: lookups = 66 / hit rate = 31%
 # hash-table stats:
-# Load=37/8192=0%, Rehash=0, Collisions=1/58=2%
-# Finished Make data base on Fri Aug 19 11:58:13 2022
+# Load=45/8192=1%, Rehash=0, Collisions=1/66=2%
+# Finished Make data base on Sat Aug 20 19:48:54 2022
 
  
