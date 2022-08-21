@@ -20,8 +20,10 @@ void	exec_builtin(t_node *node)
 
 	if (!ft_strncmp(command->word->str, "echo", ft_strlen(command->word->str)))
 		 global_shell->exit_status = echo(command->word);
-    if (!ft_strncmp(command->word->str, "env", ft_strlen(command->word->str)))
+    else if (!ft_strncmp(command->word->str, "env", ft_strlen(command->word->str)))
 		 global_shell->exit_status = env(command->word);
+	else if (!ft_strncmp(command->word->str, "pwd", ft_strlen(command->word->str)))
+		 global_shell->exit_status = pwd(command->word);
 	//if (!ft_strncmp(shell->cmds->args[0], "pwd", ft_strlen(shell->cmds->args[0])))
 	//	pwd();
     else

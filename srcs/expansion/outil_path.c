@@ -69,6 +69,7 @@ char	*sarch_pathname(char *str)
 	char	*pathname;
 	long	i;
 
+	pathname = NULL;
 	paths = ft_split(get_env_body("PATH"), ':');
 	if (paths == NULL)
 		return (ft_strdup(str));

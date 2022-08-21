@@ -42,6 +42,7 @@ SRCS	=	./srcs/main/minishell.c	\
 			./srcs/expansion/outil_path.c		\
 			./srcs/builtin/echo.c			\
 			./srcs/builtin/env.c			\
+			./srcs/builtin/pwd.c			\
 			./test_exec.c						\
 			./srcs/exec/exec.c				\
 			#./srcs/exec/exec_pipe.c			\
