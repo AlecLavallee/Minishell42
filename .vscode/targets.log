@@ -1,20 +1,12 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
-make: *** No rule to make target 'srcs/main/outil_main.o', needed by 'minishell'.  Stop.
-
 # GNU Make 4.2.1
- 
 # Built for x86_64-pc-linux-gnu
- 
 # Copyright (C) 1988-2016 Free Software Foundation, Inc.
- 
 # License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
- 
 # This is free software: you are free to change and redistribute it.
- 
 # There is NO WARRANTY, to the extent permitted by law.
- 
 
-# Make data base, printed on Sun Aug 21 11:37:41 2022
+# Make data base, printed on Sun Aug 21 13:24:51 2022
 
 # Variables
 
@@ -50,13 +42,13 @@ XMODIFIERS = @im=ibus
 CURDIR := /home/tj/Documents/Minishell42
 # makefile
 SHELL = /bin/sh
-# makefile (from 'Makefile', line 51)
+# makefile (from 'Makefile', line 53)
 RM = rm -f
 # environment
 VSCODE_NLS_CONFIG = {"locale":"ja","availableLanguages":{"*":"ja"},"_languagePackId":"0eea3b1222777374459e015adf6fd29b.ja","_translationsConfigFile":"/home/tj/.config/Code/clp/0eea3b1222777374459e015adf6fd29b.ja/tcf.json","_cacheRoot":"/home/tj/.config/Code/clp/0eea3b1222777374459e015adf6fd29b.ja","_resolvedLanguagePackCoreLocation":"/home/tj/.config/Code/clp/0eea3b1222777374459e015adf6fd29b.ja/6d9b74a70ca9c7733b29f0456fd8195364076dda","_corruptedFile":"/home/tj/.config/Code/clp/0eea3b1222777374459e015adf6fd29b.ja/corrupted.info","_languagePackSupport":true}
 # environment
 _ = /usr/bin/dbus-update-activation-environment
-# makefile (from 'Makefile', line 53)
+# makefile (from 'Makefile', line 55)
 CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address -fsanitize=leak
 # environment
 JOURNAL_STREAM = 8:50268
@@ -73,11 +65,10 @@ USERNAME = tj
 # environment
 MAKELEVEL := 0
 # environment
- 
 XDG_DATA_DIRS = /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
 # environment
 DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
-# makefile (from 'Makefile', line 41)
+# makefile (from 'Makefile', line 43)
 OBJS = $(SRCS:.c=.o)
 # environment
 MANAGERPID = 1900
@@ -144,7 +135,6 @@ GNOME_DESKTOP_SESSION_ID = this-is-deprecated
 # automatic
 ^D = $(patsubst %/,%,$(dir $^))
 # environment
- 
 LC_TIME = fr_FR.UTF-8
 # default
 MAKE = $(MAKE_COMMAND)
@@ -153,12 +143,12 @@ MAKECMDGOALS := all
 # environment
 QT_IM_MODULE = ibus
 # makefile (from 'Makefile', line 16)
-SRCS = ./srcs/main/minishell.c ./srcs/main/outil_main.c ./srcs/signal/signal_init.c ./srcs/signal/signal_exec.c ./srcs/parsing/error.c ./srcs/parsing/outil_lexer.c ./srcs/parsing/quoting.c ./srcs/parsing/lexer.c ./srcs/parsing/get_command_line.c ./srcs/parsing/split_token.c ./srcs/parsing/outil.c ./srcs/parsing/parser.c ./srcs/parsing/outil_parser.c ./srcs/alelaval/get_env.c ./srcs/shell/create_shell.c ./srcs/expansion/expansion.c ./srcs/expansion/variables.c ./srcs/expansion/outil_expension.c ./srcs/expansion/outil_variables.c ./srcs/expansion/outil_variables_2.c ./srcs/expansion/split_string.c ./srcs/expansion/outil_split.c ./srcs/expansion/remove_quote.c ./srcs/expansion/outil_remove_quote.c 
+SRCS = ./srcs/main/minishell.c ./srcs/main/outil_main.c ./srcs/signal/signal_init.c ./srcs/signal/signal_exec.c ./srcs/parsing/error.c ./srcs/parsing/outil_lexer.c ./srcs/parsing/quoting.c ./srcs/parsing/lexer.c ./srcs/parsing/get_command_line.c ./srcs/parsing/split_token.c ./srcs/parsing/outil.c ./srcs/parsing/parser.c ./srcs/parsing/outil_parser.c ./srcs/alelaval/get_env.c ./srcs/shell/create_shell.c ./srcs/expansion/expansion.c ./srcs/expansion/variables.c ./srcs/expansion/outil_expension.c ./srcs/expansion/outil_variables.c ./srcs/expansion/outil_variables_2.c ./srcs/expansion/split_string.c ./srcs/expansion/outil_split.c ./srcs/expansion/remove_quote.c ./srcs/expansion/outil_remove_quote.c ./srcs/expansion/path_generator.c ./srcs/expansion/outil_path.c 
 # environment
 SHLVL = 0
-# makefile (from 'Makefile', line 45)
+# makefile (from 'Makefile', line 47)
 LIBFT = ./libft/
-# makefile (from 'Makefile', line 49)
+# makefile (from 'Makefile', line 51)
 CC = gcc
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
@@ -198,7 +188,7 @@ MFLAGS = -pqrR
 +D = $(patsubst %/,%,$(dir $+))
 # environment
 GDK_BACKEND = x11
-# makefile (from 'Makefile', line 47)
+# makefile (from 'Makefile', line 49)
 LIBFT_A = ./libft/libft.a
 # environment
 LC_PAPER = fr_FR.UTF-8
@@ -214,8 +204,7 @@ LC_NUMERIC = fr_FR.UTF-8
 LC_MEASUREMENT = fr_FR.UTF-8
 # environment
 LC_ALL = C
- 
-# makefile (from 'Makefile', line 43)
+# makefile (from 'Makefile', line 45)
 HEADER = ./inc/
 # environment
 GJS_DEBUG_TOPICS = JS ERROR;JS LOG
@@ -248,9 +237,9 @@ VSCODE_PID = 2609
 
 # Directories
 
-# . (device 2050, inode 14423165): 12 files, no impossibilities.
+# . (device 2050, inode 14423165): 11 files, no impossibilities.
 
-# 12 files, no impossibilities in 1 directories.
+# 11 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -287,10 +276,12 @@ all: minishell
 srcs/parsing/quoting.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
+ 
+make: *** No rule to make target 'srcs/main/minishell.o', needed by 'minishell'.  Stop.
+
 #  File has not been updated.
 
 # Not a target:
- 
 srcs/expansion/outil_expension.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -316,14 +307,13 @@ srcs/expansion/outil_variables.o:
 # Not a target:
 srcs/main/minishell.o:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-21 11:26:56.722137032
-#  File has been updated.
-#  Successfully updated.
+#  File does not exist.
+#  File has not been updated.
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2022-08-21 11:37:21.494120655
+#  Last modified 2022-08-21 13:24:40.212114948
 #  File has been updated.
 #  Successfully updated.
 
@@ -339,12 +329,11 @@ srcs/signal/signal_exec.o:
 #  Modification time never checked.
 #  File has not been updated.
 
-minishell: srcs/main/minishell.o srcs/main/outil_main.o srcs/signal/signal_init.o srcs/signal/signal_exec.o srcs/parsing/error.o srcs/parsing/outil_lexer.o srcs/parsing/quoting.o srcs/parsing/lexer.o srcs/parsing/get_command_line.o srcs/parsing/split_token.o srcs/parsing/outil.o srcs/parsing/parser.o srcs/parsing/outil_parser.o srcs/alelaval/get_env.o srcs/shell/create_shell.o srcs/expansion/expansion.o srcs/expansion/variables.o srcs/expansion/outil_expension.o srcs/expansion/outil_variables.o srcs/expansion/outil_variables_2.o srcs/expansion/split_string.o srcs/expansion/outil_split.o srcs/expansion/remove_quote.o srcs/expansion/outil_remove_quote.o libft/
+minishell: srcs/main/minishell.o srcs/main/outil_main.o srcs/signal/signal_init.o srcs/signal/signal_exec.o srcs/parsing/error.o srcs/parsing/outil_lexer.o srcs/parsing/quoting.o srcs/parsing/lexer.o srcs/parsing/get_command_line.o srcs/parsing/split_token.o srcs/parsing/outil.o srcs/parsing/parser.o srcs/parsing/outil_parser.o srcs/alelaval/get_env.o srcs/shell/create_shell.o srcs/expansion/expansion.o srcs/expansion/variables.o srcs/expansion/outil_expension.o srcs/expansion/outil_variables.o srcs/expansion/outil_variables_2.o srcs/expansion/split_string.o srcs/expansion/outil_split.o srcs/expansion/remove_quote.o srcs/expansion/outil_remove_quote.o srcs/expansion/path_generator.o srcs/expansion/outil_path.o libft/
 #  Implicit rule search has not been done.
- 
-#  Last modified 2022-08-21 11:27:00.822136925
+#  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 59):
+#  recipe to execute (from 'Makefile', line 61):
 			@make -C $(LIBFT)
 			ar rcs $(LIBFT_A) $(OBJS)
 			ranlib $(LIBFT_A)
@@ -360,7 +349,7 @@ srcs/expansion/outil_split.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 56):
+#  recipe to execute (from 'Makefile', line 58):
 	$(CC) $(CFLAGS) -I$(HEADER) -I$(LIBFT) -c $< -o $(<:.c=.o)
 
 fclean: clean
@@ -368,12 +357,18 @@ fclean: clean
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-#  recipe to execute (from 'Makefile', line 71):
+#  recipe to execute (from 'Makefile', line 73):
 		$(MAKE) fclean -C $(LIBFT)
 		$(RM) $(NAME)
 
 # Not a target:
 srcs/expansion/split_string.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+srcs/expansion/path_generator.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -413,8 +408,7 @@ clean:
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
- 
-#  recipe to execute (from 'Makefile', line 67):
+#  recipe to execute (from 'Makefile', line 69):
 		$(MAKE) clean -C $(LIBFT)
 		$(RM) $(OBJS)
 
@@ -426,6 +420,12 @@ srcs/alelaval/get_env.o:
 
 # Not a target:
 srcs/parsing/error.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+srcs/expansion/outil_path.o:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
@@ -462,8 +462,8 @@ srcs/expansion/variables.o:
 
 # Not a target:
 srcs/main/outil_main.o:
-#  Implicit rule search has been done.
-#  File does not exist.
+#  Implicit rule search has not been done.
+#  Modification time never checked.
 #  File has not been updated.
 
 # Not a target:
@@ -479,19 +479,19 @@ srcs/shell/create_shell.o:
 #  File has not been updated.
 
 # files hash-table stats:
-# Load=35/1024=3%, Rehash=0, Collisions=0/79=0%
+# Load=37/1024=4%, Rehash=0, Collisions=0/83=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 47 / storage = 841 B / avg = 17 B
-# current buf: size = 8162 B / used = 841 B / count = 47 / avg = 17 B
+# strcache buffers: 1 (0) / strings = 49 / storage = 901 B / avg = 18 B
+# current buf: size = 8162 B / used = 901 B / count = 49 / avg = 18 B
 
-# strcache performance: lookups = 68 / hit rate = 30%
+# strcache performance: lookups = 69 / hit rate = 28%
 # hash-table stats:
-# Load=47/8192=1%, Rehash=0, Collisions=1/68=1%
-# Finished Make data base on Sun Aug 21 11:37:41 2022
+# Load=49/8192=1%, Rehash=0, Collisions=1/69=1%
+# Finished Make data base on Sun Aug 21 13:24:51 2022
 
  

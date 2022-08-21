@@ -17,4 +17,5 @@ void expander(t_node *node)
     expand_var(node);
     split_space(node);
     remove_quote(node);
+    pathname_generator(node);
 }

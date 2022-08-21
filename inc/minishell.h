@@ -92,6 +92,8 @@ typedef struct s_cmd
 	t_redir *redir_in;
 	t_redir *redir_out;
 	t_word *word;
+	int		is_builtin;
+	char	*pathname;
 } t_cmd;
 
 
@@ -222,6 +224,8 @@ void remove_quote_word(t_word *word);
 void    remove_quote_redir(t_redir *redir);
 void	remove_quote_heredoc(t_redir *redir);
 void remove_quote(t_node *node);
+void pathname_generator(t_node *node);
+char	*get_pathname_str(char *str);
 
 //util for expansion
 char	*add_char(char *str, char c);
@@ -233,6 +237,9 @@ int	is_var_name_char_1st(char c);
 char	*ft_str_add_char(char *str, char c);
 void	word_add_back_for_split(t_word *word, char *str);
 t_word	*word_last(t_word *word);
+char	*sarch_pathname(char *str);
+int	check_pathname(char *pathname);
+char	*sarch_pathname(char *str);
 
 //util_for_parser
 int consume(t_token *token, t_token_kind kind, char *str);

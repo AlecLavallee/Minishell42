@@ -37,6 +37,8 @@ SRCS	=	./srcs/main/minishell.c	\
 			./srcs/expansion/outil_split.c		\
 			./srcs/expansion/remove_quote.c		\
 			./srcs/expansion/outil_remove_quote.c		\
+			./srcs/expansion/path_generator.c		\
+			./srcs/expansion/outil_path.c		\
 
 OBJS	=	$(SRCS:.c=.o)
 
