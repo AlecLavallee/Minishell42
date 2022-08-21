@@ -6,7 +6,7 @@
 #    By: mtsuji <mtsuji@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/05/26 12:12:29 by mtsuji            #+#    #+#              #
-#    Updated: 2021/06/09 17:42:30 by mtsuji           ###   ########.fr        #
+#    Updated: 2022/08/21 22:09:19 by mtsuji           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SRCS	=	ft_memset.c		\
 			ft_strchr.c		\
 			ft_strrchr.c	\
 			ft_strncmp.c	\
-			ft_strcmp.c	\
+			ft_strcmp.c		\
 			ft_strlcpy.c	\
 			ft_strlcat.c	\
 			ft_strnstr.c	\
@@ -47,6 +47,11 @@ SRCS	=	ft_memset.c		\
 			ft_putnbr_fd.c	\
 			ft_strncpy.c 	\
 			ft_strcpy.c 	\
+			./ft_printf/outil_ft_printf.c			\
+			./ft_printf/outil2.c		\
+			./ft_printf/print_before_sign.c		\
+			./ft_printf/conversion_checker.c	\
+			./ft_printf/ft_printf.c			\
 
 BONUS	=	ft_lstnew.c			\
 			ft_lstadd_front.c	\

@@ -17,12 +17,20 @@
 # include <stdlib.h>
 # include <string.h>
 # include <ctype.h>
+# include <stdarg.h>
 
 typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
 }				t_list;
+
+typedef struct s_count
+{
+	int		byte;
+	int		index;
+	va_list	argument;
+}	t_count;
 
 void	*ft_memset(void *s, int c, size_t n);
 void	ft_bzero(void *sm, size_t n);
@@ -71,5 +79,13 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
-
+int		ft_putchar_int(char c);
+int		ft_putstr_for_printf(char *str);
+int		ft_putnbr_for_printf(long nb);
+void	conversion_checker(char *format, t_count *count);
+void	print_before_sign(char *format, t_count *count);
+int		to_hexadecimal(unsigned long long nb, char conversion);
+int		print_pointer(void *nb, char format);
+int		ft_printf(const char *format, ...);
+int		print_char(const char **format, va_list list);
 #endif

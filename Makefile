@@ -6,7 +6,7 @@
 #    By: msuji <mtsuji@student.42.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/01 12:35:48 by msuji             #+#    #+#              #
-#    Updated: 2022/08/14 14:29:50 by msuji            ###   ########.fr        #
+#    Updated: 2022/08/21 21:47:58 by mtsuji           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ SRCS	=	./srcs/main/minishell.c	\
 			./srcs/expansion/path_generator.c		\
 			./srcs/expansion/outil_path.c		\
 			./srcs/builtin/echo.c			\
+			./srcs/builtin/env.c			\
 			./test_exec.c						\
 			./srcs/exec/exec.c				\
 			#./srcs/exec/exec_pipe.c			\
@@ -67,7 +68,7 @@ $(NAME):	$(OBJS) $(LIBFT)
 			@make -C $(LIBFT)
 			ar rcs $(LIBFT_A) $(OBJS)
 			ranlib $(LIBFT_A)
-			$(CC) $(CFLAGS) $(OBJS) $(LIBFT_A) -lreadline -o $(NAME)
+			$(CC) $(CFLAGS) $(OBJS) $(LIBFT_A) -o $(NAME) -lreadline
 
 all:	$(NAME)
 

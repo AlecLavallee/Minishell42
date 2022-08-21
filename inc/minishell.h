@@ -280,6 +280,7 @@ void	exec_pipe(t_node *pipe_node);
 //builtin
 int echo(t_word *word);
 int echo_option(char *str);
+int env(t_word *word);
 
 //alelaval's focntion
 t_shell	*init_all(void);

@@ -20,6 +20,8 @@ void	exec_builtin(t_node *node)
 
 	if (!ft_strncmp(command->word->str, "echo", ft_strlen(command->word->str)))
 		 global_shell->exit_status = echo(command->word);
+    if (!ft_strncmp(command->word->str, "env", ft_strlen(command->word->str)))
+		 global_shell->exit_status = env(command->word);
 	//if (!ft_strncmp(shell->cmds->args[0], "pwd", ft_strlen(shell->cmds->args[0])))
 	//	pwd();
     else
@@ -62,7 +64,7 @@ bool	set_redir_in(t_redir *redir_in)
 	if (redir_in == NULL)
 		return (true);
 	fd = -1;
-	if (redir_in->kind == REDIR_IN)			./srcs/exec/exec.c				\
+	if (redir_in->kind == REDIR_IN)
 	{
 		fd = open(redir_in->str, O_RDONLY);
 		if (fd < 0)
