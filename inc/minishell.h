@@ -155,12 +155,17 @@ typedef struct s_shell
 //variable globale
 t_shell *global_shell;
 
-extern int valeur_exit; 
+//extern int valeur_exit; 
 
+// for main
+void start_command(char *str);
+int only_space(char *str);
 
 //signal
-void    signal_input(int signal);
+void    signal_init_handle(int signal);
 void    signal_init(void);
+void	signal_exec_handle(int signal);
+void	signal_exec(void);
 
 //lexer
 t_command *lexer(char *str);
@@ -232,6 +237,7 @@ t_word	*word_last(t_word *word);
 //util_for_parser
 int consume(t_token *token, t_token_kind kind, char *str);
 t_token *skip(t_token *token, t_token_kind kind, char *str);
+void parser_error(char *str, long len);
 t_node *new_node_pipe(t_node *cmd_node);
 t_node	*add_node_pipe(t_node *node, t_node *cmd_node);
 t_node *new_node_command(void);
@@ -241,7 +247,7 @@ void redir_in_addback(t_cmd *command, t_redir_kind kind, char *str, int len);
 void redir_out_addback(t_cmd *command, t_redir_kind kind, char *str, int len);
 
 //free
-int    free_command_line(t_command *command_line);
+int    free_lexer(t_command *command_line);
 void    free_token(t_command **command_line);
 void free_node(t_node *node);
 void free_word(t_word *word);

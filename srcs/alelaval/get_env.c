@@ -64,6 +64,7 @@ t_shell	*init_all(void)
 	return (shell);
 }
 
+// ** alelaval' fontion but mtsuji changed 
 void	exit_shell(t_shell *shell, int code)
 {
 	free_all(shell);

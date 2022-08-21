@@ -135,8 +135,8 @@ t_command *get_command_line(char *str)
     new->whole_str = malloc(sizeof(char) * (ft_strlen(str) + 1));
     if (new->whole_str == NULL)
     {
-        free(new);
-        exit (1);
+        if (new)
+            free(new);
     } 
     new->whole_str = ft_strcpy(new->whole_str, str);
     //commandline_addback(command_line, new);

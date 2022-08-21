@@ -239,11 +239,13 @@ static int tokenization(int cur, int start, char *str, t_command *command_line)
     init_token(token);
     token->string = malloc(sizeof(char *) * (cur - start + 1));
         if (token->string == NULL)
+        {
+            if (token)
+                free(token);
             return (1);
+        }
     token->string = ft_strncpy(token->string, str + start, cur - start);
     token->len = cur - start;
-    //if (token->string == NULL)
-    //    return (1);
     init_type(token);
     token_addback(&(command_line)->first_token, token);
     return (0);

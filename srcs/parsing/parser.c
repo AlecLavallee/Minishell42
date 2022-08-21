@@ -71,12 +71,7 @@ t_node *parser(t_token *token)
      t_node *node;
 
     node = pipe_cmd(&token);
-    if (consume(token, TOKEN_EOF, NULL))
-    { 
-        printf("parsing error : 'TOKEN_EOF'\n");
-        exit(0);
-    }
-        token = skip(token, TOKEN_EOF, NULL);
+    token = skip(token, TOKEN_EOF, NULL);
     return (node);
 }   
 

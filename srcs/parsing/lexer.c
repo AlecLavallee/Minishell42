@@ -93,7 +93,6 @@ t_command *lexer(char *str)
         {
             free(str);
             free(command_line);
-            exit (1);
         }
     }
     //node = parser()//
@@ -101,7 +100,7 @@ t_command *lexer(char *str)
     return (command_line);
 }
 
-int    free_command_line(t_command *command_line)
+int    free_lexer(t_command *command_line)
 {
     
     if (command_line)

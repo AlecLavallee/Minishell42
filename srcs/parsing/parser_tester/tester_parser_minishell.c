@@ -22,7 +22,7 @@ void test(void)
     if (node == NULL)
         printf("node error\n");
     debug_parser_recursive(node);
-    free_command_line(token);
+    free_lexer(token);
     free_node(node);
 }
 

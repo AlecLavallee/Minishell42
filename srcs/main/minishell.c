@@ -22,18 +22,25 @@ pour complier :
 gcc minishell.h parsing/lexer.c parsing/outil_lexer.c parsing/minishell.c parsing/outil_signal.c parsing/quoting.c parsing/error.c libft/libft.a -lreadline
 */
 
+void start_command(char *str)
+{
+    t_command *command_line;
+    t_node *node;
 
-//int main(int argc, char **argv)
+    command_line = lexer(str);
+    node = parser(command_line->first_token);
+    free_lexer(command_line);
+    expand_var(node);
+    free_node(node);
+}
+
+
+
 int main(int argc, char **argv, char **envp)
 {
     char *line;
-    t_command *command_line;
-    t_node *node;
-    //t_shell *shell;
-
-    //shell = NULL;
-    command_line = NULL;
-    if (argc && argv && envp)
+  
+    if (argc && argv)
     {
         //shell = init_all();
         //shell->envp = get_paths(shell, envp);
@@ -42,33 +49,22 @@ int main(int argc, char **argv, char **envp)
         signal_init();
         while (1)
         {
-            line = readline(">team_90's ");
-            add_history(line);
             signal_init();
+            line = readline(">team_90's ");
             if (line == NULL) 
-            { 
-                free(line);
                 break;
+
+            if (only_space(line))
+            {
+                add_history(line);
+                if (first_word_is_pipe(line) != 0)
+                    ft_error();
+                start_command(line);
             }
-            if (first_word_is_pipe(line) != 0)
-                ft_error();
-            command_line = lexer(line);
-            node = parser(command_line->first_token);
-            expand_var(node);
-                printf("%s\n", line);
+            printf("%s\n", line);
             free(line);
         }
     }
-    printf("exit\n");
-    free_end(command_line, line);
-    free_node(node);
-    exit_shell(global_shell, 0);
-    return (global_shell->exit_status);
-}
-
-void	free_end(t_command *command_line, char *str)
-{
-	if (str)
-		free(str);
-	free_command_line(command_line);
+    ft_putstr_fd("exit\n", 2);
+    exit_shell(global_shell, global_shell->exit_status); //  changed by mtsuji
 }

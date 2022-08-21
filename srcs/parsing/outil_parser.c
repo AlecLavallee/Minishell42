@@ -12,6 +12,18 @@
 
 #include "../../inc/minishell.h"
 
+void parser_error(char *str, long len)
+{
+    char *str_tmp;
+
+    str_tmp = strndup(str, len);
+    ft_putstr_fd("minishell : syntax error near unexpected token ", 2);
+    ft_putstr_fd(str_tmp, 2);
+    ft_putchar_fd('\n', 2);
+    free(str_tmp);
+    exit(1);
+}
+
 int consume(t_token *token, t_token_kind kind, char *str) 
 {
 	if (token->kind != kind)
@@ -24,15 +36,10 @@ int consume(t_token *token, t_token_kind kind, char *str)
 t_token *skip(t_token *token, t_token_kind kind, char *str) 
 {
 	if (token->kind != kind)
-    {
-		printf("skip error : unexpected kind\n");
-        exit(0); // modifier ares 
-    }
-	if (str != NULL && ft_strncmp(token->string, str, token->len))
-    {
-		printf("skip error : unexpectrd str\n");//error
-        exit(0); //modifer apres
-    }
+        parser_error(token->string, token->len);
+	if (str != NULL && (token->len != (long)ft_strlen(str) 
+        || ft_strncmp(token->string, str, token->len)))
+		parser_error(token->string, token->len);
 	return token->next;
 }
 

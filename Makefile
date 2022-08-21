@@ -13,8 +13,10 @@
 
 NAME	=	minishell
 
-SRCS	=	./srcs/minishell.c	\
+SRCS	=	./srcs/main/minishell.c	\
+			./srcs/main/outil_main.c	\
 			./srcs/signal/signal_init.c		\
+			./srcs/signal/signal_exec.c			\
 			./srcs/parsing/error.c 				\
 			./srcs/parsing/outil_lexer.c			\
 			./srcs/parsing/quoting.c 			\
