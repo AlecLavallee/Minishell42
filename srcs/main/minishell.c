@@ -27,10 +27,13 @@ void start_command(char *str)
     t_command *command_line;
     t_node *node;
 
+    global_shell->interrupt = 0;
     command_line = lexer(str);
     node = parser(command_line->first_token);
     free_lexer(command_line);
-    expand_var(node);
+    //expand_var(node);
+    signal_exec();
+    exec(node);
     free_node(node);
 }
 
@@ -60,7 +63,7 @@ int main(int argc, char **argv, char **envp)
                     ft_error();
                 start_command(line);
             }
-            printf("%s\n", line);
+            printf("your command is : %s\n", line);
             free(line);
         }
     }

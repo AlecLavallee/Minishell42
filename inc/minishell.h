@@ -152,6 +152,7 @@ typedef struct s_shell
 	char		**paths;
 	t_env		*env; // ajoute by mtsuji
 	int			exit_status; //ajoute by mtsuji
+	int			interrupt; // ajoute by mtsuji (for signal of exec)
 }				t_shell;
 
 //variable globale
@@ -259,6 +260,7 @@ void    free_token(t_command **command_line);
 void free_node(t_node *node);
 void free_word(t_word *word);
 void free_redirection(t_redir *redir_in);
+void	free_envp(char **envp);
 
 //env
 t_shell *create_shell(char **envp, char **argv);
@@ -267,6 +269,17 @@ t_env	*env_addback(t_env *env, char *name, char *body);
 char	*create_env_name(char *str);
 char	*create_env_body(char *str);
 void    free_env(t_shell *shell);
+long	get_env_size(void);
+char	**create_envp(void);
+char	**create_argv(t_word *word);
+
+//exec
+void exec(t_node *node);
+void	exec_pipe(t_node *pipe_node);
+
+//builtin
+int echo(t_word *word);
+int echo_option(char *str);
 
 //alelaval's focntion
 t_shell	*init_all(void);
@@ -279,6 +292,19 @@ void	free_cmds(t_shell *shell);
 void	fill_data(t_shell *shell, char **args);
 void	lst_addback(t_comm **lst, t_comm *new);
 int		isbuiltin(char *str);
+
+// fonction exec from testfile
+void	exec_multi_pipes(t_node *pipe_node);
+void	exec_no_pipe(t_node *pipe_node);
+void	exec_cmd(t_node *node);
+void	exec_file(t_node *node);
+void	set_exit_status(void);
+int	check_cmd(t_cmd *cmd);
+bool	is_directory(char *pathname);
+int	fail_exec(t_node *node);
+bool	set_redir_out(t_redir *redir_out);
+bool	set_redir_in(t_redir *redir_in);
+void	exec_builtin(t_node *node); // from alelaval
 
 // lexer version until 08/12 (double pointeur)
 /*

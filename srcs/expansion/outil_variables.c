@@ -61,7 +61,7 @@ char	*get_env_body(char *name)
 {
 	t_env	*env;
 
-	//env = t_shell->env;
+	env = global_shell->env;
 	while (env)
 	{
 		if (ft_strcmp(name, env->name) == 0)

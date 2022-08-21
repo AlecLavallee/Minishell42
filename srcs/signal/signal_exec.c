@@ -19,6 +19,7 @@ void    signal_exec_handle(int signal)
     if (signal == 2)
     {
         global_shell->exit_status = 128 + SIGINT; //valeur de retour avec Ctrl + C ( 128 + 2 = 130)
+        global_shell->interrupt = 1;
         ft_putstr_fd("\n", 2);
         rl_replace_line("", 0); // pas besoin?
         rl_redisplay(); //pas besoin?

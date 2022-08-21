@@ -28,6 +28,7 @@ SRCS	=	./srcs/main/minishell.c	\
 			./srcs/parsing/outil_parser.c	\
 			./srcs/alelaval/get_env.c		\
 			./srcs/shell/create_shell.c		\
+			./srcs/shell/create_envp.c		\
 			./srcs/expansion/expansion.c		\
 			./srcs/expansion/variables.c		\
 			./srcs/expansion/outil_expension.c		\
@@ -39,6 +40,11 @@ SRCS	=	./srcs/main/minishell.c	\
 			./srcs/expansion/outil_remove_quote.c		\
 			./srcs/expansion/path_generator.c		\
 			./srcs/expansion/outil_path.c		\
+			./srcs/builtin/echo.c			\
+			./test_exec.c						\
+			./srcs/exec/exec.c				\
+			#./srcs/exec/exec_pipe.c			\
+
 
 OBJS	=	$(SRCS:.c=.o)
 

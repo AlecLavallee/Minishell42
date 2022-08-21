@@ -1,49 +1,5 @@
 make --dry-run --keep-going --print-directory
 make: Entering directory '/home/tj/Documents/Minishell42'
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address -fsanitize=leak -I./inc/ -I./libft/ -c srcs/main/minishell.c -o srcs/main/minishell.o
- 
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address -fsanitize=leak -I./inc/ -I./libft/ -c srcs/main/outil_main.c -o srcs/main/outil_main.o
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address -fsanitize=leak -I./inc/ -I./libft/ -c srcs/signal/signal_init.c -o srcs/signal/signal_init.o
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address -fsanitize=leak -I./inc/ -I./libft/ -c srcs/signal/signal_exec.c -o srcs/signal/signal_exec.o
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address -fsanitize=leak -I./inc/ -I./libft/ -c srcs/parsing/error.c -o srcs/parsing/error.o
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address -fsanitize=leak -I./inc/ -I./libft/ -c srcs/parsing/outil_lexer.c -o srcs/parsing/outil_lexer.o
- 
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address -fsanitize=leak -I./inc/ -I./libft/ -c srcs/parsing/quoting.c -o srcs/parsing/quoting.o
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address -fsanitize=leak -I./inc/ -I./libft/ -c srcs/parsing/lexer.c -o srcs/parsing/lexer.o
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address -fsanitize=leak -I./inc/ -I./libft/ -c srcs/parsing/get_command_line.c -o srcs/parsing/get_command_line.o
- 
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address -fsanitize=leak -I./inc/ -I./libft/ -c srcs/parsing/split_token.c -o srcs/parsing/split_token.o
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address -fsanitize=leak -I./inc/ -I./libft/ -c srcs/parsing/outil.c -o srcs/parsing/outil.o
- 
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address -fsanitize=leak -I./inc/ -I./libft/ -c srcs/parsing/parser.c -o srcs/parsing/parser.o
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address -fsanitize=leak -I./inc/ -I./libft/ -c srcs/parsing/outil_parser.c -o srcs/parsing/outil_parser.o
- 
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address -fsanitize=leak -I./inc/ -I./libft/ -c srcs/alelaval/get_env.c -o srcs/alelaval/get_env.o
- 
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address -fsanitize=leak -I./inc/ -I./libft/ -c srcs/shell/create_shell.c -o srcs/shell/create_shell.o
- 
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address -fsanitize=leak -I./inc/ -I./libft/ -c srcs/expansion/expansion.c -o srcs/expansion/expansion.o
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address -fsanitize=leak -I./inc/ -I./libft/ -c srcs/expansion/variables.c -o srcs/expansion/variables.o
- 
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address -fsanitize=leak -I./inc/ -I./libft/ -c srcs/expansion/outil_expension.c -o srcs/expansion/outil_expension.o
- 
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address -fsanitize=leak -I./inc/ -I./libft/ -c srcs/expansion/outil_variables.c -o srcs/expansion/outil_variables.o
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address -fsanitize=leak -I./inc/ -I./libft/ -c srcs/expansion/outil_variables_2.c -o srcs/expansion/outil_variables_2.o
- 
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address -fsanitize=leak -I./inc/ -I./libft/ -c srcs/expansion/split_string.c -o srcs/expansion/split_string.o
- 
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address -fsanitize=leak -I./inc/ -I./libft/ -c srcs/expansion/outil_split.c -o srcs/expansion/outil_split.o
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address -fsanitize=leak -I./inc/ -I./libft/ -c srcs/expansion/remove_quote.c -o srcs/expansion/remove_quote.o
- 
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address -fsanitize=leak -I./inc/ -I./libft/ -c srcs/expansion/outil_remove_quote.c -o srcs/expansion/outil_remove_quote.o
- 
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address -fsanitize=leak -I./inc/ -I./libft/ -c srcs/expansion/path_generator.c -o srcs/expansion/path_generator.o
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address -fsanitize=leak -I./inc/ -I./libft/ -c srcs/expansion/outil_path.c -o srcs/expansion/outil_path.o
- 
-make -C ./libft/
-ar rcs ./libft/libft.a ./srcs/main/minishell.o ./srcs/main/outil_main.o ./srcs/signal/signal_init.o ./srcs/signal/signal_exec.o ./srcs/parsing/error.o ./srcs/parsing/outil_lexer.o ./srcs/parsing/quoting.o ./srcs/parsing/lexer.o ./srcs/parsing/get_command_line.o ./srcs/parsing/split_token.o ./srcs/parsing/outil.o ./srcs/parsing/parser.o ./srcs/parsing/outil_parser.o ./srcs/alelaval/get_env.o ./srcs/shell/create_shell.o ./srcs/expansion/expansion.o ./srcs/expansion/variables.o ./srcs/expansion/outil_expension.o ./srcs/expansion/outil_variables.o ./srcs/expansion/outil_variables_2.o ./srcs/expansion/split_string.o ./srcs/expansion/outil_split.o ./srcs/expansion/remove_quote.o ./srcs/expansion/outil_remove_quote.o ./srcs/expansion/path_generator.o ./srcs/expansion/outil_path.o
-ranlib ./libft/libft.a
- 
-gcc -Wall -Wextra -Werror -g3 -fsanitize=address -fsanitize=leak ./srcs/main/minishell.o ./srcs/main/outil_main.o ./srcs/signal/signal_init.o ./srcs/signal/signal_exec.o ./srcs/parsing/error.o ./srcs/parsing/outil_lexer.o ./srcs/parsing/quoting.o ./srcs/parsing/lexer.o ./srcs/parsing/get_command_line.o ./srcs/parsing/split_token.o ./srcs/parsing/outil.o ./srcs/parsing/parser.o ./srcs/parsing/outil_parser.o ./srcs/alelaval/get_env.o ./srcs/shell/create_shell.o ./srcs/expansion/expansion.o ./srcs/expansion/variables.o ./srcs/expansion/outil_expension.o ./srcs/expansion/outil_variables.o ./srcs/expansion/outil_variables_2.o ./srcs/expansion/split_string.o ./srcs/expansion/outil_split.o ./srcs/expansion/remove_quote.o ./srcs/expansion/outil_remove_quote.o ./srcs/expansion/path_generator.o ./srcs/expansion/outil_path.o ./libft/libft.a -lreadline -o minishell
+make: 'minishell' is up to date.
 make: Leaving directory '/home/tj/Documents/Minishell42'
  
