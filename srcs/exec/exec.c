@@ -12,7 +12,7 @@
 
 #include "../../inc/minishell.h"
 
-void exec(t_node *node)
+void exec(t_node *node, t_shell *shell)
 {
-    exec_pipe(node);
+    exec_pipe(node, shell);
 }

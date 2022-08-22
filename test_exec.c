@@ -5,6 +5,8 @@ et j'ai change tous les variables pour adapter ma propore version
 
 */
 
+extern int exit_status;
+
 #include "./inc/minishell.h"
 
 
@@ -12,18 +14,18 @@ et j'ai change tous les variables pour adapter ma propore version
 originnal alelaval's fonction
 I changed for adaptation
 */
-void	exec_builtin(t_node *node)
+void	exec_builtin(t_node *node, t_shell *shell)
 {
     t_cmd *command;
 
     command = node->cmds;
 
 	if (!ft_strncmp(command->word->str, "echo", ft_strlen(command->word->str)))
-		 global_shell->exit_status = echo(command->word);
+		 exit_status = echo(command->word);
     else if (!ft_strncmp(command->word->str, "env", ft_strlen(command->word->str)))
-		 global_shell->exit_status = env(command->word);
+		 exit_status = env(command->word, shell);
 	else if (!ft_strncmp(command->word->str, "pwd", ft_strlen(command->word->str)))
-		 global_shell->exit_status = pwd(command->word);
+		 exit_status = pwd(command->word);
 	//if (!ft_strncmp(shell->cmds->args[0], "pwd", ft_strlen(shell->cmds->args[0])))
 	//	pwd();
     else
@@ -119,13 +121,13 @@ bool	set_redir_out(t_redir *redir_out)
 
 int	fail_exec(t_node *node)
 {
-	global_shell->exit_status = 126;
+	exit_status = 126;
 	if (errno == ENOENT)
-		global_shell->exit_status = 127;
+		exit_status = 127;
 	ft_putstr_fd("minishell: ", 1);
  	ft_putstr_fd(node->cmds->pathname, 1);
 	ft_putstr_fd("\n", 1);   
-	return (global_shell->exit_status);
+	return (exit_status);
 }
 
 bool	is_directory(char *pathname)
@@ -162,6 +164,7 @@ char	**create_argv(t_word *word)
 	return (argv);
 }
 
+
 int	check_cmd(t_cmd *cmd)
 {
 	if (cmd->pathname == NULL)
@@ -169,7 +172,7 @@ int	check_cmd(t_cmd *cmd)
 		ft_putstr_fd("minishell:", 2);
         ft_putstr_fd(cmd->word->str, 2);
         ft_putstr_fd("command not found\n", 2);
-		global_shell->exit_status = 127;
+		exit_status = 127;
 		return (1);
 	}
 	if (is_directory(cmd->pathname))
@@ -178,7 +181,7 @@ int	check_cmd(t_cmd *cmd)
         ft_putstr_fd("minishell:", 2);
         ft_putstr_fd(cmd->pathname, 2);
         ft_putstr_fd("is a directory\n", 2);
-		global_shell->exit_status = 126;
+		exit_status = 126;
 		return (1);
 	}
 	return (0);
@@ -186,66 +189,67 @@ int	check_cmd(t_cmd *cmd)
 
 void	set_exit_status(void)
 {
-	if (WIFSIGNALED(global_shell->exit_status))
+	if (WIFSIGNALED(exit_status))
 	{
-		global_shell->exit_status = 128 + WTERMSIG(global_shell->exit_status);
-		if (global_shell->exit_status == 128 + SIGQUIT)
+		exit_status = 128 + WTERMSIG(exit_status);
+		if (exit_status == 128 + SIGQUIT)
 			ft_putstr_fd("Quit: 3\n", 2);
 	}
 	else
-		global_shell->exit_status = WEXITSTATUS(global_shell->exit_status);
+		exit_status = WEXITSTATUS(exit_status);
 }
 
-void	exec_file(t_node *node)
+void	exec_file(t_node *node, t_shell *shell)
 {
 	int		pid;
 	char	**cmd_argv;
 	char	**cmd_envp;
+	int exit_status;
 
 	pid = fork();
 	if (pid == 0)
 	{
 		signal(SIGQUIT, SIG_DFL);
 		if (check_cmd(node->cmds))
-			exit(global_shell->exit_status);
+			exit(exit_status);
 		cmd_argv = create_argv(node->cmds->word);
-		cmd_envp = create_envp();
+		cmd_envp = create_envp(shell);
 		execve(node->cmds->pathname, cmd_argv, cmd_envp);
 		free(cmd_argv);
 		free_envp(cmd_envp);
 		exit(fail_exec(node));
 	}
-	waitpid(pid, &(global_shell->exit_status), 0);
+	waitpid(pid, &(exit_status), 0);
 	set_exit_status();
 }
 
-void	exec_cmd(t_node *node)
+void	exec_cmd(t_node *node, t_shell *shell)
 {
-	if (global_shell->interrupt)
-		return ;
+	//if (interrupt)
+	//	return ;
 	if (!set_redir_in(node->cmds->redir_in)
 		|| !set_redir_out(node->cmds->redir_out)
 		|| node->cmds->word == NULL)
 	{
-		dup2(global_shell->fdin, 1);
-		dup2(global_shell->fdout, 0);
-		global_shell->exit_status = 1;
+		dup2(shell->fdin, 1);
+		dup2(shell->fdout, 0);
+		exit_status = 1;
 		return ;
 	}
 	if (node->cmds->is_builtin)
-		exec_builtin(node);
+		exec_builtin(node, shell);
 	else
-		exec_file(node);
-	dup2(global_shell->fdout, 1);
-	dup2(global_shell->fdin, 0);
+		exec_file(node, shell);
+	dup2(shell->fdout, 1);
+	dup2(shell->fdin, 0);
 }
 
-void	exec_no_pipe(t_node *pipe_node)
+void	exec_no_pipe(t_node *pipe_node, t_shell *shell)
 {
-	exec_cmd(pipe_node->rhs);
+	exec_cmd(pipe_node->rhs, shell);
 }
 
-void	exec_multi_pipes(t_node *pipe_node)
+void	exec_multi_pipes(t_node *pipe_node, t_shell *shell)
 {
 	int	fd[2];
 	int	pid;
@@ -260,38 +264,38 @@ void	exec_multi_pipes(t_node *pipe_node)
 			dup2(fd[0], 0);
 		close(fd[1]);
 		close(fd[0]);
-		    exec_cmd(pipe_node->rhs);
-		exit(global_shell->exit_status);
+		    exec_cmd(pipe_node->rhs, shell);
+		exit(exit_status);
 	}
 	else
 	{
 		dup2(fd[1], 1);
 		close(fd[1]);
 		close(fd[0]);
-		exec_multi_pipes(pipe_node->lhs);
+		exec_multi_pipes(pipe_node->lhs, shell);
 	}
-	waitpid(pid, &(global_shell->exit_status), 0);
-	global_shell->exit_status = WEXITSTATUS(global_shell->exit_status);
+	waitpid(pid, &(exit_status), 0);
+	exit_status = WEXITSTATUS(exit_status);
 }
 
-void	exec_pipe(t_node *pipe_node)
+void	exec_pipe(t_node *pipe_node, t_shell *shell)
 {
 	int	pid;
 	int	sts;
 
-	expander(pipe_node);
+	expander(pipe_node, shell);
 	if (pipe_node->lhs == NULL)
-		exec_no_pipe(pipe_node);
+		exec_no_pipe(pipe_node, shell);// go testfile
 	else
 	{
 		pid = fork();
 		if (pid == 0)
 		{
-			exec_multi_pipes(pipe_node);
-			exit(global_shell->exit_status);
+			exec_multi_pipes(pipe_node, shell); // go testfile
+			exit(exit_status);
 		}
 		sts = 0;
 		waitpid(pid, &sts, 0);
-		global_shell->exit_status = WEXITSTATUS(sts);
+		exit_status = WEXITSTATUS(sts);
 	}
 }

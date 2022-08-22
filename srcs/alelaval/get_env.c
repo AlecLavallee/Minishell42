@@ -15,6 +15,8 @@
 /*
 **alelaval's fonction
 */
+
+extern int exit_status;
 char	*get_path_line(char **paths)
 {
 	int	i;

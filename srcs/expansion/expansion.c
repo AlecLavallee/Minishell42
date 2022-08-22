@@ -12,10 +12,10 @@
 
 #include "../../inc/minishell.h"
 
-void expander(t_node *node)
+void expander(t_node *node, t_shell *shell)
 {
-    expand_var(node);
+    expand_var(node, shell);
     split_space(node);
     remove_quote(node);
-    pathname_generator(node);
+    pathname_generator(node, shell);
 }

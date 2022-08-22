@@ -11,18 +11,18 @@
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
-char	*get_pathname_str(char *str)
+char	*get_pathname_str(char *str, t_shell *shell)
 {
 	char	*pathname;
 
 	if (ft_strchr(str, '/'))
 		pathname = ft_strdup(str);
 	else
-		pathname = sarch_pathname(str);
+		pathname = sarch_pathname(str, shell);
 	return (pathname);
 }
 
-void pathname_generator(t_node *node)
+void pathname_generator(t_node *node, t_shell *shell)
 {
 	if (node == NULL)
 		return ;
@@ -35,12 +35,12 @@ void pathname_generator(t_node *node)
 		if (isbuiltin(node->cmds->word->str))
 			node->cmds->is_builtin = 1;
 		else
-			node->cmds->pathname = get_pathname_str(node->cmds->word->str);
+			node->cmds->pathname = get_pathname_str(node->cmds->word->str, shell);
 	}
 	else
 	{
-		pathname_generator(node->lhs);
-		pathname_generator(node->rhs);
+		pathname_generator(node->lhs, shell);
+		pathname_generator(node->rhs, shell);
 	}
 }   
 

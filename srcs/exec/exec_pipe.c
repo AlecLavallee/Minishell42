@@ -12,24 +12,26 @@
 
 #include "../../inc/minishell.h" 
 
-void	exec_pipe(t_node *pipe_node)
+extern int exit_status;
+
+void	exec_pipe(t_node *pipe_node, t_shell *shell)
 {
 	int	pid;
 	int	sts;
 
-	expander(pipe_node);
+	expander(pipe_node, shell);
 	if (pipe_node->lhs == NULL)
-		exec_no_pipe(pipe_node);// go testfile
+		exec_no_pipe(pipe_node, shell);// go testfile
 	else
 	{
 		pid = fork();
 		if (pid == 0)
 		{
-			exec_multi_pipes(pipe_node); // go testfile
-			exit(global_shell->exit_status);
+			exec_multi_pipes(pipe_node, shell); // go testfile
+			exit(exit_status);
 		}
 		sts = 0;
 		waitpid(pid, &sts, 0);
-		global_shell->exit_status = WEXITSTATUS(sts);
+		exit_status = WEXITSTATUS(sts);
 	}
 }

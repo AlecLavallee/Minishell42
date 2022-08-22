@@ -12,7 +12,7 @@
 
 #include "../inc/minishell.h"
 
-int valeur_exit;
+    extern int exit_status;
 /*
     valeur_exit : variable global pour la valeur de retour, mais on pourrait enlever
 */
@@ -22,18 +22,19 @@ pour complier :
 gcc minishell.h parsing/lexer.c parsing/outil_lexer.c parsing/minishell.c parsing/outil_signal.c parsing/quoting.c parsing/error.c libft/libft.a -lreadline
 */
 
-void start_command(char *str)
+void start_command(char *str, t_shell *shell)
 {
+    //t_shell *global_shell;
     t_command *command_line;
     t_node *node;
 
-    global_shell->interrupt = 0;
+    //global_shell->interrupt = 0;
     command_line = lexer(str);
     node = parser(command_line->first_token);
     free_lexer(command_line);
     //expand_var(node);
     signal_exec();
-    exec(node);
+    exec(node, shell);
     free_node(node);
 }
 
@@ -41,13 +42,17 @@ void start_command(char *str)
 int main(int argc, char **argv, char **envp)
 {
     char *line;
-  
+    t_shell *shell;
+    //extern int exit_status;
+    //exit_status = 0;
+
     if (argc && argv)
     {
         //shell = init_all();
         //shell->envp = get_paths(shell, envp);
-        global_shell = create_shell(envp, argv);
-        global_shell->exit_status = 0;
+
+        shell = create_shell(envp, argv);
+        //exit_status = 0;
         signal_init();
         while (1)
         {
@@ -61,12 +66,12 @@ int main(int argc, char **argv, char **envp)
                 add_history(line);
                 if (first_word_is_pipe(line) != 0)
                     ft_error();
-                start_command(line);
+                start_command(line, shell);
             }
             printf("your command is : %s\n", line);
             free(line);
         }
     }
     ft_putstr_fd("exit\n", 2);
-    exit_shell(global_shell, global_shell->exit_status); //  changed by mtsuji
+    exit_shell(shell, exit_status); //  changed by mtsuji
 }

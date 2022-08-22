@@ -62,7 +62,7 @@ int	check_pathname(char *pathname)
 **mais comme je n'avais pas besoin structure t_shell dedans
 ** je cree ma propre facon
 */
-char	*sarch_pathname(char *str)
+char	*sarch_pathname(char *str, t_shell *shell)
 {
 	char	**paths;
 	char	*base;
@@ -70,7 +70,7 @@ char	*sarch_pathname(char *str)
 	long	i;
 
 	pathname = NULL;
-	paths = ft_split(get_env_body("PATH"), ':');
+	paths = ft_split(get_env_body("PATH", shell), ':');
 	if (paths == NULL)
 		return (ft_strdup(str));
 	i = 0;

@@ -18,13 +18,17 @@
 ** signal_input : gerer l'interruprion par clavier (Ctrl + c)
 **
 */
+
+//extern int exit_status;
+
 void    signal_init_handle(int signal)
 {
-    global_shell->exit_status += signal;
+    //extern int exit_status;
+    exit_status += signal;
 
     if (signal == 2)
     {
-        global_shell->exit_status = 128 + SIGINT; //valeur de retour avec Ctrl + C ( 128 + 2 = 130)
+        exit_status = 128 + SIGINT; //valeur de retour avec Ctrl + C ( 128 + 2 = 130)
         ft_putstr_fd("\n", 2);
         rl_on_new_line();
         rl_replace_line("", 0);

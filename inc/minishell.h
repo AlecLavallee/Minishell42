@@ -34,6 +34,8 @@
 # include <readline/history.h>
 # include "../libft/libft.h"
 
+extern int exit_status;
+
 typedef enum{
     DEFAULT, //default 0
     TOKEN_ARGUMENT, // word 1
@@ -151,17 +153,17 @@ typedef struct s_shell
 	char		**envp;
 	char		**paths;
 	t_env		*env; // ajoute by mtsuji
-	int			exit_status; //ajoute by mtsuji
+	//int			exit_status; ajoute by mtsuji
 	int			interrupt; // ajoute by mtsuji (for signal of exec)
 }				t_shell;
 
 //variable globale
-t_shell *global_shell;
+//extern t_shell *global_shell;
 
 //extern int valeur_exit; 
 
 // for main
-void start_command(char *str);
+void start_command(char *str, t_shell *shell);
 int only_space(char *str);
 
 //signal
@@ -209,12 +211,12 @@ t_node *word(t_token **token);
 void node_init(t_node *node); // provisoire
 
 //expension
-void	expander(t_node *node);
-void	expand_var(t_node *node);
-void	expand_var_in_word(t_word *word);
-void	expand_var_in_redir(t_redir *redir);
-char	*expand_var_in_str(char *str);
-long	at_doller_mark(char *str, char **new, long i);
+void	expander(t_node *node, t_shell *shell);
+void	expand_var(t_node *node, t_shell *shell);
+void	expand_var_in_word(t_word *word, t_shell *shell);
+void	expand_var_in_redir(t_redir *redir, t_shell *shell);
+char	*expand_var_in_str(char *str, t_shell *shell);
+long	at_doller_mark(char *str, char **new, long i, t_shell *shell);
 void	split_space(t_node *node);
 t_word	*_split_space_in_word(t_word *word);
 t_word	*_create_splited_words(char *str);
@@ -225,22 +227,22 @@ void remove_quote_word(t_word *word);
 void    remove_quote_redir(t_redir *redir);
 void	remove_quote_heredoc(t_redir *redir);
 void remove_quote(t_node *node);
-void pathname_generator(t_node *node);
-char	*get_pathname_str(char *str);
+void pathname_generator(t_node *node, t_shell *shell);
+char	*get_pathname_str(char *str, t_shell *shell);
 
 //util for expansion
 char	*add_char(char *str, char c);
 char	*ft_strjoin_and_free(char *s1, int i1, char *s2, int i2);
-char	*get_env_body(char *name);
-char	*_get_var_name(char *str);
+char	*get_env_body(char *name, t_shell *shell);
+char	*get_var_name(char *str);
 int	is_var_name_char(char c);
 int	is_var_name_char_1st(char c);
 char	*ft_str_add_char(char *str, char c);
 void	word_add_back_for_split(t_word *word, char *str);
 t_word	*word_last(t_word *word);
-char	*sarch_pathname(char *str);
+char	*sarch_pathname(char *str, t_shell *shell);
 int	check_pathname(char *pathname);
-char	*sarch_pathname(char *str);
+//char	*sarch_pathname(char *str);
 
 //util_for_parser
 int consume(t_token *token, t_token_kind kind, char *str);
@@ -269,18 +271,18 @@ t_env	*env_addback(t_env *env, char *name, char *body);
 char	*create_env_name(char *str);
 char	*create_env_body(char *str);
 void    free_env(t_shell *shell);
-long	get_env_size(void);
-char	**create_envp(void);
+long	get_env_size(t_shell *shell);
+char	**create_envp(t_shell *shell);
 char	**create_argv(t_word *word);
 
 //exec
-void exec(t_node *node);
-void	exec_pipe(t_node *pipe_node);
+void exec(t_node *node, t_shell *shell);
+void	exec_pipe(t_node *pipe_node, t_shell *shell);
 
 //builtin
 int echo(t_word *word);
 int echo_option(char *str);
-int env(t_word *word);
+int env(t_word *word, t_shell *shell);
 int	pwd(t_word *word);
 
 //alelaval's focntion
@@ -296,17 +298,17 @@ void	lst_addback(t_comm **lst, t_comm *new);
 int		isbuiltin(char *str);
 
 // fonction exec from testfile
-void	exec_multi_pipes(t_node *pipe_node);
-void	exec_no_pipe(t_node *pipe_node);
-void	exec_cmd(t_node *node);
-void	exec_file(t_node *node);
+void	exec_multi_pipes(t_node *pipe_node, t_shell *shell);
+void	exec_no_pipe(t_node *pipe_node, t_shell *shell);
+void	exec_cmd(t_node *node, t_shell *shell);
+void	exec_file(t_node *node, t_shell *shell);
 void	set_exit_status(void);
 int	check_cmd(t_cmd *cmd);
 bool	is_directory(char *pathname);
 int	fail_exec(t_node *node);
 bool	set_redir_out(t_redir *redir_out);
 bool	set_redir_in(t_redir *redir_in);
-void	exec_builtin(t_node *node); // from alelaval
+void	exec_builtin(t_node *node, t_shell *shell); // from alelaval
 
 // lexer version until 08/12 (double pointeur)
 /*

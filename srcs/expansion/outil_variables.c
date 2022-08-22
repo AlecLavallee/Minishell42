@@ -12,7 +12,9 @@
 
  #include "../../inc/minishell.h"
 
-long	at_doller_mark(char *str, char **new, long i)
+extern int exit_status;
+
+long	at_doller_mark(char *str, char **new, long i, t_shell *shell)
 {
 	char	*name;
 	char	*body;
@@ -20,17 +22,17 @@ long	at_doller_mark(char *str, char **new, long i)
 	i++;
 	if (str[i] == '?') //for "echo $?"
 	{
-		*new = ft_strjoin_and_free(*new, 1, ft_itoa(global_shell->exit_status), 1);
+		*new = ft_strjoin_and_free(*new, 1, ft_itoa(exit_status), 1);
 		i++;
 	}
 	else if (!is_var_name_char_1st(str[i])) // if it's not variable
 		*new = ft_strjoin_and_free(*new, 1, "$", 0);
 	else // it's variable
 	{
-		name = _get_var_name(&str[i]);
+		name = get_var_name(&str[i]);
 		if (name[0] != '\0')
 		{
-			body = get_env_body(name);
+			body = get_env_body(name, shell);
 			*new = ft_strjoin_and_free(*new, 1, body, 0);
 			i += ft_strlen(name);
 		}
@@ -39,7 +41,7 @@ long	at_doller_mark(char *str, char **new, long i)
 	return (i);
 }
 
-char	*_get_var_name(char *str)
+char	*get_var_name(char *str)
 {
 	char	*name;
 	long	len;
@@ -57,11 +59,11 @@ char	*_get_var_name(char *str)
 	return (name);
 }
 
-char	*get_env_body(char *name)
+char	*get_env_body(char *name, t_shell *shell)
 {
 	t_env	*env;
 
-	env = global_shell->env;
+	env = shell->env;
 	while (env)
 	{
 		if (ft_strcmp(name, env->name) == 0)

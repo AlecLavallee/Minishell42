@@ -12,8 +12,10 @@
 
 #include "../../inc/minishell.h"
 
+extern int exit_status;
+
 void ft_error(void)
 {
     ft_putstr_fd("minishell: syntax error near unexpected token `|'\n", 2);
-    global_shell->exit_status = 2;
+    exit_status = 2;
 }

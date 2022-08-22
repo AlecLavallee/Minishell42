@@ -12,7 +12,7 @@
 
  #include "../../inc/minishell.h"
 
-char	*expand_var_in_str(char *str)
+char	*expand_var_in_str(char *str, t_shell *shell)
 {
 	char	*new;
 	long	i;
@@ -27,7 +27,7 @@ char	*expand_var_in_str(char *str)
 	{
 		if (!single_quote && str[i] == '$')
 		{
-			i = at_doller_mark(str, &new, i);
+			i = at_doller_mark(str, &new, i, shell);
 			continue ;
 		}
 		if (str[i] == '"' && !single_quote)
@@ -41,24 +41,24 @@ char	*expand_var_in_str(char *str)
 	return (new);
 }
 
-void	expand_var_in_redir(t_redir *redir)
+void	expand_var_in_redir(t_redir *redir, t_shell *shell)
 {
 	if (redir == NULL)
 		return ;
 	if (redir->kind != REDIR_HEREDOC)
-		redir->str = expand_var_in_str(redir->str);
-	expand_var_in_redir(redir->next);
+		redir->str = expand_var_in_str(redir->str, shell);
+	expand_var_in_redir(redir->next, shell);
 }
 
-void	expand_var_in_word(t_word *word)
+void	expand_var_in_word(t_word *word, t_shell *shell)
 {
 	if (word == NULL)
 		return ;
-	word->str = expand_var_in_str(word->str);
-	expand_var_in_word(word->next);
+	word->str = expand_var_in_str(word->str, shell);
+	expand_var_in_word(word->next, shell);
 }
 
-void	expand_var(t_node *node)
+void	expand_var(t_node *node, t_shell *shell)
 {
 	if (node == NULL)
 		return ;
@@ -66,13 +66,13 @@ void	expand_var(t_node *node)
 		return ;
 	if (node->kind == COMMAND)
 	{
-		expand_var_in_word(node->cmds->word);
-		expand_var_in_redir(node->cmds->redir_in);
-		expand_var_in_redir(node->cmds->redir_out);
+		expand_var_in_word(node->cmds->word, shell);
+		expand_var_in_redir(node->cmds->redir_in, shell);
+		expand_var_in_redir(node->cmds->redir_out, shell);
 	}
 	else
 	{
-		expand_var(node->lhs);
-		expand_var(node->rhs);
+		expand_var(node->lhs, shell);
+		expand_var(node->rhs, shell);
 	}
 }

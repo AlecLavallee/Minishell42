@@ -12,12 +12,12 @@
 
 #include "../../inc/minishell.h"
 
-int env(t_word *word)
+int env(t_word *word, t_shell *shell)
 {
     t_env *env;
 
     (void)word; // for unused paramator
-    env = global_shell->env;
+    env = shell->env;
     while (env)
     {
         if (env->body)

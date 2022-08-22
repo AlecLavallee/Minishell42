@@ -158,8 +158,8 @@ t_node *command(t_token **token)
             if (node->cmds->word == NULL && node->cmds->redir_in == NULL
                 && node->cmds->redir_out == NULL)
             {
-                printf ("minishell: syntax error near unexpected token \n");
-                // operation sortie d'erreur
+                ft_putstr_fd("minishell: syntax error near unexpected token \n", 2);
+                exit(1);
             }
             return (node);
         }
