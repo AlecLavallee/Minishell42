@@ -6,11 +6,11 @@
 /*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/29 11:53:24 by alelaval          #+#    #+#             */
-/*   Updated: 2022/08/14 19:02:56 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/08/22 13:56:09 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "execution.h"
+#include "minishell.h"
 
 t_shell	*init_all(void)
 {

@@ -6,11 +6,11 @@
 /*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 14:20:40 by alelaval          #+#    #+#             */
-/*   Updated: 2022/08/14 19:43:07 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/08/22 13:56:09 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "execution.h"
+#include "minishell.h"
 
 int	main(int num_args, char **args, char **envp)
 {

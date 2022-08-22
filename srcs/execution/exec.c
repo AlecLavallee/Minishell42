@@ -6,11 +6,11 @@
 /*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 19:20:37 by alelaval          #+#    #+#             */
-/*   Updated: 2022/08/14 19:44:56 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/08/22 13:56:09 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "execution.h"
+#include "minishell.h"
 
 /* test for function and paths application */
 char	*get_fun(char *arg, char **paths)

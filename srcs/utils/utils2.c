@@ -6,11 +6,11 @@
 /*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/18 17:36:11 by alelaval          #+#    #+#             */
-/*   Updated: 2022/07/25 18:13:08 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/08/22 13:56:09 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "execution.h"
+#include "minishell.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {

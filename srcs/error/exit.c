@@ -6,11 +6,11 @@
 /*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/05 13:50:50 by alelaval          #+#    #+#             */
-/*   Updated: 2022/08/14 17:10:51 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/08/22 13:56:09 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "execution.h"
+#include "minishell.h"
 
 void	free_cmds(t_shell *shell)
 {

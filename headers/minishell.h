@@ -1,28 +1,127 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execution.h                                        :+:      :+:    :+:   */
+/*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/29 11:53:20 by alelaval          #+#    #+#             */
-/*   Updated: 2022/08/14 19:31:33 by alelaval         ###   ########.fr       */
+/*   Created: 2022/07/29 11:53:20 by alelaval          #+#    #+#             */
+/*   Updated: 2022/08/22 13:59:07 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef EXECUTION_H
-# define EXECUTION_H
+#ifndef MINISHELL_H
+# define MINISHELL_H
+# define MINISHELL "MINISHELL$ "
+# define STDERR 2
+# define STDIN 0
+# define STDOUT 1
 # define PATH_MAX 4096
-# include "get_next_line.h"
-# include <sys/types.h>
-# include <sys/wait.h>
-# include <fcntl.h>
-# include <unistd.h>
+
 # include <stdio.h>
 # include <stdlib.h>
-# include <string.h>
+# include <stdint.h>
 # include <errno.h>
+# include <stdbool.h>
+# include <fcntl.h>
+# include <signal.h>
+# include <unistd.h>
+# include <sys/wait.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 
+// Mtsuji
+typedef enum{
+    DEFAULT, //default 0
+    TOKEN_ARGUMENT, // word 1
+	TOKEN_PIPE, // | 
+	TOKEN_OP, // operands
+	TOKEN_EOF, // end of string
+} t_token_kind;
+
+typedef enum
+{
+	BUILTIN, 
+	COMMAND,// word, redir
+	PIPE, // | 
+	NODE_EOF, // end of string 
+} t_node_kind;
+
+typedef enum
+{
+	REDIR_OUT, // >
+	REDIR_IN, // <
+	REDIR_APPEND, // >>
+	REDIR_HEREDOC, // <<
+}	t_redir_kind;
+
+typedef struct s_redir
+{
+	t_redir_kind kind;
+	char *str;
+	int fd;
+	int cur;
+	struct s_redir *next;
+} t_redir;
+
+typedef struct s_node {
+  t_node_kind kind; // state_token
+  struct s_node *next;
+  int val;        // kindがTK_NUMの場合、その数値 = pas besoin pour minishell
+  char *str;      // for word(=argument)
+  int len;        // longuer_token
+  struct s_node *lhs; //left handle
+  struct s_node *rhs; // right handle
+  struct s_cmd *cmds;
+  t_redir *redir_in;
+  t_redir *redir_out;
+}t_node;
+
+typedef struct s_word
+{
+	struct s_word *next;
+	char *str;
+} t_word;
+
+
+typedef struct s_cmd
+{
+	t_redir *redir_in;
+	t_redir *redir_out;
+	t_word *word;
+	int		is_builtin;
+	char	*pathname;
+} t_cmd;
+
+
+typedef struct s_token
+{
+	int				cur;
+	int 			len;
+    char            *string;
+	t_token_kind	kind;
+	struct s_token	*next;
+}		t_token;
+
+typedef struct s_command
+{
+	int		cur;
+	char	*whole_str;
+	char	*command;
+	t_token *first_token;
+	struct s_command	*next;
+}		t_command;
+
+typedef struct s_env
+{
+	char *name;
+	char *body;
+	struct s_env *next;
+} t_env;
+
+// alelaval
 typedef struct s_comm
 {
 	int		isbuiltin;
