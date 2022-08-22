@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msuji <mtsuji@student.42.fr>               +#+  +:+       +#+        */
+/*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 11:48:33 by msuji             #+#    #+#             */
-/*   Updated: 2022/07/30 11:48:34 by msuji            ###   ########.fr       */
+/*   Updated: 2022/08/22 17:59:37 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,9 @@ gcc minishell.h parsing/lexer.c parsing/outil_lexer.c parsing/minishell.c parsin
 
 void start_command(char *str, t_shell *shell)
 {
-    //t_shell *global_shell;
     t_command *command_line;
     t_node *node;
 
-    //global_shell->interrupt = 0;
     command_line = lexer(str);
     node = parser(command_line->first_token);
     free_lexer(command_line);
@@ -44,16 +42,10 @@ int main(int argc, char **argv, char **envp)
 {
     char *line;
     t_shell *shell;
-    //extern int exit_status;
-    //exit_status = 0;
 
     if (argc && argv)
     {
-        //shell = init_all();
-        //shell->envp = get_paths(shell, envp);
-
         shell = create_shell(envp, argv);
-        //exit_status = 0;
         signal_init();
         while (1)
         {

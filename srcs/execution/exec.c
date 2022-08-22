@@ -6,7 +6,7 @@
 /*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 19:20:37 by alelaval          #+#    #+#             */
-/*   Updated: 2022/08/22 13:56:09 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/08/22 16:39:59 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,15 +117,16 @@ void	handle_io(t_shell *shell)
 	close(shell->defoutput);
 }
 
-void	exec_builtin(t_shell *shell)
+/*void	exec_builtin(t_shell *shell)
 {
 	//to do : create an enum in the header with builtins listed
 	ft_putstr("heheheha\n");
+	(void)shell;
 	if (!ft_strncmp(shell->cmds->args[0], "echo", ft_strlen(shell->cmds->args[0])))
 		echo(&shell->cmds->args[1]);
 	if (!ft_strncmp(shell->cmds->args[0], "pwd", ft_strlen(shell->cmds->args[0])))
-		pwd();
-}
+		pwd(sh);
+}*/
 
 /*
 * executor
@@ -146,8 +147,8 @@ void	executor(t_shell *shell)
 		handle_pipes(shell, cmd);
 		if (!cmd->isbuiltin)
 			ret = fork();
-		else
-			exec_builtin(shell);
+		/*else
+			exec_builtin(shell);*/
 		if (ret < 0)
 		{
 			perror("fork");
