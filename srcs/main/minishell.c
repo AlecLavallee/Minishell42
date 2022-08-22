@@ -12,7 +12,8 @@
 
 #include "../inc/minishell.h"
 
-    extern int exit_status;
+    int exit_status;
+    //exit_status = 0;
 /*
     valeur_exit : variable global pour la valeur de retour, mais on pourrait enlever
 */
