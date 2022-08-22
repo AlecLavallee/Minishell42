@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: msuji <mtsuji@student.42.fr>               +#+  +:+       +#+         #
+#    By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/01 12:35:48 by msuji             #+#    #+#              #
-#    Updated: 2022/08/22 16:20:09 by msuji            ###   ########.fr        #
+#    Updated: 2022/08/22 16:24:10 by alelaval         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,19 @@ SRCS	=	./srcs/main/minishell.c	\
 			./srcs/builtin/pwd.c			\
 			./test_exec.c						\
 			./srcs/exec/exec.c				\
+			./srcs/execution/exec.c \
+		./srcs/execution/env.c \
+		./srcs/heredoc/heredoc.c \
+		./srcs/redirections/append.c \
+		./srcs/redirections/infile.c \
+		./srcs/error/exit.c \
+		./srcs/utils/utils.c \
+		./srcs/utils/utils2.c \
+		./srcs/utils/utils3.c \
+		./srcs/builtins/echo.c \
+		./srcs/builtins/pwd.c \
+		./srcs/shell.c \
+		./srcs/tests.c
 			#./srcs/exec/exec_pipe.c			\
 
 
