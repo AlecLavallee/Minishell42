@@ -27,7 +27,9 @@ void	exec_builtin(t_node *node, t_shell *shell)
 	else if (!ft_strncmp(command->word->str, "pwd", ft_strlen(command->word->str)))
 		 exit_status = pwd(command->word);
 	else if (!ft_strncmp(command->word->str, "cd", ft_strlen(command->word->str)))
-		 exit_status = cd(command->word, shell);		 
+		 exit_status = cd(command->word, shell);
+	else if (!ft_strncmp(command->word->str, "export", ft_strlen(command->word->str)))
+		 exit_status = export(command->word, shell);		 
 	//if (!ft_strncmp(shell->cmds->args[0], "pwd", ft_strlen(shell->cmds->args[0])))
 	//	pwd();
     else

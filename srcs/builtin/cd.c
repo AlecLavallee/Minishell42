@@ -19,7 +19,7 @@ void    after_cd(t_shell *shell)
     if (get_env_body("PWD", shell))
     {
         new = ft_strjoin("OLDPWD=", get_env_body("PWD", shell));
-        //env_adition(new, shell);
+        env_add(new, shell);
         free(new);
     }
     ft_memset(buff, 0, PATH_MAX);
@@ -29,7 +29,7 @@ void    after_cd(t_shell *shell)
         return ;
     }
     new = ft_strjoin("PWD=", buff);
-    //env_adition(new shell);
+    env_add(new, shell);
     free(new);
 }
 
