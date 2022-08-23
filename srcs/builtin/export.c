@@ -36,7 +36,7 @@ int check_argument_for_export(char *str)
     while (str[i] && str[i] != '=' 
         && (str[i] != '+' || str[i + 1] != '='))
     {
-        if (i == 0 && ft_isdigit(str[i]) == 1)
+        if (i == 0 && ft_isdigit(str[i]) != 0)
             return (1);
         if (ft_isalnum(str[i]) == 0 && str[i] != '_')
             return (1);
