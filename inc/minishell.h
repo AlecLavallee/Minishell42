@@ -288,6 +288,7 @@ int echo_option(char *str);
 int env(t_word *word, t_shell *shell);
 int	pwd(t_word *word);
 int cd(t_word *word, t_shell *shell);
+int export(t_word *word, t_shell *shell);
 
 //alelaval's focntion
 t_shell	*init_all(void);
