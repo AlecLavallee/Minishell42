@@ -264,7 +264,7 @@ void free_word(t_word *word);
 void free_redirection(t_redir *redir_in);
 void	free_envp(char **envp);
 
-//env
+//env | shell
 t_shell *create_shell(char **envp, char **argv);
 t_env	*create_env(char **envp);
 t_env	*env_addback(t_env *env, char *name, char *body);
@@ -274,6 +274,9 @@ void    free_env(t_shell *shell);
 long	get_env_size(t_shell *shell);
 char	**create_envp(t_shell *shell);
 char	**create_argv(t_word *word);
+void	env_add(char *str, t_shell *shell);
+t_env   *new_env(char *name, char *body);
+void env_rewrite(t_shell *shell, char *name, char *body);
 
 //exec
 void exec(t_node *node, t_shell *shell);
@@ -284,6 +287,7 @@ int echo(t_word *word);
 int echo_option(char *str);
 int env(t_word *word, t_shell *shell);
 int	pwd(t_word *word);
+int cd(t_word *word, t_shell *shell);
 
 //alelaval's focntion
 t_shell	*init_all(void);
