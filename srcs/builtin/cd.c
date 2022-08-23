@@ -11,6 +11,27 @@
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h" 
+void    after_cd(t_shell *shell)
+{
+    char buff[PATH_MAX];
+    char  *new;
+
+    if (get_env_body("PWD", shell))
+    {
+        new = ft_strjoin("OLDPWD=", get_env_body("PWD", shell));
+        //env_adition(new, shell);
+        free(new);
+    }
+    ft_memset(buff, 0, PATH_MAX);
+    if (!getcwd(buff, PATH_MAX))
+    {
+        perror("getcwd");
+        return ;
+    }
+    new = ft_strjoin("PWD=", buff);
+    //env_adition(new shell);
+    free(new);
+}
 
 int go_home(t_shell *shell)
 {
@@ -29,28 +50,8 @@ int go_home(t_shell *shell)
         ft_putstr_fd(": No such file or directory\n", 2);
         return (1);
     }
+    after_cd(shell);
     return (0);
-}
-
-void    after_cd(t_shell *shell)
-{
-    char buff[PATH_MAX];
-    t_env env;
-
-    char  *new;
-    new = get_env_body("PWD", shell);
-    if (getcwd(buff, PATH_MAX))
-    {
-        ft_strjoin_and_free("OLDPWD=", new);
-        env_addback(,"PWD", buffer);
-    }
-    /*
-    ft_memset(buff, 0, PATH_MAX);
-	if (!getcwd(buff, PATH_MAX))
-	perror("pwd");
-	ft_putendl_fd(buff, 1);
-
-    */
 }
 
 int cd(t_word *word, t_shell *shell)
@@ -73,5 +74,6 @@ int cd(t_word *word, t_shell *shell)
 	    if (!getcwd(buff, PATH_MAX))
 		perror("pwd");
 	    ft_putendl_fd(buff, 1);*/
+    after_cd(shell);
     return (0);
 }
