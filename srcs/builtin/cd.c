@@ -56,8 +56,6 @@ int go_home(t_shell *shell)
 
 int cd(t_word *word, t_shell *shell)
 {
-	char buff[PATH_MAX];
-
     if (word->next == NULL)
     {
         return (go_home(shell));

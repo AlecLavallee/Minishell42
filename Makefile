@@ -29,6 +29,7 @@ SRCS	=	./srcs/main/minishell.c	\
 			./srcs/alelaval/get_env.c		\
 			./srcs/shell/create_shell.c		\
 			./srcs/shell/create_envp.c		\
+			./srcs/shell/env_add.c			\
 			./srcs/expansion/expansion.c		\
 			./srcs/expansion/variables.c		\
 			./srcs/expansion/outil_expension.c		\
@@ -41,6 +42,7 @@ SRCS	=	./srcs/main/minishell.c	\
 			./srcs/expansion/path_generator.c		\
 			./srcs/expansion/outil_path.c		\
 			./srcs/builtin/echo.c			\
+			./srcs/builtin/cd.c				\
 			./srcs/builtin/env.c			\
 			./srcs/builtin/pwd.c			\
 			./test_exec.c						\
