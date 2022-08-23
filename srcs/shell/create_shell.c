@@ -52,6 +52,31 @@ char	*create_env_body(char *str)
 	return (body);
 }
 
+char	*create_env_name_with_plus(char *str)
+{
+	char	*name;
+	char	*eq;
+
+	eq = ft_strnstr(str, "+=", ft_strlen(str));
+	if (eq == NULL)
+		name = ft_strdup(str);
+	else
+		name = ft_strndup(str, eq - str); 
+	return (name);
+}
+
+char	*create_env_body_with_plus(char *str)
+{
+	char	*body;
+	char	*eq;
+
+	eq = ft_strnstr(str, "+=", ft_strlen(str));
+	if (eq == NULL)
+		return (NULL);
+	body = ft_strdup(eq + 2);
+	return (body);
+}
+
 t_env	*env_addback(t_env *env, char *name, char *body)
 {
 	t_env	*now;

@@ -64,6 +64,8 @@ int    export(t_word *word, t_shell *shell)
             ft_printf("minishell : export: `%s' not a valid identifier\n", word->str); 
             return (1);
         }
+        else if (ft_strnstr(word->str, "+=", ft_strlen(word->str)) != 0)
+            env_add_with_plus(word->str, shell);
         else
             env_add(word->str, shell);
         word =word->next;
@@ -75,5 +77,5 @@ int    export(t_word *word, t_shell *shell)
  gestion pour trois cas:
  1: export ENV sans '=' (faut pas afficher dans env)
  2: export ENV=...  (afficher dans env)
- 3: export sans argument
+ 3: export sans argument ('export env')
 */

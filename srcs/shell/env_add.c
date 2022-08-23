@@ -27,6 +27,21 @@ void	env_add(char *str, t_shell *shell)
     env_rewrite(shell, name, body);
 }
 
+void	env_add_with_plus(char *str, t_shell *shell)
+{
+    char *name;
+    char *body;
+
+    name = create_env_name_with_plus(str);
+    body = create_env_body_with_plus(str);
+    if (shell->env == NULL)
+    {
+        shell->env = new_env(name, body);
+        return ;
+    }
+    env_rewrite_with_plus(shell, name, body);
+}
+
 t_env   *new_env(char *name, char *body)
 {
     t_env *env;
@@ -51,7 +66,30 @@ void env_rewrite(t_shell *shell, char *name, char *body)
             {
                 free(env->body);
                 env->body = body;
+                //free(body);
             }
+            return ;
+        }
+        if (env->next == NULL)
+        {
+            env->next = new_env(name, body);
+            return ;
+        }
+        env = env->next;
+    }   
+}
+
+void env_rewrite_with_plus(t_shell *shell, char *name, char *body)
+{
+    t_env *env;
+
+    env = shell->env;
+    while (env)
+    {
+        if (ft_strcmp(env->name, name) == 0)
+        {
+            free(name);
+            env->body = ft_strjoin_and_free(env->body, 0, body, 1);
             return ;
         }
         if (env->next == NULL)

@@ -269,26 +269,41 @@ t_shell *create_shell(char **envp, char **argv);
 t_env	*create_env(char **envp);
 t_env	*env_addback(t_env *env, char *name, char *body);
 char	*create_env_name(char *str);
+char	*create_env_name_with_plus(char *str);
 char	*create_env_body(char *str);
+char	*create_env_body_with_plus(char *str);
 void    free_env(t_shell *shell);
 long	get_env_size(t_shell *shell);
 char	**create_envp(t_shell *shell);
 char	**create_argv(t_word *word);
 void	env_add(char *str, t_shell *shell);
+void	env_add_with_plus(char *str, t_shell *shell);
 t_env   *new_env(char *name, char *body);
 void env_rewrite(t_shell *shell, char *name, char *body);
+void env_rewrite_with_plus(t_shell *shell, char *name, char *body);
+
 
 //exec
 void exec(t_node *node, t_shell *shell);
 void	exec_pipe(t_node *pipe_node, t_shell *shell);
 
 //builtin
+//echo
 int echo(t_word *word);
 int echo_option(char *str);
+//env
 int env(t_word *word, t_shell *shell);
+//pwd
 int	pwd(t_word *word);
+//cd
 int cd(t_word *word, t_shell *shell);
+void    after_cd(t_shell *shell);
+int go_home(t_shell *shell);
+
+//export
 int export(t_word *word, t_shell *shell);
+void    display_env_for_export(t_shell *shell);
+int check_argument_for_export(char *str);
 
 //alelaval's focntion
 t_shell	*init_all(void);
