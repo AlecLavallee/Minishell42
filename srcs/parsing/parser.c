@@ -71,7 +71,8 @@ t_node *parser(t_token *token)
      t_node *node;
 
     node = pipe_cmd(&token);
-    token = skip(token, TOKEN_EOF, NULL);
+    //token = skip(token, TOKEN_EOF, NULL);
+    token = token->next;
     return (node);
 }   
 
@@ -80,12 +81,15 @@ t_node *parser(t_token *token)
 t_node *pipe_cmd(t_token **token)
 {
     t_node *node;
-    
-    node =  new_node_pipe(command(token));
-    while (!consume(*token, TOKEN_PIPE, "|"))
+    if (exit_status != 2)
     {
-        *token = skip(*token, TOKEN_PIPE, "|");
-        node  = add_node_pipe(node, command(token));
+        node =  new_node_pipe(command(token));
+        while (!consume(*token, TOKEN_PIPE, "|"))
+        {
+            //*token = skip(*token, TOKEN_PIPE, "|");
+            *token = (*token)->next;
+            node  = add_node_pipe(node, command(token));
+        }
     } 
     return (node);
 }
@@ -103,16 +107,18 @@ void redir_in(t_token **token, t_node *node)
     //node = word(token);
     if (!consume(*token, TOKEN_OP, "<"))
     {
-        *token = skip(*token, TOKEN_OP, "<");
+        //*token = skip(*token, TOKEN_OP, "<");
+            *token = (*token)->next;
         redir_in_addback(node->cmds, REDIR_IN, (*token)->string, (*token)->len);
     }
     else if (!consume(*token, TOKEN_OP, "<<"))
     {
-        *token = skip(*token, TOKEN_OP, "<<");
+        //*token = skip(*token, TOKEN_OP, "<<");
+        *token = (*token)->next;
         redir_in_addback(node->cmds, REDIR_HEREDOC, (*token)->string, (*token)->len);
     } 
-    else 
-        printf("parsing error : '<' or '<<'\n");
+    //else 
+    //    printf("parsing error : '<' or '<<'\n");
     //node = word(token);
     //return (node);
 }
@@ -124,16 +130,18 @@ void redir_out(t_token **token, t_node *node)
 
     if (!consume(*token, TOKEN_OP, ">"))
     {
-        *token = skip(*token, TOKEN_OP, ">");
+        //*token = skip(*token, TOKEN_OP, ">");
+        *token = (*token)->next;
         redir_out_addback(node->cmds, REDIR_OUT, (*token)->string, (*token)->len);
     }
     else if (!consume(*token, TOKEN_OP, ">>"))
     {
-        *token = skip(*token, TOKEN_OP, ">>");
+        //*token = skip(*token, TOKEN_OP, ">>");
+        *token = (*token)->next;
         redir_out_addback(node->cmds, REDIR_APPEND, (*token)->string, (*token)->len);
     } 
-    else 
-        printf("parsing error : '>' or '>>'\n");
+    //else 
+    //    printf("parsing error : '>' or '>>'\n");
     //node = word(token);
     //return (node);
 }
@@ -152,7 +160,6 @@ t_node *command(t_token **token)
             redir_in(token, node);
         else if (!consume(*token, TOKEN_OP, ">") || !consume(*token, TOKEN_OP, ">>"))
             redir_out(token, node);
-            
         else
         {
             if (node->cmds->word == NULL && node->cmds->redir_in == NULL
@@ -163,7 +170,10 @@ t_node *command(t_token **token)
             }
             return (node);
         }
-        *token = skip(*token, TOKEN_ARGUMENT, NULL); 
+        //*token = skip(*token, TOKEN_ARGUMENT, NULL);
+        *token = (*token)->next; 
+        if (exit_status == 2)
+            return (node);
     }
     return (node);
 }

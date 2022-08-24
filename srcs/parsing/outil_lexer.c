@@ -19,6 +19,7 @@
 {
     
 }*/
+extern int exit_status;
 
 int first_word_is_pipe(char *str)
 {
@@ -41,3 +42,33 @@ int first_word_is_pipe(char *str)
     }
     return (0);
 }
+
+int first_word_colon_exclamation(char *str)
+{
+    int cur;
+    int p;
+
+    cur  = 0;
+    p = 0;
+    while (str[cur])
+    {
+        if (str[cur] != ' ' && (str[cur] != ':' && str[cur] != '!'))
+            p = 1;
+        if (str[cur] == ':' || str[cur] == '!')
+        {
+            if (p == 0)
+            {
+                if (str[cur] == '!')
+                    exit_status = 2;
+                return (1);
+            }
+            p = 0;
+        }
+        cur++;
+    }
+    return (0);
+}
+
+
+
+

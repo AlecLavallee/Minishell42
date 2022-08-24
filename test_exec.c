@@ -175,18 +175,18 @@ int	check_cmd(t_cmd *cmd)
 {
 	if (cmd->pathname == NULL)
 	{
-		ft_putstr_fd("minishell:", 2);
+		ft_putstr_fd("minishell: ", 2);
         ft_putstr_fd(cmd->word->str, 2);
-        ft_putstr_fd("command not found\n", 2);
+        ft_putstr_fd(" command not found\n", 2);
 		exit_status = 127;
 		return (1);
 	}
 	if (is_directory(cmd->pathname))
 	{
-		printf("minishell: %s: is a directory\n", cmd->pathname); 
+		//printf("minishell: %s: is a directory\n", cmd->pathname); 
         ft_putstr_fd("minishell:", 2);
         ft_putstr_fd(cmd->pathname, 2);
-        ft_putstr_fd("is a directory\n", 2);
+        ft_putstr_fd(" is a directory\n", 2);
 		exit_status = 126;
 		return (1);
 	}

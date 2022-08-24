@@ -180,6 +180,7 @@ int simple_quote(char *str);
 int double_quote(char *str);
 int quoting(char *str);
 int first_word_is_pipe(char *str);
+int first_word_colon_exclamation(char *str);
 void	ft_error(void);
 
 //get_command_line
@@ -308,6 +309,9 @@ int check_argument_for_export(char *str);
 
 //unset
 int	unset(t_word *word, t_shell *shell);
+
+//exit
+int builtin_exit(t_word *word);
 
 //alelaval's focntion
 t_shell	*init_all(void);

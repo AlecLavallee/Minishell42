@@ -12,16 +12,19 @@
 
 #include "../../inc/minishell.h"
 
+//int exit_status;
+
 void parser_error(char *str, long len)
 {
     char *str_tmp;
 
     str_tmp = strndup(str, len);
-    ft_putstr_fd("minishell : syntax error near unexpected token ", 2);
-    ft_putstr_fd(str_tmp, 2);
+    ft_putstr_fd("minishell : syntax error near unexpected token `newline'", 2);
+//    ft_putstr_fd(str_tmp, 2);
     ft_putchar_fd('\n', 2);
     free(str_tmp);
-    exit(1);
+    exit_status = 2;
+    //exit(1);
 }
 
 int consume(t_token *token, t_token_kind kind, char *str) 
@@ -36,10 +39,15 @@ int consume(t_token *token, t_token_kind kind, char *str)
 t_token *skip(t_token *token, t_token_kind kind, char *str) 
 {
 	if (token->kind != kind)
+    {
         parser_error(token->string, token->len);
+    }
 	if (str != NULL && (token->len != (long)ft_strlen(str) 
         || ft_strncmp(token->string, str, token->len)))
+    {
 		parser_error(token->string, token->len);
+        //return (token);
+    }
 	return token->next;
 }
 
@@ -115,6 +123,7 @@ t_node *new_node_command(void)
     node->kind = COMMAND; 
     return (node);   
 }
+
 /*
 t_node *new_node_word(t_token *token) 
 {

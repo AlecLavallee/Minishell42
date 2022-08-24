@@ -32,11 +32,14 @@ void start_command(char *str, t_shell *shell)
     //global_shell->interrupt = 0;
     command_line = lexer(str);
     node = parser(command_line->first_token);
-    free_lexer(command_line);
+    if (node)
+        free_lexer(command_line);
     //expand_var(node);
     signal_exec();
-    exec(node, shell);
-    free_node(node);
+    if (node)
+        exec(node, shell);
+    if (node)
+        free_node(node);
 }
 
 
@@ -61,17 +64,18 @@ int main(int argc, char **argv, char **envp)
             line = readline(">team_90's ");
             if (line == NULL) 
                 break;
-            if (only_space(line))
+            if (only_space(line) && !first_word_colon_exclamation(line))
             {
                 add_history(line);
                 if (first_word_is_pipe(line) != 0)
                     ft_error();
-                start_command(line, shell);
+                else
+                    start_command(line, shell);
             }
-            printf("your command is : %s\n", line);
+            //printf("your command is : %s\n", line);
             free(line);
         }
     }
-    ft_putstr_fd("exit\n", 2);
+    //ft_putstr_fd("exit\n", 2);
     exit_shell(shell, exit_status); //  changed by mtsuji
 }
