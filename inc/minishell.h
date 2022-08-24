@@ -281,6 +281,7 @@ void	env_add_with_plus(char *str, t_shell *shell);
 t_env   *new_env(char *name, char *body);
 void env_rewrite(t_shell *shell, char *name, char *body);
 void env_rewrite_with_plus(t_shell *shell, char *name, char *body);
+void    del_env(char *str, t_shell *shell);
 
 
 //exec
@@ -304,6 +305,9 @@ int go_home(t_shell *shell);
 int export(t_word *word, t_shell *shell);
 void    display_env_for_export(t_shell *shell);
 int check_argument_for_export(char *str);
+
+//unset
+int	unset(t_word *word, t_shell *shell);
 
 //alelaval's focntion
 t_shell	*init_all(void);

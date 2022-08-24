@@ -89,7 +89,7 @@ void env_rewrite_with_plus(t_shell *shell, char *name, char *body)
         if (ft_strcmp(env->name, name) == 0)
         {
             free(name);
-            env->body = ft_strjoin_and_free(env->body, 0, body, 1);
+            env->body = ft_strjoin_and_free(env->body, 1, body, 1);
             return ;
         }
         if (env->next == NULL)

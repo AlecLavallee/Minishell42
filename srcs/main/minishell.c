@@ -53,7 +53,6 @@ int main(int argc, char **argv, char **envp)
             line = readline(">team_90's ");
             if (line == NULL) 
                 break;
-
             if (only_space(line))
             {
                 add_history(line);
