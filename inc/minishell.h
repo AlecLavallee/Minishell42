@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: msuji <mtsuji@student.42.fr>               +#+  +:+       +#+        */
+/*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:10:23 by msuji             #+#    #+#             */
-/*   Updated: 2022/07/21 17:10:27 by msuji            ###   ########.fr       */
+/*   Updated: 2022/08/23 15:03:49 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -285,8 +285,9 @@ void    del_env(char *str, t_shell *shell);
 
 
 //exec
-void exec(t_node *node, t_shell *shell);
-void	exec_pipe(t_node *pipe_node, t_shell *shell);
+void	executor(t_node *node, t_shell *shell);
+void	exec_file(t_node *node, t_shell *shell);
+void	exec_recursion(t_node *node, t_shell *shell);
 
 //builtin
 //echo
@@ -311,6 +312,7 @@ int	unset(t_word *word, t_shell *shell);
 
 //alelaval's focntion
 t_shell	*init_all(void);
+
 char	*get_path_line(char **paths);
 char	**get_paths(t_shell *shell, char **envp);
 void	exit_shell(t_shell *shell, int code);

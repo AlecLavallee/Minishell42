@@ -9,6 +9,7 @@ extern int exit_status;
 
 #include "./inc/minishell.h"
 
+<<<<<<< HEAD
 
 /*
 originnal alelaval's fonction
@@ -67,6 +68,8 @@ void	exec_builtin(t_node *node, t_shell *shell)
 }
 */
 
+=======
+>>>>>>> 09e090df9f1711c4309e645ee21a881643f921b5
 bool	set_redir_in(t_redir *redir_in)
 {
 	int	fd;

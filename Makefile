@@ -6,7 +6,11 @@
 #    By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/01 12:35:48 by msuji             #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2022/08/24 11:46:45 by msuji            ###   ########.fr        #
+=======
+#    Updated: 2022/08/23 15:56:15 by alelaval         ###   ########.fr        #
+>>>>>>> 09e090df9f1711c4309e645ee21a881643f921b5
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,14 +50,19 @@ SRCS	=	./srcs/main/minishell.c	\
 			./srcs/builtin/cd.c				\
 			./srcs/builtin/env.c			\
 			./srcs/builtin/pwd.c			\
+<<<<<<< HEAD
 			./srcs/builtin/export.c			\
 			./srcs/builtin/unset.c			\
 			./test_exec.c						\
 			./srcs/exec/exec.c				\
 			./srcs/execution/exec.c \
+=======
+			./srcs/execution/exec.c				\
+			./srcs/execution/exec_file.c \
+			./srcs/execution/redirections.c \
+			./srcs/execution/status.c \
+>>>>>>> 09e090df9f1711c4309e645ee21a881643f921b5
 		./srcs/heredoc/heredoc.c \
-		./srcs/redirections/append.c \
-		./srcs/redirections/infile.c \
 			#./srcs/exec/exec_pipe.c			\
 
 
