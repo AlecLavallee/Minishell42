@@ -71,8 +71,8 @@ t_node *parser(t_token *token)
      t_node *node;
 
     node = pipe_cmd(&token);
-    //token = skip(token, TOKEN_EOF, NULL);
-    token = token->next;
+    token = skip(token, TOKEN_EOF, NULL);
+    //token = token->next;
     return (node);
 }   
 
@@ -86,8 +86,8 @@ t_node *pipe_cmd(t_token **token)
         node =  new_node_pipe(command(token));
         while (!consume(*token, TOKEN_PIPE, "|"))
         {
-            //*token = skip(*token, TOKEN_PIPE, "|");
-            *token = (*token)->next;
+            *token = skip(*token, TOKEN_PIPE, "|");
+            //*token = (*token)->next;
             node  = add_node_pipe(node, command(token));
         }
     } 
@@ -107,14 +107,14 @@ void redir_in(t_token **token, t_node *node)
     //node = word(token);
     if (!consume(*token, TOKEN_OP, "<"))
     {
-        //*token = skip(*token, TOKEN_OP, "<");
-            *token = (*token)->next;
+        *token = skip(*token, TOKEN_OP, "<");
+        //    *token = (*token)->next;
         redir_in_addback(node->cmds, REDIR_IN, (*token)->string, (*token)->len);
     }
     else if (!consume(*token, TOKEN_OP, "<<"))
     {
-        //*token = skip(*token, TOKEN_OP, "<<");
-        *token = (*token)->next;
+        *token = skip(*token, TOKEN_OP, "<<");
+        //*token = (*token)->next;
         redir_in_addback(node->cmds, REDIR_HEREDOC, (*token)->string, (*token)->len);
     } 
     //else 
@@ -130,14 +130,14 @@ void redir_out(t_token **token, t_node *node)
 
     if (!consume(*token, TOKEN_OP, ">"))
     {
-        //*token = skip(*token, TOKEN_OP, ">");
-        *token = (*token)->next;
+        *token = skip(*token, TOKEN_OP, ">");
+        //*token = (*token)->next;
         redir_out_addback(node->cmds, REDIR_OUT, (*token)->string, (*token)->len);
     }
     else if (!consume(*token, TOKEN_OP, ">>"))
     {
-        //*token = skip(*token, TOKEN_OP, ">>");
-        *token = (*token)->next;
+        *token = skip(*token, TOKEN_OP, ">>");
+        //*token = (*token)->next;
         redir_out_addback(node->cmds, REDIR_APPEND, (*token)->string, (*token)->len);
     } 
     //else 
@@ -170,8 +170,8 @@ t_node *command(t_token **token)
             }
             return (node);
         }
-        //*token = skip(*token, TOKEN_ARGUMENT, NULL);
-        *token = (*token)->next; 
+        *token = skip(*token, TOKEN_ARGUMENT, NULL);
+        //*token = (*token)->next; 
         if (exit_status == 2)
             return (node);
     }

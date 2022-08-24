@@ -130,7 +130,7 @@ t_command *get_command_line(char *str)
     t_command *new;
     new = malloc(sizeof(t_command));
     if (new == NULL)
-        exit (1);
+        return  (NULL);
     init_command_line(new);
     new->whole_str = malloc(sizeof(char) * (ft_strlen(str) + 1));
     if (new->whole_str == NULL)

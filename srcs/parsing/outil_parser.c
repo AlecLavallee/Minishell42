@@ -24,7 +24,7 @@ void parser_error(char *str, long len)
     ft_putchar_fd('\n', 2);
     free(str_tmp);
     exit_status = 2;
-    //exit(1);
+    exit(1);
 }
 
 int consume(t_token *token, t_token_kind kind, char *str) 
