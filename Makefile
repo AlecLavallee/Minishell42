@@ -6,7 +6,7 @@
 #    By: msuji <mtsuji@student.42.fr>               +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/01 12:35:48 by msuji             #+#    #+#              #
-#    Updated: 2022/08/21 21:47:58 by mtsuji           ###   ########.fr        #
+#    Updated: 2022/08/24 11:46:45 by msuji            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRCS	=	./srcs/main/minishell.c	\
 			./srcs/shell/create_shell.c		\
 			./srcs/shell/create_envp.c		\
 			./srcs/shell/env_add.c			\
+			./srcs/shell/del_env.c			\
 			./srcs/expansion/expansion.c		\
 			./srcs/expansion/variables.c		\
 			./srcs/expansion/outil_expension.c		\
@@ -46,6 +47,7 @@ SRCS	=	./srcs/main/minishell.c	\
 			./srcs/builtin/env.c			\
 			./srcs/builtin/pwd.c			\
 			./srcs/builtin/export.c			\
+			./srcs/builtin/unset.c			\
 			./test_exec.c						\
 			./srcs/exec/exec.c				\
 			#./srcs/exec/exec_pipe.c			\
