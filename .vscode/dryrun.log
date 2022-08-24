@@ -1,4 +1,4 @@
-make --dry-run --always-make --keep-going --print-directory
+make --dry-run --keep-going --print-directory
 make: Entering directory '/home/tj/Documents/Minishell42'
 gcc -Wall -Wextra -Werror -g3 -fsanitize=address -fsanitize=leak -I./inc/ -I./libft/ -c srcs/main/minishell.c -o srcs/main/minishell.o
 gcc -Wall -Wextra -Werror -g3 -fsanitize=address -fsanitize=leak -I./inc/ -I./libft/ -c srcs/main/outil_main.c -o srcs/main/outil_main.o
