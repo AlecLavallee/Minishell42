@@ -61,6 +61,7 @@ int main(int argc, char **argv, char **envp)
         signal_init();
         while (1)
         {
+            //exit_status = 0;
             signal_init();
             line = readline(">team_90's ");
             if (line == NULL) 
@@ -68,9 +69,7 @@ int main(int argc, char **argv, char **envp)
             if (only_space(line) && !first_word_colon_exclamation(line))
             {
                 add_history(line);
-                if (first_word_is_pipe(line) != 0)
-                    ft_error();
-                else
+                if (first_word_is_pipe(line) == 0)
                     start_command(line, shell);
             }
             //printf("your command is : %s\n", line);

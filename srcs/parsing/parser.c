@@ -72,9 +72,17 @@ t_node *parser(t_token *token)
      t_node *node;
 
     node = pipe_cmd(&token);
-    if (exit_status == 2)
+    if (exit_status == 5)
     {
-        printf("error\n");
+        printf("minishell: syntax error near unexpected token `newline'\n");
+        exit_status = 2;
+        return (NULL);
+    }
+    else if (exit_status == 6)
+    if (exit_status == 5)
+    {
+        printf("minishell: syntax error near unexpected token \n");
+        exit_status = 2;
         return (NULL);
     }
     token = skip(token, TOKEN_EOF, NULL);
@@ -86,10 +94,10 @@ t_node *parser(t_token *token)
 t_node *pipe_cmd(t_token **token)
 {
     t_node *node;
-    if (exit_status != 2)
+    if (exit_status != 5 && exit_status != 6)
     {
         node =  new_node_pipe(command(token));
-        if (exit_status == 2)
+        if (exit_status == 5 || exit_status == 6)
             return (NULL);
         while (consume(*token, TOKEN_PIPE, "|"))
         {
@@ -189,7 +197,7 @@ t_node *command(t_token **token)
     node = new_node_command();
     while (true)
     {
-        if (exit_status == 2)
+        if (exit_status == 5)
         {
             free_node(node);
             return (node);
@@ -206,7 +214,7 @@ t_node *command(t_token **token)
                 && node->cmds->redir_out == NULL)
             {
                 ft_putstr_fd("minishell: syntax error near unexpected token \n", 2);
-                exit_status = 2;
+                exit_status = 6;
                 free_node(node);
             }
             return (node);

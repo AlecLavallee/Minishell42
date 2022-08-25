@@ -187,7 +187,7 @@ int double_quote(char *str);
 int quoting(char *str);
 int first_word_is_pipe(char *str);
 int first_word_colon_exclamation(char *str);
-void	ft_error(void);
+void	ft_error(char *str);
 
 //get_command_line
 t_command *get_command_line(char *str);

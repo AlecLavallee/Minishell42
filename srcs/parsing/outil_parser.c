@@ -42,12 +42,12 @@ t_token *skip(t_token *token, t_token_kind kind, char *str)
 	if (token->kind != kind)
     {
         //parser_error(token->string, token->len);
-        exit_status = 2;
+        exit_status = 5;
     }
 	if (str != NULL && (token->len != (long)ft_strlen(str) 
         || ft_strncmp(token->string, str, token->len)))
     {
-        exit_status = 2;
+        exit_status = 5;
 		//parser_error(token->string, token->len);
         //return (token);
     }
@@ -120,7 +120,7 @@ t_node *new_node_pipe(t_node *cmd_node)
 {
     t_node *node;
     
-    if (exit_status == 2)
+    if (exit_status == 5)
         return (NULL);
     node = ft_calloc(1, sizeof(t_node));
     node->kind = PIPE;
@@ -141,7 +141,7 @@ t_node *new_node_command(void)
 {
     t_node *node;
 
-    if (exit_status == 2)
+    if (exit_status == 5)
         return (NULL);
     node = ft_calloc(1, sizeof(t_node));
     node->cmds = ft_calloc(1, sizeof(t_cmd));
