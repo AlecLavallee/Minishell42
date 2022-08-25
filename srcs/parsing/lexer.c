@@ -85,7 +85,7 @@ t_command *lexer(char *str)
 
     res = quote_check(str);
     if (res > 0)
-        exit (1);
+        return (NULL);
     else
     {
         command_line = get_command_line(str);

@@ -123,7 +123,13 @@ typedef struct s_env
 	char *body;
 	struct s_env *next;
 } t_env;
-
+/*
+typeded struct s_bool
+{
+	bool true;
+	bool false;
+}	t_bool;
+*/
 
 /*
 ** alelaval's stducture
@@ -246,7 +252,7 @@ int	check_pathname(char *pathname);
 //char	*sarch_pathname(char *str);
 
 //util_for_parser
-int consume(t_token *token, t_token_kind kind, char *str);
+bool consume(t_token *token, t_token_kind kind, char *str);
 t_token *skip(t_token *token, t_token_kind kind, char *str);
 void parser_error(char *str, long len);
 t_node *new_node_pipe(t_node *cmd_node);

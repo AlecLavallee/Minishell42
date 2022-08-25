@@ -31,9 +31,10 @@ void start_command(char *str, t_shell *shell)
 
     //global_shell->interrupt = 0;
     command_line = lexer(str);
+    if (command_line == NULL)
+        return ;
     node = parser(command_line->first_token);
-    if (node)
-        free_lexer(command_line);
+    free_lexer(command_line);
     //expand_var(node);
     signal_exec();
     if (node)
