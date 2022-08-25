@@ -6,7 +6,7 @@
 /*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 19:20:37 by alelaval          #+#    #+#             */
-/*   Updated: 2022/08/23 16:19:31 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/08/25 18:58:00 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	exec_builtin(t_node *node, t_shell *shell)
 void	exec_cmd(t_node *node, t_shell *shell)
 {
 	// need to test redirections further, might cause hanging
-	/*if (!set_redir_in(node->cmds->redir_in)
+	if (!set_redir_in(node->cmds->redir_in)
 		|| !set_redir_out(node->cmds->redir_out)
 		|| node->cmds->word == NULL)
 	{
@@ -47,7 +47,7 @@ void	exec_cmd(t_node *node, t_shell *shell)
 		dup2(shell->fdout, 0);
 		exit_status = 1;
 		return ;
-	}*/
+	}
 	if (node->cmds->is_builtin)
 		exec_builtin(node, shell);
 	else
@@ -58,7 +58,7 @@ void	exec_cmd(t_node *node, t_shell *shell)
 
 /*
 * exec_recursion
-* executes multiple layers of pipes using recursion
+* executes all piped commands using recursion
 */
 void	exec_recursion(t_node *node, t_shell *shell)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   outil_main.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtsuji <mtsuji@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 11:37:32 by mtsuji            #+#    #+#             */
-/*   Updated: 2022/08/21 11:37:34 by mtsuji           ###   ########.fr       */
+/*   Updated: 2022/08/25 12:05:49 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,5 @@ int only_space(char *str)
             j++;
         i++;
     }
-    return (j); 
-
+    return (j);
 }

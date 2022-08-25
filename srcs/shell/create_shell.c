@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_shell.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtsuji <mtsuji@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 09:12:27 by mtsuji            #+#    #+#             */
-/*   Updated: 2022/08/18 09:12:30 by mtsuji           ###   ########.fr       */
+/*   Updated: 2022/08/25 18:58:43 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ t_shell *create_shell(char **envp, char **argv)
 {
     t_shell *shell;
 
+	(void)argv;
     shell = NULL;
     shell = init_all();
     shell->envp = get_paths(shell, envp);
     if (!shell->envp)
         printf("NULL ENVP\n");
-    fill_data(shell, argv);
     shell->env = create_env(envp);
     return (shell);
 }

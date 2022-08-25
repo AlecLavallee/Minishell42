@@ -6,7 +6,7 @@
 /*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:10:23 by msuji             #+#    #+#             */
-/*   Updated: 2022/08/23 15:03:49 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/08/25 19:00:33 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,12 @@ typedef struct s_redir
 } t_redir;
 
 typedef struct s_node {
-  t_node_kind kind; // state_token
+  t_node_kind kind;
   struct s_node *next;
-  int val;        // kindがTK_NUMの場合、その数値 = pas besoin pour minishell
-  char *str;      // for word(=argument)
-  int len;        // longuer_token
-  struct s_node *lhs; //left handle
-  struct s_node *rhs; // right handle
+  int val;
+  char *str;
+  int len;
+  struct s_node *lhs;
   struct s_cmd *cmds;
   t_redir *redir_in;
   t_redir *redir_out;
@@ -124,10 +123,6 @@ typedef struct s_env
 	struct s_env *next;
 } t_env;
 
-
-/*
-** alelaval's stducture
-*/
 typedef struct s_comm
 {
 	int		isbuiltin;
@@ -137,30 +132,15 @@ typedef struct s_comm
 	struct s_comm	*next;
 }			t_comm;
 
-/*
-**alelaval's structure
-*/
 typedef struct s_shell
 {
-	int			ret;
-	int			definput;
-	int			defoutput;
 	int			fdin;
 	int			fdout;
-	char		*outfile;
-	int			nb_cmds;
-	t_comm		*cmds;
 	char		**envp;
 	char		**paths;
-	t_env		*env; // ajoute by mtsuji
-	//int			exit_status; ajoute by mtsuji
-	int			interrupt; // ajoute by mtsuji (for signal of exec)
+	t_env		*env;
+	int			interrupt;
 }				t_shell;
-
-//variable globale
-//extern t_shell *global_shell;
-
-//extern int valeur_exit; 
 
 // for main
 void start_command(char *str, t_shell *shell);
@@ -288,6 +268,7 @@ void    del_env(char *str, t_shell *shell);
 void	executor(t_node *node, t_shell *shell);
 void	exec_file(t_node *node, t_shell *shell);
 void	exec_recursion(t_node *node, t_shell *shell);
+int		create_heredoc(t_redir *redir);
 
 //builtin
 //echo
@@ -334,20 +315,5 @@ bool	is_directory(char *pathname);
 int	fail_exec(t_node *node);
 bool	set_redir_out(t_redir *redir_out);
 bool	set_redir_in(t_redir *redir_in);
-void	exec_builtin(t_node *node, t_shell *shell); // from alelaval
-
-// lexer version until 08/12 (double pointeur)
-/*
-int lexer(char *str, t_command **command_line);
-int get_command_line(char *str, t_command **command_line);
-int split_command_to_token(t_command **command_line);
-void token_addback(t_token **tkn, t_token *new);
-void commandline_addback(t_command **line, t_command *new);
-int    free_command_line(t_command **command_line);
-void	free_end(t_command **command_line, char *str);
-
-** supprime
-void is_pipe(int *cur, char *str);
-*/
-
-# endif
+void	exec_builtin(t_node *node, t_shell *shell);
+#endif

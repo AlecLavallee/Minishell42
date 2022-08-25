@@ -6,7 +6,7 @@
 /*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 11:48:33 by msuji             #+#    #+#             */
-/*   Updated: 2022/08/23 16:10:15 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/08/25 19:01:26 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	start_command(char *str, t_shell *shell)
 
 int		main(int argc, char **argv, char **envp)
 {
-<<<<<<< HEAD
+
     char *line;
     t_shell *shell;
 
@@ -51,38 +51,9 @@ int		main(int argc, char **argv, char **envp)
                     ft_error();
                 start_command(line, shell);
             }
-            printf("your command is : %s\n", line);
             free(line);
         }
     }
     ft_putstr_fd("exit\n", 2);
-    exit_shell(shell, exit_status); //  changed by mtsuji
-=======
-	char	*line;
-	t_shell	*shell;
-
-	if (argc && argv)
-	{
-		shell = create_shell(envp, argv);
-		signal_init();
-		while (1)
-		{
-			signal_init();
-			line = readline(">team_90's ");
-			if (line == NULL) 
-				break ;
-			if (only_space(line))
-			{
-				add_history(line);
-				if (first_word_is_pipe(line) != 0)
-					ft_error();
-				start_command(line, shell);
-			}
-			//printf("your command is : %s\n", line);
-			free(line);
-		}
-	}
-	ft_putstr_fd("exit\n", 2);
-	exit_shell(shell, exit_status);
->>>>>>> 09e090df9f1711c4309e645ee21a881643f921b5
+    exit_shell(shell, exit_status);
 }
