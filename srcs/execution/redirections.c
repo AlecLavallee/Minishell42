@@ -6,7 +6,7 @@
 /*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 14:33:19 by alelaval          #+#    #+#             */
-/*   Updated: 2022/08/23 16:07:21 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/08/25 18:36:32 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,15 @@ bool	set_redir_in(t_redir *redir_in)
 		if (fd < 0)
 		{
 			ft_putstr_fd("minishell: ", 2);
-            ft_putstr_fd("redir_in->str", 2);
-            ft_putstr_fd("\n", 2);
+			ft_putstr_fd("redir_in->str", 2);
+			ft_putstr_fd("\n", 2);
 			return (false);
 		}
 	}
 	else if (redir_in->kind == REDIR_HEREDOC)
-		fd = redir_in->fd;
+	{
+		fd = create_heredoc(redir_in);
+	}
 	else
 	{
 		ft_putstr_fd("error: set_redir_in()", 2);
