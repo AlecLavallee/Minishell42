@@ -227,7 +227,7 @@ long	at_doller_mark(char *str, char **new, long i, t_shell *shell);
 void	split_space(t_node *node);
 t_word	*_split_space_in_word(t_word *word);
 t_word	*_create_splited_words(char *str);
-long	_get_word_len_to_space(char *str);
+long	get_word_len_to_space(char *str);
 t_node expension(t_node *node);
 char	*remove_quote_string(char *str);
 void remove_quote_word(t_word *word);

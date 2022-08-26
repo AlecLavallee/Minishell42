@@ -12,7 +12,7 @@
 
  #include "../../inc/minishell.h"
 
-long	_get_word_len_to_space(char *str)
+long	get_word_len_to_space(char *str)
 {
 	int	single_quote;
 	int	double_quote;
@@ -52,7 +52,7 @@ t_word	*_create_splited_words(char *str)
 			i++;
 		if (str[i] == '\0')
 			break ;
-		len = _get_word_len_to_space(&(str[i]));
+		len = get_word_len_to_space(&(str[i]));
 		word_add_back_for_split(&new_word, ft_strndup(&(str[i]), len));
 		i += len;
 	}
