@@ -6,11 +6,43 @@
 /*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 14:33:19 by alelaval          #+#    #+#             */
-/*   Updated: 2022/08/25 18:36:32 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/08/26 17:46:08 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+bool	set_redir_heredoc(t_redir *redir_in)
+{
+	char	*line;
+
+	line = NULL;
+	if (redir_in == NULL)
+		return (true);
+	if (redir_in->kind == REDIR_HEREDOC)
+	{
+		while (1)
+		{
+			line = readline(">");
+			if (!ft_strcmp(line, redir_in->str))
+			{
+				ft_putstr_fd(line, 0);
+				break ;
+			}
+			free(line);
+		}
+	}
+	else if (redir_in->kind == REDIR_IN)
+	{
+		return (set_redir_heredoc(redir_in->next));
+	}
+	else
+	{
+		ft_putstr_fd("error: set_redir_in()", 2);
+		exit(1);
+	}
+	return (set_redir_heredoc(redir_in->next));
+}
 
 bool	set_redir_in(t_redir *redir_in)
 {
@@ -32,7 +64,7 @@ bool	set_redir_in(t_redir *redir_in)
 	}
 	else if (redir_in->kind == REDIR_HEREDOC)
 	{
-		fd = create_heredoc(redir_in);
+		return (set_redir_in(redir_in->next));
 	}
 	else
 	{

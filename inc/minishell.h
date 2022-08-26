@@ -6,7 +6,7 @@
 /*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:10:23 by msuji             #+#    #+#             */
-/*   Updated: 2022/08/25 19:00:33 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/08/26 18:18:42 by alelaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct s_node {
   char *str;
   int len;
   struct s_node *lhs;
+  struct s_node *rhs;
   struct s_cmd *cmds;
   t_redir *redir_in;
   t_redir *redir_out;
@@ -263,12 +264,10 @@ void env_rewrite(t_shell *shell, char *name, char *body);
 void env_rewrite_with_plus(t_shell *shell, char *name, char *body);
 void    del_env(char *str, t_shell *shell);
 
-
 //exec
 void	executor(t_node *node, t_shell *shell);
 void	exec_file(t_node *node, t_shell *shell);
 void	exec_recursion(t_node *node, t_shell *shell);
-int		create_heredoc(t_redir *redir);
 
 //builtin
 //echo
@@ -315,5 +314,6 @@ bool	is_directory(char *pathname);
 int	fail_exec(t_node *node);
 bool	set_redir_out(t_redir *redir_out);
 bool	set_redir_in(t_redir *redir_in);
+bool	set_redir_heredoc(t_redir *redir_in);
 void	exec_builtin(t_node *node, t_shell *shell);
 #endif
