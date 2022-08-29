@@ -3,45 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jemina <jemina@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 14:33:19 by alelaval          #+#    #+#             */
-/*   Updated: 2022/08/26 17:46:08 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/08/29 05:04:13 by jemina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-bool	set_redir_heredoc(t_redir *redir_in)
+void	write_heredoc(char *delim)
 {
+	int		fd;
 	char	*line;
 
-	line = NULL;
-	if (redir_in == NULL)
-		return (true);
-	if (redir_in->kind == REDIR_HEREDOC)
+	line = ft_strdup("");
+	fd = open(delim, O_WRONLY | O_CREAT | O_TRUNC, 0777);
+	// strange issue, ft_strlen might be due to an error
+	// when there's multiple heredoc with same name or direct sucession
+	while (ft_strncmp(line, delim, ft_strlen(delim))
+		|| ft_strlen(line) != ft_strlen(delim))
 	{
-		while (1)
+		free(line);
+		line = readline("> ");
+		if (ft_strlen(line) != ft_strlen(delim))
 		{
-			line = readline(">");
-			if (!ft_strcmp(line, redir_in->str))
-			{
-				ft_putstr_fd(line, 0);
-				break ;
-			}
-			free(line);
+			ft_putstr_fd(line, fd);
+			ft_putstr_fd("\n", fd);
 		}
 	}
-	else if (redir_in->kind == REDIR_IN)
-	{
-		return (set_redir_heredoc(redir_in->next));
-	}
-	else
-	{
-		ft_putstr_fd("error: set_redir_in()", 2);
-		exit(1);
-	}
-	return (set_redir_heredoc(redir_in->next));
+	close(fd);
+	free(line);
 }
 
 bool	set_redir_in(t_redir *redir_in)
@@ -57,22 +49,34 @@ bool	set_redir_in(t_redir *redir_in)
 		if (fd < 0)
 		{
 			ft_putstr_fd("minishell: ", 2);
-			ft_putstr_fd("redir_in->str", 2);
+			ft_putstr_fd("redir_in error", 2);
 			ft_putstr_fd("\n", 2);
 			return (false);
 		}
 	}
 	else if (redir_in->kind == REDIR_HEREDOC)
 	{
-		return (set_redir_in(redir_in->next));
+		// will need expansion of every line expect delimiter
+		write_heredoc(redir_in->str);
+		fd = open(redir_in->str, O_RDONLY, 0777);
+		if (fd < 0)
+		{
+			ft_putstr_fd("minishell: ", 2);
+			ft_putstr_fd("heredoc error", 2);
+			ft_putstr_fd("\n", 2);
+			return (false);
+		}
 	}
 	else
 	{
 		ft_putstr_fd("error: set_redir_in()", 2);
-		exit(1);
+		// testing if kind not detected, removed exit
+		return (true);
 	}
 	dup2(fd, 0);
 	close(fd);
+	if (redir_in->kind == REDIR_HEREDOC)
+		unlink(redir_in->str);
 	return (set_redir_in(redir_in->next));
 }
 

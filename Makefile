@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+         #
+#    By: jemina <jemina@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/01 12:35:48 by msuji             #+#    #+#              #
-#    Updated: 2022/08/25 18:29:32 by alelaval         ###   ########.fr        #
+#    Updated: 2022/08/29 05:01:04 by jemina           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,9 +52,6 @@ SRCS	=	./srcs/main/minishell.c	\
 			./srcs/execution/exec_file.c \
 			./srcs/execution/redirections.c \
 			./srcs/execution/status.c \
-			./srcs/execution/heredoc.c \
-			#./srcs/exec/exec_pipe.c			\
-
 
 OBJS	=	$(SRCS:.c=.o)
 
