@@ -15,9 +15,13 @@
 int echo_option(char *str)
 {
     long i;
-    if (ft_strcmp(str, "-n") != 0)
-        return (1);
+
     i = 1;
+    if (ft_strncmp(str, "-n", 2) != 0)
+    {
+        return (1);
+    }
+
     while (str[i])
     {
         if (str[i] != 'n')

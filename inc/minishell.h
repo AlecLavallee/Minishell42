@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alelaval <alelaval@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jemina <jemina@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:10:23 by msuji             #+#    #+#             */
-/*   Updated: 2022/08/26 18:18:42 by alelaval         ###   ########.fr       */
+/*   Updated: 2022/08/29 05:16:03 by jemina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,10 @@ typedef struct s_env
 	struct s_env *next;
 } t_env;
 
+
+/*
+** alelaval's stducture
+*/
 typedef struct s_comm
 {
 	int		isbuiltin;
@@ -161,7 +165,8 @@ int simple_quote(char *str);
 int double_quote(char *str);
 int quoting(char *str);
 int first_word_is_pipe(char *str);
-void	ft_error(void);
+int first_word_colon_exclamation(char *str);
+void	ft_error(char *str);
 
 //get_command_line
 t_command *get_command_line(char *str);
@@ -201,7 +206,7 @@ long	at_doller_mark(char *str, char **new, long i, t_shell *shell);
 void	split_space(t_node *node);
 t_word	*_split_space_in_word(t_word *word);
 t_word	*_create_splited_words(char *str);
-long	_get_word_len_to_space(char *str);
+long	get_word_len_to_space(char *str);
 t_node expension(t_node *node);
 char	*remove_quote_string(char *str);
 void remove_quote_word(t_word *word);
@@ -226,7 +231,7 @@ int	check_pathname(char *pathname);
 //char	*sarch_pathname(char *str);
 
 //util_for_parser
-int consume(t_token *token, t_token_kind kind, char *str);
+bool consume(t_token *token, t_token_kind kind, char *str);
 t_token *skip(t_token *token, t_token_kind kind, char *str);
 void parser_error(char *str, long len);
 t_node *new_node_pipe(t_node *cmd_node);
@@ -289,6 +294,9 @@ int check_argument_for_export(char *str);
 
 //unset
 int	unset(t_word *word, t_shell *shell);
+
+//exit
+int builtin_exit(t_word *word);
 
 //alelaval's focntion
 t_shell	*init_all(void);

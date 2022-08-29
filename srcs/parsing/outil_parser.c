@@ -12,37 +12,66 @@
 
 #include "../../inc/minishell.h"
 
+//int exit_status;
+
 void parser_error(char *str, long len)
 {
     char *str_tmp;
 
     str_tmp = strndup(str, len);
-    ft_putstr_fd("minishell : syntax error near unexpected token ", 2);
-    ft_putstr_fd(str_tmp, 2);
+    ft_putstr_fd("minishell : syntax error near unexpected token `newline'", 2);
+//    ft_putstr_fd(str_tmp, 2);
     ft_putchar_fd('\n', 2);
     free(str_tmp);
-    exit(1);
+    exit_status = 2;
+    //exit(1);
 }
 
-int consume(t_token *token, t_token_kind kind, char *str) 
+bool consume(t_token *token, t_token_kind kind, char *str) 
 {
 	if (token->kind != kind)
-		return (1);
+		return (false);
 	if (str != NULL && ft_strncmp(token->string, str, token->len))
-		return (1);
-	return (0);
+		return (false);
+	return (true);
 }                         
+
 
 t_token *skip(t_token *token, t_token_kind kind, char *str) 
 {
 	if (token->kind != kind)
-        parser_error(token->string, token->len);
+    {
+        //parser_error(token->string, token->len);
+        exit_status = 5;
+    }
 	if (str != NULL && (token->len != (long)ft_strlen(str) 
         || ft_strncmp(token->string, str, token->len)))
-		parser_error(token->string, token->len);
+    {
+        exit_status = 5;
+		//parser_error(token->string, token->len);
+        //return (token);
+    }
 	return token->next;
 }
 
+/*
+t_token *skip(t_token *token, t_token_kind kind, char *str) 
+{
+	if (token->kind != kind)
+    {
+        exit_status= 2;
+        return (NULL);
+    }
+	if (str != NULL && (token->len != (long)ft_strlen(str) 
+        || ft_strncmp(token->string, str, token->len)))
+    {
+		exit_status = 2;
+        return (NULL);
+    }
+    else
+	    return token->next;
+}
+*/
 void free_node(t_node *node)
 {
     if (node == NULL)
@@ -91,6 +120,8 @@ t_node *new_node_pipe(t_node *cmd_node)
 {
     t_node *node;
     
+    if (exit_status == 5)
+        return (NULL);
     node = ft_calloc(1, sizeof(t_node));
     node->kind = PIPE;
     node->rhs = cmd_node; // right handle
@@ -110,11 +141,14 @@ t_node *new_node_command(void)
 {
     t_node *node;
 
+    if (exit_status == 5)
+        return (NULL);
     node = ft_calloc(1, sizeof(t_node));
     node->cmds = ft_calloc(1, sizeof(t_cmd));
     node->kind = COMMAND; 
     return (node);   
 }
+
 /*
 t_node *new_node_word(t_token *token) 
 {

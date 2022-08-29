@@ -283,9 +283,9 @@ int split_command_line(t_command *command_line)
     start = 0;
     if (command_line->whole_str != NULL)
         len = ft_strlen(command_line->whole_str + 1);
-    while (cur < len)
+    while (cur <= len)
     {
-        while (cur < len && command_line->whole_str[cur] == ' ' )
+        while (cur <= len && command_line->whole_str[cur] == ' ' )
             cur++;
         start = cur;
         if (is_redirection(command_line->whole_str[cur]) && command_line->whole_str[cur])

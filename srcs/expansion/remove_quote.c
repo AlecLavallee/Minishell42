@@ -33,6 +33,9 @@ char	*remove_quote_string(char *str)
 			double_quote = 0;
 		else if (single_quote && str[i] == '\'')
 			single_quote = 0;
+		//else if ((!single_quote || !double_quote) 
+		//	&& (str[i] == '\\' && str[i + 1] != '\\'))
+		//	i++;
 		else
             new = ft_str_add_char(new, str[i]);
 		i++;

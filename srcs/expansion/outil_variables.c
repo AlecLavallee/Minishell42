@@ -33,6 +33,13 @@ long	at_doller_mark(char *str, char **new, long i, t_shell *shell)
 		if (name[0] != '\0')
 		{
 			body = get_env_body(name, shell);
+			if (body == NULL)
+			{
+				new = NULL;
+				i += ft_strlen(name);
+				free(name);
+				return (i);
+			}
 			*new = ft_strjoin_and_free(*new, 1, body, 0);
 			i += ft_strlen(name);
 		}
@@ -40,6 +47,53 @@ long	at_doller_mark(char *str, char **new, long i, t_shell *shell)
 	}
 	return (i);
 }
+/*
+long	at_doller_mark(char *str, char **new, long i, t_shell *shell)
+{
+	char	*name;
+	char	*body;
+
+	i++;
+	if (str[i] == '?') //for "echo $?"
+	{
+		*new = ft_strjoin_and_free(*new, 1, ft_itoa(exit_status), 1);
+		i++;
+	}
+	//else if (!is_var_name_char_1st(str[i])) // if it's not variable
+	//	*new = ft_strjoin_and_free(*new, 1, "$", 0);
+	else // it's variable
+	{
+		if (!is_var_name_char_1st(str[i])) // if it's not variable
+		{	
+			if (ft_isdigit(str[i]))
+				i++;
+			else
+			{
+				*new = ft_strjoin_and_free(*new, 1, "$", 0);
+				return (i);
+			}
+			
+		}
+		name = get_var_name(&str[i]);
+		if (name[0] != '\0')
+		{
+			body = get_env_body(name, shell);
+			if (body == NULL)
+			{
+				new = NULL;
+				i += ft_strlen(name);
+				free(name);
+				return (i);
+			}
+			*new = ft_strjoin_and_free(*new, 1, body, 0);
+			i += ft_strlen(name);
+		}
+		free(name);
+	}
+	return (i);
+}
+*/
+
 
 char	*get_var_name(char *str)
 {
