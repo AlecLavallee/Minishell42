@@ -6,7 +6,7 @@
 /*   By: jemina <jemina@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 11:48:33 by msuji             #+#    #+#             */
-/*   Updated: 2022/08/29 05:16:03 by jemina           ###   ########.fr       */
+/*   Updated: 2022/08/29 05:45:29 by jemina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	start_command(char *str, t_shell *shell)
     free_lexer(command_line);
     //expand_var(node);
     signal_exec();
-    exec(node, shell);
+    executor(node, shell);
     free_node(node);
 }
 

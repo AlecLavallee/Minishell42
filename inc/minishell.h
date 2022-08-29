@@ -6,7 +6,7 @@
 /*   By: jemina <jemina@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 17:10:23 by msuji             #+#    #+#             */
-/*   Updated: 2022/08/29 05:16:03 by jemina           ###   ########.fr       */
+/*   Updated: 2022/08/29 05:46:16 by jemina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,7 +166,7 @@ int double_quote(char *str);
 int quoting(char *str);
 int first_word_is_pipe(char *str);
 int first_word_colon_exclamation(char *str);
-void	ft_error(char *str);
+void	ft_error(void);
 
 //get_command_line
 t_command *get_command_line(char *str);

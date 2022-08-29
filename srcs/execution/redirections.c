@@ -6,27 +6,28 @@
 /*   By: jemina <jemina@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/23 14:33:19 by alelaval          #+#    #+#             */
-/*   Updated: 2022/08/29 05:04:13 by jemina           ###   ########.fr       */
+/*   Updated: 2022/08/29 06:06:14 by jemina           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	write_heredoc(char *delim)
+void	write_heredoc(t_redir *in)
 {
 	int		fd;
 	char	*line;
 
 	line = ft_strdup("");
-	fd = open(delim, O_WRONLY | O_CREAT | O_TRUNC, 0777);
+	fd = open(in->str, O_WRONLY | O_CREAT, 0777);
+	if (fd < 0)
+		return ;
 	// strange issue, ft_strlen might be due to an error
 	// when there's multiple heredoc with same name or direct sucession
-	while (ft_strncmp(line, delim, ft_strlen(delim))
-		|| ft_strlen(line) != ft_strlen(delim))
+	while (ft_strncmp(line, in->str, ft_strlen(in->str))
+		|| ft_strlen(line) != ft_strlen(in->str))
 	{
-		free(line);
 		line = readline("> ");
-		if (ft_strlen(line) != ft_strlen(delim))
+		if (ft_strlen(line) != ft_strlen(in->str))
 		{
 			ft_putstr_fd(line, fd);
 			ft_putstr_fd("\n", fd);
@@ -57,7 +58,8 @@ bool	set_redir_in(t_redir *redir_in)
 	else if (redir_in->kind == REDIR_HEREDOC)
 	{
 		// will need expansion of every line expect delimiter
-		write_heredoc(redir_in->str);
+		// signal and exit_status too
+		write_heredoc(redir_in);
 		fd = open(redir_in->str, O_RDONLY, 0777);
 		if (fd < 0)
 		{
@@ -71,12 +73,10 @@ bool	set_redir_in(t_redir *redir_in)
 	{
 		ft_putstr_fd("error: set_redir_in()", 2);
 		// testing if kind not detected, removed exit
-		return (true);
+		return (false);
 	}
 	dup2(fd, 0);
 	close(fd);
-	if (redir_in->kind == REDIR_HEREDOC)
-		unlink(redir_in->str);
 	return (set_redir_in(redir_in->next));
 }
 
